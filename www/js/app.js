@@ -221,14 +221,32 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
     };
     
     $scope.generateZip = function() {
-        $scope.zipFile = $scope.zip.generate({ type: 'blob' });
+        $scope.zipFile = $scope.zip.generate({ type: 'base64' });
         
         window.resolveLocalFileSystemURI( dataStorageUri , function(directory) {
             directory.getFile( 'zip.zip', {create: true }, function(file) {
                  file.createWriter(function (fileWriter) {
                     fileWriter.onwriteend = function (e) {
                         // for real-world usage, you might consider passing a success callback
-                        console.log('Write of file completed.' + e);
+                        console.log('Write of file completed.' + JSON.stringify(e));
+                        var options = {
+                            fileKey: "file",
+                            fileName: 'zipfile.zip',
+                            chunkedMode: false,
+                            mimeType: "application/zip",
+                            params : {'directory':'upload', 'fileName': 'zipfile.zip'}
+                        };
+                        $cordovaFileTransfer.upload('http://modus360.qbiz.pl/upload.php', dataStorageUri + 'zip.zip', options)
+                        .then(function(result) {
+                            // Success!
+                            $cordovaToast.showShortTop(result);
+                        }, function(err) {
+                            $cordovaToast.showShortTop(err);
+                            // Error
+                        }, function (progress) {
+                            console.log('Upload: ' + JSON.stringify(progress));
+                            // constant progress updates
+                        });
                     };
 
                     fileWriter.onerror = function (e) {
@@ -240,17 +258,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             });
         });
         
-        $cordovaFileTransfer.upload('http://modus360.qbiz.pl/upload.php', dataStorageUri + 'zip.zip')
-        .then(function(result) {
-            // Success!
-            $cordovaToast.showShortTop(result);
-        }, function(err) {
-            $cordovaToast.showShortTop(err);
-            // Error
-        }, function (progress) {
-            console.log('Upload: ' + progress);
-            // constant progress updates
-        });
     }
     
     $scope.purgeDir = function() {
