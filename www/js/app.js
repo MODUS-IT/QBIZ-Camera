@@ -53,8 +53,8 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
     $scope.params = { pictures: 6, pictureInterval: 8, time : '5s' }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
     $scope.pictures = [ ]; //Stores pictures path
     
-    var pictureLoop = { loop: undefined, counter: undefined, timerCounter: undefined };
-    var dataStorageUri;
+    var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
+    var dataStorageUri = undefined;
     
     $ionicPlatform.ready(function () {
         dataStorageUri = cordova.file.dataDirectory;
@@ -84,53 +84,42 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             $scope.menuOpened = false;
     }
     
-    $scope.$watch('state.current.name', function() {
-        function cameraHide() {
-            $ionicPlatform.ready(function() {
-                cordova.plugins.camerapreview.hide();
-            });
-        }
-        
-        function cameraShow() {
-            $ionicPlatform.ready(function() {
-                cordova.plugins.camerapreview.show();
-            });
-        }
-        
-        if($scope.state.current.name == 'imageBrowser') cameraHide();
-            else cameraShow();
-    });
+    $scope.cameraShow = function() {
+        $ionicPlatform.ready(function() {
+            cordova.plugins.camerapreview.show();
+        });
+    }
+    
+    $scope.cameraHide = function() {
+        $ionicPlatform.ready(function() {
+            cordova.plugins.camerapreview.hide();
+        });
+    }
      
-    var even = true;
+    $scope.even = true;
     $scope.takePicture = function() {
         if( pictureLoop.loop === undefined ) {
             pictureLoop.counter = 0;
             pictureLoop.timerCounter = 0;
-            pictureLoop.loop = $interval(function() {
-                if(even) {
-                    even = false;
-                    $cordovaToast.showShortCenter($scope.params.pictureInterval - pictureLoop.timerCounter + "s");
-                } else even = true;
-                pictureLoop.timerCounter++;
-                if(pictureLoop.timerCounter >= $scope.params.pictureInterval) {
-                    pictureLoop.timerCounter = 0;
-                    if (pictureLoop.counter < $scope.params.pictures) {
-                        takePictureUtility();
-                        pictureLoop.counter += 1;
-                    } else {
-                        cleanLoopVariables();
+            pictureLoop.loop = $interval(
+                function() {
+                    if($scope.even) {
+                        $scope.even = false;
+                        $cordovaToast.showShortCenter($scope.params.pictureInterval - pictureLoop.timerCounter + "s");
+                    } else $scope.even = true;
+                    pictureLoop.timerCounter++;
+                    if(pictureLoop.timerCounter >= $scope.params.pictureInterval) {
+                        pictureLoop.timerCounter = 0;
+                        if (pictureLoop.counter < $scope.params.pictures) {
+                            takePictureUtility();
+                            pictureLoop.counter += 1;
+                        } else {
+                            cleanLoopVariables();
+                        }
                     }
-                }
-            }, 1000);
+                }, 1000);
         }
     };
-    
-    var cleanLoopVariables = function() {
-        $interval.cancel( pictureLoop.loop );
-        pictureLoop.loop = undefined;
-        pictureLoop.counter = undefined;
-        pictureLoop.timerCounter = undefined;
-    }
     
     $scope.takePictureUtility = function() {
         cordova.plugins.camerapreview.takePicture();
@@ -150,6 +139,20 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         );
     }
     
+    var cleanLoopVariables = function() {
+        $interval.cancel( pictureLoop.loop );
+        pictureLoop.loop = undefined;
+        pictureLoop.counter = undefined;
+        pictureLoop.timer = undefined;
+        pictureLoop.timerCounter = undefined;
+    }
+    
+    $scope.$watch('state.current.name', function() {
+        if($scope.state.current.name == 'imageBrowser') $scope.cameraHide();
+            else 
+            $scope.cameraShow();
+    });
+    
     $scope.listDataStorage = function() {
         $cordovaToast.showShortTop('Init: List Data Storage');
         FileManipulationService.listDirectory( dataStorageUri ).then(function ( entriesArray ) {
@@ -161,23 +164,33 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         });
     };
     
-    $scope.sendPhotos = function() {
-        function showError( err ){
-            console.error( JSON.stringify(err) );
-        }
+    $scope.getPhotos = function() {
         console.log('Init: Get Photos');
         FileManipulationService.getPhotos( dataStorageUri ).then(function( base64Images ) {
             console.log( base64Images );
             JSZipService.packImages( base64Images );
             var zip = JSZipService.getGeneratedZip();
+            console.error(zip);
             FileManipulationService.saveFile( dataStorageUri, 'photos.zip', zip ).then(function(result) {
                 FileManipulationService.getBinaryFile( dataStorageUri, 'photos.zip' ).then(function(result) {
                     PHPUploadService.uploadFile( dataStorageUri + 'photos.zip' ).then(function(result) {
                         console.log(JSON.stringify(result));
-                    }, showError);
-                }, showError);
-            }, showError);
-        }, showError);
+                    }, function(err) {
+                        console.error(JSON.stringify(err));
+                    });
+                }, function(err) {
+                    console.error(JSON.stringify(err));
+                });
+            }, function(err) {
+                console.log(JSON.stringify(err));
+            });
+        }, function( err ) {
+            console.error( JSON.stringify(err) );
+        });
+    }
+    
+    $scope.generateZip = function() {
+
     }
     
     $scope.purgeDir = function() {

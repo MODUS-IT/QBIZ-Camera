@@ -1,6 +1,6 @@
 {
   "name": "cameraapp",
-  "version": "1.1.2",
+  "version": "1.1.1",
   "description": "cameraApp: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
