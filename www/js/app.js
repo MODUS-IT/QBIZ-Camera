@@ -18,7 +18,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      window.StatusBar.styleDefault();
     }
   });
 })
@@ -46,7 +46,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
     $urlRouterProvider.otherwise('/mainView');   
 })
 
-.controller('mainCtrl', function( $q, $scope, $ionicPlatform, $interval, $cordovaToast, $state, $cordovaDialogs, $http, $cordovaFileTransfer ) {
+.controller('mainCtrl', function( $q, $scope, $ionicPlatform, $interval, $cordovaToast, $state, $cordovaDialogs, $http, $cordovaFileTransfer, FileManipulationService, JSZipService, PHPUploadService ) {
     $scope.state = $state;
     $scope.cameraInitialized = false;
     $scope.menuOpened = false; //Controls menu
@@ -85,20 +85,16 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
     }
     
     $scope.cameraShow = function() {
-        //cordova.plugins.camerapreview.show();
+        $ionicPlatform.ready(function() {
+            cordova.plugins.camerapreview.show();
+        });
     }
     
     $scope.cameraHide = function() {
-        cordova.plugins.camerapreview.hide();
+        $ionicPlatform.ready(function() {
+            cordova.plugins.camerapreview.hide();
+        });
     }
-    
-    $scope.openFile = function( item ) {
-        /*$cordovaToast.showShortTop(item);
-        cordova.plugins.fileOpener2.open(
-            item.nativeURL, 
-            'image/jpeg'
-        );*/
-    }   
      
     $scope.even = true;
     $scope.takePicture = function() {
@@ -157,36 +153,9 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             $scope.cameraShow();
     });
     
-    
-    
-    function listDir(path){
-        return $q(function(resolve, reject) {
-            var dirEntries = [];
-            window.resolveLocalFileSystemURL(path,
-            function (fileSystem) {
-                var reader = fileSystem.createReader();
-                reader.readEntries(
-                    function (entries) {
-                        var i;
-                        for(i = 0; i < entries.length; i++) {
-                            dirEntries.push( entries[i] );
-                        }
-                        resolve(dirEntries);
-                    },
-                    function (err) {
-                        reject('err');
-                        //Do zaimplementowania - read err | no access
-                    });
-        }, function (err) {
-            reject('err');
-            //Do zaimplementowania - path not found | no access
-            });
-        });
-    }; 
-    
     $scope.listDataStorage = function() {
-        $cordovaToast.showShortTop('Init list...');
-        listDir( dataStorageUri ).then(function ( entriesArray ) {
+        $cordovaToast.showShortTop('Init: List Data Storage');
+        FileManipulationService.listDirectory( dataStorageUri ).then(function ( entriesArray ) {
             $scope.files = entriesArray;
             $scope.pictures = entriesArray;
             $cordovaDialogs.alert( entriesArray.length );
@@ -195,75 +164,39 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         });
     };
     
-    $scope.zip = new JSZip;
-    
-    $scope.packDir = function() {
-        $cordovaToast.showShortTop('Init pack...');
-        listDir( dataStorageUri ).then(function( entriesArray ) {
-            angular.forEach( entriesArray, function(photo, key) {
-              if(photo.isFile) {
-                  $cordovaToast.showShortTop('Hello!');
-                  window.resolveLocalFileSystemURL( dataStorageUri + photo.name,
-                        function (fileEntry) {
-                            fileEntry.file(function(file) {
-                                var reader = new FileReader();
-                                reader.onloadend = function(e) {
-                                    $scope.zip.file(photo.name, e.result);
-                                }
-                                reader.readAsBinaryString(file);
-                            });
+    $scope.getPhotos = function() {
+        console.log('Init: Get Photos');
+        FileManipulationService.getPhotos( dataStorageUri ).then(function( base64Images ) {
+            console.log( base64Images );
+            JSZipService.packImages( base64Images );
+            var zip = JSZipService.getGeneratedZip();
+            console.error(zip);
+            FileManipulationService.saveFile( dataStorageUri, 'photos.zip', zip ).then(function(result) {
+                FileManipulationService.getBinaryFile( dataStorageUri, 'photos.zip' ).then(function(result) {
+                    PHPUploadService.uploadFile( dataStorageUri + 'photos.zip' ).then(function(result) {
+                        console.log(JSON.stringify(result));
                     }, function(err) {
-                        $cordovaDialogs.alert(err);
-                    })
-              }  
+                        console.error(JSON.stringify(err));
+                    });
+                }, function(err) {
+                    console.error(JSON.stringify(err));
+                });
+            }, function(err) {
+                console.log(JSON.stringify(err));
             });
+        }, function( err ) {
+            console.error( JSON.stringify(err) );
         });
-    };
+    }
     
     $scope.generateZip = function() {
-        $scope.zipFile = $scope.zip.generate({ type: 'base64' });
-        
-        window.resolveLocalFileSystemURI( dataStorageUri , function(directory) {
-            directory.getFile( 'zip.zip', {create: true }, function(file) {
-                 file.createWriter(function (fileWriter) {
-                    fileWriter.onwriteend = function (e) {
-                        // for real-world usage, you might consider passing a success callback
-                        console.log('Write of file completed.' + JSON.stringify(e));
-                        var options = {
-                            fileKey: "file",
-                            fileName: 'zipfile.zip',
-                            chunkedMode: false,
-                            mimeType: "application/zip",
-                            params : {'directory':'upload', 'fileName': 'zipfile.zip'}
-                        };
-                        $cordovaFileTransfer.upload('http://modus360.qbiz.pl/upload.php', dataStorageUri + 'zip.zip', options)
-                        .then(function(result) {
-                            // Success!
-                            $cordovaToast.showShortTop(result);
-                        }, function(err) {
-                            $cordovaToast.showShortTop(err);
-                            // Error
-                        }, function (progress) {
-                            console.log('Upload: ' + JSON.stringify(progress));
-                            // constant progress updates
-                        });
-                    };
 
-                    fileWriter.onerror = function (e) {
-                        // you could hook this up with our global error handler, or pass in an error callback
-                        console.log('Write failed: ' + e.toString());
-                    };
-                    fileWriter.write( $scope.zipfile );
-                });
-            });
-        });
-        
     }
     
     $scope.purgeDir = function() {
         $cordovaToast.showShortTop('Init purge...');
         var directory;
-        listDir( dataStorageUri ).then(function ( entriesArray ) {
+        FileManipulationService.listDirectory( dataStorageUri ).then(function ( entriesArray ) {
             directory = entriesArray;
             angular.forEach( directory, function(photo, key) {
                 if(photo.isFile) {
@@ -290,4 +223,162 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
     };
     
-});
+})
+
+.service('JSZipService', ['$q', function($q) {
+    var zipFile = new JSZip();
+    var generatedZip;
+    
+    function removeHeader( data ) {
+        return data.replace('data:image/jpeg;base64,', '');
+    }
+    
+    function packImage( image ) {
+        var data = image.data;
+        data = removeHeader( data );
+        zipFile.file( image.name, data, { base64: true } );
+    }
+    
+    this.packImages = function( base64Images ) {
+        angular.forEach( base64Images, function( image, index ) {
+            packImage( image );
+        });
+        generatedZip = zipFile.generate();
+    }
+    
+    this.getGeneratedZip = function() {
+        return generatedZip;
+    }
+    
+}])
+
+.service('FileManipulationService', ['$q', function( $q ) {
+    this.listDirectory = function( path ) {
+        function rejectError(err) {
+            $q.reject(err);
+        }
+        return $q(function(resolve, reject) {
+            var dirEntries = [];
+            window.resolveLocalFileSystemURL(path, function (fileSystem) {
+                var reader = fileSystem.createReader();
+                reader.readEntries(
+                    function (entries) {
+                        for(var i = 0; i < entries.length; i++) {
+                            dirEntries.push( entries[i] );
+                        }
+                        resolve(dirEntries);
+                    },
+                    rejectError);
+        }, rejectError);
+        });
+    }
+    
+    function isJPEG( fileName ) {
+        if ( fileName.indexOf('.jpg') > -1 ) return true;
+        return;
+    }
+    
+    this.getPhotos = function ( dataURI ) {
+        var deferred = $q.defer();
+        this.listDirectory( dataURI ).then( function( entriesArray ) {
+            var filesLoaded = 0; 
+            var photosCount = 0;
+            var base64Images = [];
+            angular.forEach( entriesArray, function( photo, key ) {
+                console.log( 'Key: ' + key );
+                console.log( 'Photo: ' + JSON.stringify(photo) );
+                if( photo.isFile && isJPEG( photo.name ) ) {
+                    photosCount++;
+                    getPhotoDataURL( dataURI, photo.name ).then( function( result ) {
+                        console.log( 'Loaded: ' + JSON.stringify( result ) );
+                        base64Images.push( { name: photo.name, data: result } )
+                        filesLoaded++;
+                        if( filesLoaded == photosCount ) {
+                            console.log('All files loaded!');
+                            console.log( base64Images );
+                            deferred.resolve( base64Images );
+                        }
+                    }, function ( err ) {
+                        deferred.reject( err );
+                    });
+              }  
+            });
+        });
+        return deferred.promise;
+    }
+    
+    this.getBinaryFile = function( dataURI, fileName ) {
+        var deferred = $q.defer();
+        window.resolveLocalFileSystemURL( dataURI + fileName, function (fileEntry) {
+            //fileEntry.file returns File obj connected to selected file
+            fileEntry.file( function( file ) {
+                var reader = new FileReader();
+                reader.onloadend = function( e ) {
+                    deferred.resolve( e.target.result );
+                }
+                reader.readAsBinaryString( file );
+            });
+        }, function( err ) {
+            deferred.reject( err );
+        });
+        return deferred.promise;
+    }
+    
+    function getPhotoDataURL( dataURI, fileName ) {
+        var deferred = $q.defer();
+        window.resolveLocalFileSystemURL( dataURI + fileName, function (fileEntry) {
+            //fileEntry.file returns File obj connected to selected file
+            fileEntry.file( function( file ) {
+                var reader = new FileReader();
+                reader.onloadend = function( e ) {
+                    deferred.resolve( e.target.result );
+                }
+                reader.readAsDataURL( file );
+            });
+        }, function( err ) {
+            deferred.reject( err );
+        });
+        return deferred.promise;
+    }
+    
+    this.saveFile = function( dataURI, fileName, data ) {
+        var deferred = $q.defer();
+        window.resolveLocalFileSystemURL( dataURI, function( dirEntry ) {
+            dirEntry.getFile( fileName, {create:true}, function(fileEntry) {
+                fileEntry.createWriter(function(fileWriter) {
+                   fileWriter.onwriteend = function( result ) {
+                       deferred.resolve( result );
+                   }
+                   fileWriter.onerror = function( err ) {
+                       deferred.reject( err );
+                   }
+                   
+                   fileWriter.write( data );
+                });
+            });
+        });
+        return deferred.promise;
+    }
+    
+}])
+
+.service('PHPUploadService', ['$q', '$cordovaFileTransfer', 'FileManipulationService', function($q, $cordovaFileTransfer, FileManipulationService) {
+    
+    var serverURL = 'http://modus360.qbiz.pl/upload.php';
+    var options = {
+        fileKey: "file",
+        fileName: 'photos.zip',
+        chunkedMode: false,
+        mimeType: "application/zip;base64,",
+    };
+    
+    this.uploadFile = function( fileURL ) {
+        var deferred = $q.defer();
+        $cordovaFileTransfer.upload( serverURL, fileURL, options).then( function(result) {
+            deferred.resolve(result);
+        }, function(err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    }
+}]);

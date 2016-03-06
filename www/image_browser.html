@@ -1,20 +1,11 @@
 <ion-content class="has-header" style="top: 93px;">
+    <button class="button button-full button-positive" ng-click="getPhotos()">Do the magic trick</button>
     <button class="button button-full button-assertive" ng-click="purgeDir()">Usuń wszystkie</button>
-    <button class="button button-full button-calm" ng-click="packDir()">Spakuj wszystkie</button>
     <button class="button button-full" ng-click="listDataStorage()">Wyświetl wszystkie</button>
-    <button class="button button-full button-positive" ng-click="generateZip()">Wyślij</button>
-    {{ zip }}
     <ion-list>
         <ion-item ng-repeat="item in files">{{item.fullPath}}</ion-item>
     </ion-list>
-    
-    <!--
-    <ion-list>
-        <ion-item ng-repeat="photo in pictures">{{ photo.src }}</ion-item>
-    </ion-list>
-    -->
-    
-    
-    <img class="imagePrv" ng-click="openFile(picture)" ng-repeat="picture in files" ng-show="{{ picture.isFile }}" ng-src="{{ picture.nativeURL }}" />
+
+    <img class="imagePrv" ng-repeat="picture in files" ng-show="{{ picture.isFile }}" ng-src="{{ picture.nativeURL }}" />
     
 </ion-content>
