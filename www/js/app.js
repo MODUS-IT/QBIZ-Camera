@@ -3,10 +3,19 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-
+"use strict";
 function log( obj, msg ) {
     console.log(obj);
     console.log("^ " + msg);
+}
+
+class Project {
+    constructor( projectId, projectName ) {
+        this.id = projectId;
+        this.projectName = projectName;
+        this.images = [];
+    }
+    
 }
 
 angular.module('cameraApp', ['ionic', 'ngCordova'])
@@ -39,7 +48,16 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 					}
 				}
 			})
-
+            
+            .state('projectBrowser', {
+                url: '/projectBrowser',
+                views: {
+                    'projectBrowser': {
+                        templateUrl: 'project_browser.html'
+                    }
+                }
+            })
+            
 			.state('imageBrowser', {
 				url: '/imageBrowser',
 				views: {
@@ -153,7 +171,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 
 		$scope.projects = [];
-		//{ name: "Testowe", files: [ { url: "/img/ionic.png" }, { url: "/img/ionic.png" } ] }
 		$scope.state = $state;
 		$scope.cameraInitialized = false;
 		$scope.menuOpened = false; //Controls menu
@@ -161,7 +178,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
 		var dataStorageUri = undefined;
-
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
 			updateGallery();
@@ -183,7 +199,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
 		$ionicModal.fromTemplateUrl('image_preview.html', {
 			scope: $scope,
-			animation: 'slide-in-up'
+			animation: 'slide-in-down'
 		}).then(function(modal) {
 			$scope.preview = modal;
 		});
@@ -217,9 +233,9 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 		}
 
-		var even = true;
-		$scope.takePicture = function() {
-			if (pictureLoop.loop === undefined) {
+		/* var even = true;
+		 $scope.takePicture = function() {
+		 	if (pictureLoop.loop === undefined) {
 				pictureLoop.counter = 0;
 				pictureLoop.timerCounter = 0;
 				pictureLoop.loop = $interval(function() {
@@ -237,54 +253,44 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 					}
 				}, 1000);
 			}
-		}
-
+		 }*/
+        
+        /**
+         * Working on it to merge it with up
+         */
 		$scope.takePictureUtility = function() {
 			$cordovaDialogs.prompt("Wprowadź nazwę projektu", "Projekt", ["Start", "Anuluj"], "").then(function( projectPrompt ) {
 				log(projectPrompt, "prompt");
                 if( projectPrompt.buttonIndex == 2 ) return;
-				FileManipulationService.createDirectory( dataStorageUri ).then(setProjectSettings, throwError);
-                function setProjectSettings( pathToDir ) {
-                    FileManipulationService.getProjectConfig( pathToDir ).then( setProjectTitle, reject );
-                    function setProjectTitle( config ) {
-                        log(config, "jsObj");
-                        config.projectName = projectPrompt.input1;
-                        FileManipulationService.saveProjectConfig( pathToDir, config ).then(logResult, logResult);
-                        function logResult( result ) {
-                            log(result, "result");
-                            FileManipulationService.getProjectConfig( pathToDir ).then(function(config){
-                                log(config, "jsObj");
-                            })
-                        }
-                    }
-                    
-                    function reject( err ) {
-                        log(err, "reject error");
-                    }
-                }
-                
-                function throwError( err ) {
-                    log(err, 'error happend');
-                }
-                
+                var project = new Project( $scope.projects.length + 1, projectPrompt.input1 );
+                $scope.projects.push( project );
+                takePictureUtility( project.id );
 			});
 
 		}
 
-		var takePictureUtility = function() {
+		var takePictureUtility = function( projectId ) {
 			cordova.plugins.camerapreview.takePicture();
 			cordova.plugins.camerapreview.setOnPictureTakenHandler(
-				function(result) {
-					updateGallery();
+				function( result ) {
+                    log(projectId,'elo');
+                    for( var i = 0; i < $scope.projects.length; i++ ) {
+                        if( $scope.projects[i].id == projectId ) {
+                            log($scope.projects[i], "to ten jedyny!");
+                            $scope.projects[i].images.push( result[0] );
+                            FileManipulationService.saveProjects( dataStorageUri, $scope.projects ).then( log, log );
+                        }
+                    }
+					log(result, "result");
 				}
 			);
 		}
 
 		var updateGallery = function() {
-			FileManipulationService.getProjects(dataStorageUri).then(function(images) {
-				console.log(images);
-				$scope.projects = images;
-			});
+			FileManipulationService.getProjects( dataStorageUri ).then( setConfig, log );
+            function setConfig( config ) {
+                $scope.projects = config;
+            }
 		}
 
 		var cleanLoopVariables = function() {
@@ -296,16 +302,15 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 		}
 
 		$scope.$watch('state.current.name', function() {
+            log($scope, $scope.state.current.name);
 			if ($scope.state.current.name == 'imageBrowser') updateGallery();
 			if ($scope.state.current.name != 'mainView') $scope.cameraHide();
 			else $scope.cameraShow();
 		});
 
 	})
-
+    
 	.service('FileManipulationService', ['$q', function($q) {
-        var configFileName = "config.json";
-        
 		/**
 		 * Zwraca w resolve zawartość katalogu w tablicy.
 		 * Jeśli nie znaleziono ściezki wywoła reject z błędem.
@@ -333,7 +338,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
             return deferred.promise;
 		}
-        
 		/**
          * Zwraca czy plik jest zdjęciem
 		 * @param  {string} fileName
@@ -342,7 +346,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			if (fileName.indexOf('.jpg') > -1) return true;
 			return;
 		}
-        
         /**
          * Zwraca czy entry jest katalogiem
          * @param {string} entrypoint
@@ -351,7 +354,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			if ( entrypoint.isDirectory ) return true;
 			return;
 		}
-		
 		/**
 		 * Zwraca w resolve czy katalog jest pusty.
 		 * Jeśli nie odnaleziono katalogu, reject.
@@ -367,7 +369,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 			return deferred.promise;
 		}
-        
         /**
          * ###Stwórz katalog z losową nazwą w głównym katalogu i umieść w nim plik konfiguracyjny projektu
          * ####deferred
@@ -405,15 +406,8 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			window.resolveLocalFileSystemURL(dataURI, function(rootFS) {
 				log(rootFS, "main dir");
 				rootFS.getDirectory(dirName, { create: true, exclusive: false }, onGetDirectorySuccess, onGetDirectoryFail);
-				
                 function onGetDirectorySuccess(result) {
-					var options = { projectName: "toFill", images: [] };
-					saveFile( result.nativeURL, "config.json", angular.toJson(options) ).then(function(res) {
-                        log(res, 'res');
-                        deferred.resolve( result.nativeURL );
-                    }, function(err) { 
-                        deferred.reject(err);
-                        log(err, 'err') });
+                    deferred.resolve( result.nativeURL );
 				}
                 
                 function onGetDirectoryFail( fail ) {
@@ -423,7 +417,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
             return deferred.promise;
 		}
-		
 		/**
 		 * ###Zapisuje plik as-is
          * 
@@ -458,7 +451,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 			return deferred.promise;
 		}
-        
         /**
          * Odczytuje plik z lokalizacji za pomocą jednego z trzech trybów
          * 
@@ -495,31 +487,14 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 			return deferred.promise;
         }
-        
-        /**
-         * To complete
-         */
-        function getProjectConfig( dataURI ) {
-            var deferred = $q.defer();
-            getFile( dataURI, configFileName, "text" ).then(parseJson, throwError);
-                function parseJson( jsonText ) {
-                    var obj = angular.fromJson( jsonText );
-                    deferred.resolve( obj );
-                }
-                function throwError( err ) {
-                    deferred.reject( err );
-                    log(err, "error reading file");
-                }
-            return deferred.promise;
-        }
-        
         /** 
          * To complete
          */
-        function saveProjectConfig( dataURI, config ) {
+        function saveProjects( dataURI, config ) {
             var deferred = $q.defer();
             var data = angular.toJson( config );
-            saveFile( dataURI, configFileName, data ).then(success, fail);
+            saveFile( dataURI, 'main.json', data ).then(success, fail);
+
             function success( resolve ) {
                 log(resolve, "success");
                 deferred.resolve( { saved: true } );
@@ -528,43 +503,35 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                 log(err, "error");
                 deferred.reject( { saved: false } );
             }
+
             return deferred.promise;
         }
-        
         /**
          * 
          */
         function getProjects( dataURI ) {
             var deferred = $q.defer();
-            
-            listDirectory( dataURI ).then( getOnlyProjectDirs, logError );
-            
-            function logError( arg ) {
-                log( arg, "argument" );
+            getFile( dataURI, 'main.json', "text" ).then( parseJson, createAndRepeat );
+
+            function parseJson( jsonText ) {
+                log(jsonText, "json");
+                var obj = angular.fromJson( jsonText );
+                deferred.resolve( obj );
+            }
+
+            function throwError( err ) {
+                deferred.reject( err );
+                log(err, "error reading file");
+            }
+
+            function createAndRepeat( err ) {
+                saveFile( dataURI, 'main.json', "[]" ).then( function( result ) {
+                    getFile( dataURI, 'main.json', "text" ).then( parseJson, throwError );
+                }, throwError );
             }
             
-            /**
-             * Wybiera z wszystkich entries same katalogi projektów
-             * @param {Array} entries
-             */
-			function getOnlyProjectDirs( entries ) {
-                
-				var directories = [];
-				angular.forEach( entries , function( entry, key ) {
-					if ( isDir( entry )) {
-                        directories.push( entry );
-					}
-                    if( key == entries.length - 1 ) {
-                        console.log( "Koniec pętli" );
-                        log( directories, "dirs" );
-                    }
-				});
-                
-                console.log("te");
-			}
             return deferred.promise;
         }
-        
         /* --- NOWE FUNCKJE ---  */
         /**
          * Dostępny z zewnątrz handler do createDirectory
@@ -573,29 +540,21 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 		this.createDirectory = function( dataURI ) {
 			return createDirectory(dataURI);
 		}
-        
         this.getFile = function( dataURI, fileName, getAs ) {
             return getFile( dataURI, fileName, getAs );
         }
-        
-        this.getProjectConfig = function( dataURI ) {
-            return getProjectConfig( dataURI );
+        this.saveProjects = function( dataURI, config ) {
+            return saveProjects( dataURI, config );
         }
-        
-        this.saveProjectConfig = function( dataURI, config ) {
-            return saveProjectConfig( dataURI, config );
-        }
-        
         this.saveFile = function(dataURI, fileName, data) {
 			saveFile(dataURI, fileName, data);
 		}
-        
         this.getProjects = function( dataURI ) {
             return getProjects( dataURI );
         }
-        
+
         /* --- DO POPRAWY --- */
-        
+
 		/*
 		this.getPhotos = function ( dataURI ) {
 			var deferred = $q.defer();
@@ -624,9 +583,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 			return deferred.promise;
 		}*/
-
-		
-
 	}])
 
 	.service('PHPUploadService', ['$q', '$cordovaFileTransfer', 'FileManipulationService', '$http', function($q, $cordovaFileTransfer, FileManipulationService, $http) {
