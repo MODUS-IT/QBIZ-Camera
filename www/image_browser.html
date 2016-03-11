@@ -1,8 +1,0 @@
-<ion-content class="has-header" style="top: 93px;">
-    <ion-list ng-repeat="project in projects">
-        <ion-item class="item-divider" ng-bind="project.projectName"></ion-item>
-        <ion-item>
-            <img class="imagePrv" ng-repeat="picture in project.images" ng-click="openPreview(project.projectName, picture)" ng-src="{{ picture }}" />
-        </ion-item>
-    </ion-list>
-</ion-content>
