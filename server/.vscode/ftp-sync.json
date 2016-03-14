@@ -1,0 +1,16 @@
+{
+    "remotePath": "./public_html",
+    "host": "modus360.qbiz.pl",
+    "username": "camapp@modus360.qbiz.pl",
+    "password": "ionic2016",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git"
+    ]
+}

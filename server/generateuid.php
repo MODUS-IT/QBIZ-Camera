@@ -45,7 +45,6 @@
         private function returnJ( $obj ) {
             echo json_encode($obj);
         }
-        
     }
     
     $_angularInput = file_get_contents( "php://input" );

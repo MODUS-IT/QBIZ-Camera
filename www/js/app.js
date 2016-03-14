@@ -136,54 +136,41 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
 		$scope.purgeDir = function() {
             FileManipulationService.purgeProjects( dataStorageUri ).then( log, log );
-			/*
-			var directory;
-			FileManipulationService.listDirectory( dataStorageUri ).then(function ( entriesArray ) {
-				directory = entriesArray;
-				angular.forEach( directory, function(photo, key) {
-					if(photo.isFile) {
-						 window.resolveLocalFileSystemURL( dataStorageUri,
-							function (fileSystem) {
-								fileSystem.getFile( photo.name , { create:false }, function(file) {
-									file.remove(function() {
-										$cordovaDialogs.alert("Usunięto!");
-									}, rejectError);
-								}, rejectError);
-						}, rejectError)
-					}
-				});
-			}, rejectError);
-			*/
 		}
         
         $scope.sendPhotos = function() {
-            PHPUploadService.beginTransaction();
+            var UID = PHPUploadService.beginTransaction();
+            if( UID ) {
+                PHPUploadService.uploadInitialData( UID, $scope.ftp ).then( canProceed, canProceed );
+                function canProceed( promise ) {
+                    if( promise ) FileManipulationService.getProjects( dataStorageUri ).then( uploadConfig, log );
+                    else $cordovaToast.showShortTop('Nie powiodło się');
+                    function uploadConfig( config ) {
+                        $scope.config = config;
+                        PHPUploadService.uploadConfig( UID, config ).then( uploadPhotos, log );
+                        function uploadPhotos( callback ) {
+                            var imagesCount = 0;
+                            var uploadedImages = 0;
+                            if( callback.data.bool ) {
+                                for( var i = 0; i < $scope.config.length; i++ ) {
+                                    for( var img = 0; img < $scope.config[i].images.length; img++ ) {
+                                        imagesCount++;
+                                        PHPUploadService.uploadPhoto( UID, $scope.config[i].images[img] ).then( function( callback ) {
+                                            log(callback , "uploaded");
+                                            uploadedImages++;
+                                            if( imagesCount == uploadedImages ) {
+                                                console.log("All uploaded");
+                                                PHPUploadService.cleanUp( UID );
+                                            }
+                                        }, log );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
-		$scope.getPhotos = function() {
-			var ftpSettings = localStorage.getConfigurationData();
-			if (ftpSettings != "") {
-				PHPUploadService.handshake(ftpSettings).then(function(handshake) {
-					if (handshake.data.isFTPGood) {
-						if (handshake.data.isSRVGood) {
-							FileManipulationService.getPhotos(dataStorageUri).then(function(photos) {
-								var imagesSent = 0;
-								for (var i = 0; i < photos.length; i++) {
-									PHPUploadService.uploadFile(photos[i], handshake.data.token).then(function(resolve) {
-										var json = JSON.parse(resolve.response);
-										if (json.isGood) imagesSent++;
-										if (imagesSent == photos.length) {
-											PHPUploadService.requestFTPupload(handshake.data.token).then(informGood, rejectError);
-										}
-									}, rejectError);
-								}
-							});
-						} else rejectError();
-					} else rejectError();
-				}, rejectError);
-			}
-		}
-
 	})
 
 	.service('localStorage', [function() {
@@ -253,6 +240,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			$scope.preview.show();
 			$scope.preview.dirName = directoryName;
 			$scope.preview.pictureURL = pictureURL;
+            FileManipulationService.getFile( dataStorageUri, pictureURL, "TEXT" );
 		}
 
 		$scope.closePreview = function() {
@@ -284,27 +272,36 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			});
 		}
 
-		/* var even = true;
+		var even = true;
 		 $scope.takePicture = function() {
-		 	if (pictureLoop.loop === undefined) {
-				pictureLoop.counter = 0;
-				pictureLoop.timerCounter = 0;
-				pictureLoop.loop = $interval(function() {
-					if (even) {
-						even = false;
-						$cordovaToast.showShortCenter($scope.params.pictureInterval - pictureLoop.timerCounter + "s");
-					} else even = true;
-					pictureLoop.timerCounter++;
-					if (pictureLoop.timerCounter >= $scope.params.pictureInterval) {
-						pictureLoop.timerCounter = 0;
-						if (pictureLoop.counter < $scope.params.pictures) {
-							takePictureUtility();
-							pictureLoop.counter += 1;
-						} else cleanLoopVariables();
-					}
-				}, 1000);
-			}
-		 }*/
+             
+            $cordovaDialogs.prompt("Wprowadź nazwę projektu", "Projekt", ["Start", "Anuluj"], "").then(function( projectPrompt ) {
+				log(projectPrompt, "prompt");
+                if( projectPrompt.buttonIndex == 2 ) return;
+                window.project = new Project( $scope.projects.length + 1, projectPrompt.input1 );
+                $scope.projects.push( window.project );
+                
+                if (pictureLoop.loop === undefined) {
+                    pictureLoop.counter = 0;
+                    pictureLoop.timerCounter = 0;
+                    pictureLoop.loop = $interval(function() {
+                        if (even) {
+                            even = false;
+                            $cordovaToast.showShortCenter($scope.params.pictureInterval - pictureLoop.timerCounter + "s");
+                        } else even = true;
+
+                        pictureLoop.timerCounter++;
+                        if (pictureLoop.timerCounter >= $scope.params.pictureInterval) {
+                            pictureLoop.timerCounter = 0;
+                            if (pictureLoop.counter <= $scope.params.pictures) {
+                                takePictureUtility( window.project.id );
+                                pictureLoop.counter += 1;
+                            } else cleanLoopVariables();
+                        }
+                    }, 1000);
+                }
+            });
+		 }
         
         /**
          * Working on it to merge it with up
@@ -315,7 +312,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                 if( projectPrompt.buttonIndex == 2 ) return;
                 var project = new Project( $scope.projects.length + 1, projectPrompt.input1 );
                 $scope.projects.push( project );
-                takePictureUtility( project.id );
                 takePictureUtility( project.id );
 			});
 
@@ -516,6 +512,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			window.resolveLocalFileSystemURL(dataURI + fileName, function(fileEntry) {
 				//fileEntry.file returns File obj connected to selected file
 				fileEntry.file(function(file) {
+                    log( file, "file" );
 					var reader = new FileReader();
 					reader.onloadend = function(e) {
 						deferred.resolve(e.target.result);
@@ -660,32 +657,104 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
 	.service('PHPUploadService', ['$q', '$cordovaFileTransfer', 'FileManipulationService', '$http', 'localStorage', function($q, $cordovaFileTransfer, FileManipulationService, $http, localStorage) {
         this.beginTransaction = beginTransaction;
+        this.uploadInitialData = uploadInitialData;
         this.uploadConfig = uploadConfig;
         this.uploadPhoto = uploadPhoto;
+        this.cleanUp = cleanUp;
+        
         /**
+         * Sprawdza czy aplikacja posiada UID w local storage
          * 
+         * Jeśli nie, wysyła zapytanie do serwera o wygenerowanie nowego UID
+         * 
+         * Zwraca UID
          */
         function beginTransaction() {
             var UID = localStorage.getUID();
             if( UID ) return UID;
             else return generateUID();
         }
+        
         /**
-         * 
+         * Wrzuca config projetków na serwer
          */
-        function uploadConfig() {
-            
-        }
-        /**
-         * 
-         */
-        function uploadPhoto() {
-            
+        function uploadConfig( UID, config ) {
+            var deferred = $q.defer();
+            log(config, "conf");
+            var mixedData = {
+                uid: UID,
+                config: config
+            }
+            $http.post( mainJSONURL, mixedData ).then( PHPCallback, AJAXError );
+
+            function PHPCallback( callback ) {
+                //ToDO
+                log(callback, "call");
+                deferred.resolve(callback);
+            }
+
+            function AJAXError( error ) {
+                log(error, "error");
+                deferred.reject(error);
+            }
+            return deferred.promise;
         }
         
+        /**
+         * 
+         */
+        function uploadPhoto( UID, photoURL ) {
+            var deferred = $q.defer();
+            var fileName = photoURL.split( "/" );
+            var uploadConfig = {
+                fileKey: "photo",
+                fileName: fileName[fileName.length - 1],
+                chunkedMode: false,
+                params: { uid: UID }
+            }
+            
+            $cordovaFileTransfer.upload( serverURL, photoURL, uploadConfig ).then( uploadCompleted, uploadError );
+            function uploadCompleted( response ) {
+                log( response, "completed");
+                deferred.resolve("ok");
+            }
+            
+            function uploadError( error ) {
+                log(error, "err");
+                deferred.reject("err");
+            }
+            
+            return deferred.promise;
+        }
+
+        /**
+         * Wrzuca na serwer informacje o serwerze FTP
+         * 
+         * Deferred
+         * @param {string} UID
+         * @param {Object} ftpConfig
+         */
+        function uploadInitialData( UID, ftpConfig ) {
+            var deferred = $q.defer();
+            var mixedData = {
+                uid: UID,
+                ftpConfig: ftpConfig
+            }
+            $http.post( handshakeURL, mixedData ).then( checkCallback, log );
+            
+            function checkCallback( callback ) {
+                if( callback.data.bool ) deferred.resolve( callback.data.bool );
+                else deferred.reject( callback.data.bool );
+                
+            }
+            return deferred.promise;
+        }
+
+        /**
+         * Wysyła żądanie do serwera o UID
+         */
         function generateUID() {
             function saveGeneratedUID( PHPCallback ) {
-                log( typeof PHPCallback , "PHPType");
                 if( Object.prototype.toString.call( PHPCallback ) == "[object Object]" ) {
                     log(PHPCallback, "PHPCall");
                     if( PHPCallback.data.created ) {
@@ -699,59 +768,16 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             $http.post( uniqueIDserverURL, config ).then( saveGeneratedUID, log );
         }
         
+        function cleanUp( UID ) {
+            var deferred = $q.defer();
+            $http.post( cleanupURL, UID ).then( log, log );
+            return deferred.promise;
+        }
+        
+        var cleanupURL = 'http://modus360.qbiz.pl/cleanup.php';
         var uniqueIDserverURL = 'http://modus360.qbiz.pl/generateuid.php';
+        var mainJSONURL = 'https://modus360.qbiz.pl/jsonupload.php';
 		var serverURL = 'http://modus360.qbiz.pl/upload.php';
 		var handshakeURL = 'https://modus360.qbiz.pl/handshake.php';
 		var requestFTPURL = 'https://modus360.qbiz.pl/requestftp.php';
-		this.uploadFile = function(fileURL, token) {
-			var deferred = $q.defer();
-			var options = {
-				fileKey: "file",
-				fileName: fileURL.name,
-				chunkedMode: true,
-				params: { srvToken: token },
-				mimeType: "image/jpeg;base64,",
-			};
-			$cordovaFileTransfer.upload(serverURL, fileURL.url, options).then(function(result) {
-				deferred.resolve(result);
-			}, function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
-		}
-
-		this.handshake = function(ftpConfig) {
-			var deferred = $q.defer();
-			$http.post(handshakeURL, ftpConfig).then(PHPCallback, POSTError);
-
-			function PHPCallback(callback) {
-				console.log(callback);
-				deferred.resolve(callback);
-			}
-
-			function POSTError(error) {
-				console.error(error);
-				deferred.reject(error);
-			}
-			return deferred.promise;
-		}
-
-		this.requestFTPupload = function(token) {
-			var deferred = $q.defer();
-			$http.post(requestFTPURL, { srvToken: token }).then(FTPCallback, POSTError);
-
-			function FTPCallback(callback) {
-				if (callback.data.uploadCompleted && !callback.data.uploadErr.length) {
-					deferred.resolve(callback.data.uploadCompleted);
-				} else {
-					console.log(callback.data.uploadErr);
-					deferred.reject({ uploadCompleted: false, uploadErrors: callback.data.uploadErr });
-				}
-			}
-
-			function POSTError(error) {
-				deferred.reject(error);
-			}
-			return deferred.promise;
-		}
 	}]);

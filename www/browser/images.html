@@ -3,8 +3,6 @@
         <img class="imagePrv" ng-repeat="picture in project.images" ng-click="openPreview( project.projectName, picture )" ng-src="{{ picture }}" />
 </ion-list>
 
-<ion-footer-bar>
-    <button ng-click="goBack()" class="button-clear button-positive">
-        Wróć
-    </button>
-</ion-footer-bar>
+<button ng-click="goBack()" class="button-clear button-positive">
+    Wróć
+</button>
