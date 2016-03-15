@@ -1,0 +1,19 @@
+<ion-content class="has-header" style="top: 93px;" ng-init="readConfigurationData()" ng-controller="settingsCtrl">
+    <ion-list class="list">
+        <label class="item item-input">
+            <span class="input-label">Serwer</span>
+            <input type="text" ng-model="ftp.server" ng-blur="saveConfigurationData()">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Użytkownik</span>
+            <input type="text" ng-model="ftp.user" ng-blur="saveConfigurationData()">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Hasło</span>
+            <input type="password" ng-model="ftp.password" ng-blur="saveConfigurationData()">
+        </label>
+    </ion-list>
+    <button class="button button-balanced button-full" ng-click="saveConfigurationData()">Zapisz zmiany</button>
+    <button class="button button-full button-positive" ng-click="sendPhotos()">Wyślij zdjęcia</button>
+    <button class="button button-full button-assertive" ng-click="purgeDir()">Usuń zdjęcia</button>
+</ion-content>

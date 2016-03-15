@@ -1,9 +1,105 @@
 <?php
+
+    class Project {
+        private $dir;
+        private $uid;
+        private $config;
+        public function __construct( $dir, $uid ) {
+            $this -> dir = $dir;
+            $this -> uid = $uid;
+            $this -> readConfig();
+        }
+        
+        private function readConfig() {
+            if( $config = file_get_contents( $this -> uid."/".$this -> dir."/config.json" ) ) {
+                $this -> config = json_decode( $config, true );
+            }
+            else {
+                
+            }
+        }
+        
+        private function UploadFiles( $ftp, $dir ) {
+            if(ftp_mkdir( $ftp, $dir."/".$this -> uid ) ) {
+                foreach ( $this -> config["images"] as $fName ) {
+                    ftp_put( $ftp, $this -> dir."/".$this -> uid."/".$fName, $dir."/".$this -> uid."/".$fName );
+                }
+            }
+            else echo "fuck";
+        }
+        
+    }
     
+    class Projects {
+        private $config;
+        private $projects = [];
+        private $ftp;
+        private $uid;
+        public function __construct( $uid ) {
+            $this -> uid = $uid;
+            if( $this -> connectFtp() ) {
+                $this -> getConfig( $uid );
+                if( $this -> createDir( "qbiz" ) ) {
+                    foreach( $projects as $project ) {
+                        $project -> UploadFiles( $this -> ftp, "qbiz" );
+                    }
+                }
+                //stwórz katalog QBIZ na serwerze
+                //w katalogu qbiz stwórz katalogi projektów
+                //do projektów wrzuć pliki z katalogu
+                var_dump( $this -> projects );
+            }
+            else {
+                echo "FU!";
+            }
+        }
+        
+        private function connectFtp() {
+            echo "hi";
+            if( $ftpConfig = file_get_contents( $this -> uid ."/ftp.json" ) ) {
+                echo "hmhm";
+                $ftpConfig = json_decode( $ftpConfig, true );
+                $this -> ftp = ftp_connect( $ftpConfig[ "server" ] );
+                if( $this -> ftp ) {
+                    if( ftp_login( $this -> ftp , $ftpConfig["user"], $ftpConfig["password"] ) ) {
+                        return true;
+                    }
+                    else {
+                        //TODO
+                        return;
+                    }
+                }
+            }
+            else {
+                //TODO
+                return;
+            }
+        }
+        
+        private function getConfig( $uid ) {
+            $configStr = file_get_contents( $uid."/folders.json" );
+            $this -> config = json_decode( $configStr, true );
+            foreach ($this -> config as $dir) {
+                $projectInstance = new Project( $dir, $uid );
+                array_push( $this -> projects, $projectInstance );
+            }
+        }
+        
+        private function createDir( $dir ) {
+            if( ftp_mkdir( $this -> ftp, $dir ) ) {
+                return true;
+            }
+            return;
+        }
+        
+    }
 
 	$postdata = file_get_contents("php://input");
-	$request = json_decode($postdata);
+	$request = json_decode($postdata, true);
     
+    new Projects( $request );
+    
+     /*
     $token = $request -> srvToken;
     $configENC = file_get_contents( $token . "/config.json" );
     
@@ -68,4 +164,5 @@
     } else rejectFTP( "Zły użytkownik i/lub hasło" ); 
     
     echo json_encode($response);
+    */
 ?>

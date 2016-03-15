@@ -51,7 +51,8 @@
         }
         
         private function createCustomJS() {
-            $script = "window.onload = init; var product; function init(){ product = $('.product').ThreeSixty({ totalFrames: ".count($this -> images).", endFrame: ".count($this -> images).", currentFrame: 1, imgList: '.threesixty_images', progress: '.spinner', imagePath:'', filePrefix: '', ext: '.jpg', height: 1280, width: 720, navigation: true, disableSpin: false });}";
+            $script = "window.onload = init; var product; function init(){ product = $('.product').ThreeSixty({ playSpeed: ".( (15/count($this -> images))*1000 ).", totalFrames: ".count($this -> images).", endFrame: ".count($this -> images).", currentFrame: 1, imgList: '.threesixty_images', progress: '.spinner', imagePath:'', filePrefix: '', ext: '.jpg', height: window.innerHeight, width: window.innerWidth, navigation: true, disableSpin: false }); window.onresize = scale; var img = document.createElement('img'); img.setAttribute('src', $('li img').eq(0).attr('src') ); img.onload = scale; function scale() { console.log( img.width + ' ' + img.height ); if(img.width < img.height) {
+            $('.product').css({ 'width': 'auto', 'height' : window.innerHeight }); $('img').css({ width: 'auto', height: '100%' }); } } }";
             file_put_contents( $this -> uid."/".$this -> dir."/custom.js", $script );
         }
         
@@ -95,7 +96,9 @@
                 $projectInstance -> CreateProjectDirectory();
                 array_push( $this -> projects, $projectInstance -> getDirName() );
             }
-            file_put_contents( $uid."/folders.json", json_encode( $this -> projects ) );
+            if( file_put_contents( $uid."/folders.json", json_encode( $this -> projects ) ) ) {
+                echo json_encode( array( "ok" => true ) );
+            }
         }
     }
     

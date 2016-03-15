@@ -1,0 +1,45 @@
+/* Empty. Add your own CSS if you like */
+
+.bg-alpha {
+    background: rgba(255,255,255,.9);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.pane {
+    background: transparent !important;
+}
+
+.view-container {
+    background: transparent !important;
+}
+
+.toggleContainer {
+    margin: 10px 0 0;
+    margin-top: 0;
+    padding: 0 !important;
+    border-radius: 0;
+}
+
+.row {
+    padding: 0;
+}
+
+.row + .row {
+    margin-top: 0;
+}
+
+.toggleMenu {
+    background: rgba(255,255,255,.9) !important;
+    border-radius: 0;
+    font-size: 24px;
+}
+
+.imagePrv {
+    width: 50%;
+    height: auto;
+    flex: 1;
+    display: inline-block;
+}

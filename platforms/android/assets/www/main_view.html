@@ -1,0 +1,29 @@
+<div class="row row-bottom" style="padding: 0">
+    <div style="width: 100%">
+        <div class="row">
+            <div ng-show="menuOpened" style="width: 100%">
+                <div class="item item-text-wrap bg-alpha" style="text-align: right">
+                    Wymagany kąt obrotu {{ 360/params.pictures | number: 0 }}°
+                </div>
+                    <!-- ilośc zdjęć -->
+                <div class="item range range-positive bg-alpha">
+                    <i class="icon ion-ios-photos-outline"></i>
+                    <input ng-model="params.pictures" type="range" min="6" max="24" value="12">
+                    <i class="icon ion-ios-photos"></i>
+                </div>
+                    <!-- Odstęp czasowy -->
+                <div class="item item-text-wrap bg-alpha" style="text-align: right">
+                    Czas na ustawienie zdjęcia {{ params.pictureInterval | number : 0 }}s
+                </div>
+                <div class="item range range-positive bg-alpha">
+                    <i class="icon ion-ios-time-outline"></i>
+                    <input ng-model="params.pictureInterval" type="range" min="6" max="60" value="30" step="2">
+                    <i class="icon ion-ios-time"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row toggleContainer">
+            <button ng-click="toggleMenu()" class="toggleMenu button col button-assertive button-clear"><i class='icon' ng-class="{ 'ion-ios-arrow-up': menuOpened==false, 'ion-ios-arrow-down': menuOpened==true }"></i></button>
+        </div>
+    </div>
+</div>
