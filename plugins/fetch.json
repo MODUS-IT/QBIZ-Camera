@@ -1,0 +1,44 @@
+{
+    "com.mbppower.camerapreview": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lpmusicon/CordovaCameraPreview.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file-transfer": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/apache/cordova-plugin-file-transfer.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-file"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-x-toast": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-toast"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-dialogs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-dialogs@~1.2.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
