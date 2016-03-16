@@ -9,7 +9,7 @@ body {
 }
 
 .pane {
-    background: transparent !important;
+    background: #f0f0f0;
 }
 
 .view-container {
@@ -42,4 +42,42 @@ body {
     height: auto;
     flex: 1;
     display: inline-block;
+}
+
+.button-bar {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.scroll .button {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+}
+.button.button-balanced {
+    background-color: #49A71A !important;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.button.button-positive.button-clear {
+    background-color: none !important; 
+}
+
+.button.button-positive {
+    background-color: #2196F3 !important;
+}
+
+.button.button-assertive {
+    background-color: #D50000 !important;
+}
+
+ion-list .list {
+    overflow: hidden;
+    margin: 57px 10px 10px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.button-bar > .button {
+    padding-top: 4px !important;
 }

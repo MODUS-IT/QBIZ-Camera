@@ -40,6 +40,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         }, 100);
         
 		$ionicPlatform.ready(function() {
+            window.screen.lockOrientation('portrait');
 			if (window.cordova && window.cordova.plugins.Keyboard) {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 				// for form inputs)
@@ -189,13 +190,29 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             time: '5s'
         }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
 
+        $scope.styleCameraBtn = function( ) {
+            var takePic = document.getElementsByClassName('cameraBtn')[0];
+            takePic.style.width = screen.width/4 + "px";
+            takePic.style.height = takePic.style.width;
+            takePic.style.borderRadius = screen.width/8 + "px";
+        }
+        $scope.styleSmallBtn = function() {
+            var smallBtn = document.getElementsByClassName('smallBtn');
+            for( var i = 0; i < smallBtn.length; i ++ ) {
+                var element = smallBtn[i];
+                element.style.width = (screen.width/4)*0.6 + "px";
+                element.style.height = element.style.width;
+                element.style.borderRadius = (screen.width/8)*0.6 + "px";
+            };
+        }
+        
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
 		var dataStorageUri = undefined;
         
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
 			updateGallery();
-
+            
 			if (!$scope.cameraInitialized) {
 				$scope.cameraInitialized = true;
 
@@ -376,14 +393,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
             return deferred.promise;
 		}
-		/**
-         * Zwraca czy plik jest zdjęciem
-		 * @param  {string} fileName
-		 */
-		function isJPEG(fileName) {
-			if (fileName.indexOf('.jpg') > -1) return true;
-			return;
-		}
+
         /**
          * Zwraca czy entry jest katalogiem
          * @param {string} entrypoint

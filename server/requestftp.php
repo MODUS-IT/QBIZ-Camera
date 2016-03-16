@@ -37,6 +37,7 @@
         private $uid;
         public function __construct( $uid ) {
             $this -> uid = $uid;
+            var_dump($uid);
             if( $this -> connectFtp() ) {
                 $this -> getConfig( $uid );
                 if( $this -> createDir( "qbiz" ) ) {
@@ -50,15 +51,17 @@
                 var_dump( $this -> projects );
             }
             else {
-                echo "FU!";
+                echo "No kurde FU!";
             }
         }
         
         private function connectFtp() {
-            echo "hi";
+            var_dump( "connectFTP" );
             if( $ftpConfig = file_get_contents( $this -> uid ."/ftp.json" ) ) {
-                echo "hmhm";
+                var_dump( "gotJson" );
+                $ftpConfig = base64_decode( $ftpConfig );
                 $ftpConfig = json_decode( $ftpConfig, true );
+                
                 $this -> ftp = ftp_connect( $ftpConfig[ "server" ] );
                 if( $this -> ftp ) {
                     if( ftp_login( $this -> ftp , $ftpConfig["user"], $ftpConfig["password"] ) ) {
@@ -66,13 +69,13 @@
                     }
                     else {
                         //TODO
-                        return;
+                        return false;
                     }
                 }
             }
             else {
                 //TODO
-                return;
+                return false;
             }
         }
         
@@ -89,15 +92,13 @@
             if( ftp_mkdir( $this -> ftp, $dir ) ) {
                 return true;
             }
-            return;
+            return false;
         }
         
     }
 
 	$postdata = file_get_contents("php://input");
-	$request = json_decode($postdata, true);
-    
-    new Projects( $request );
+    new Projects( $postdata );
     
      /*
     $token = $request -> srvToken;

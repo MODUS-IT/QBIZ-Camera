@@ -1,8 +1,4 @@
 <ion-list>
-    <ion-item class="item-divider" ng-bind="project.projectName"></ion-item>
-        <img class="imagePrv" ng-repeat="picture in project.images" ng-click="openPreview( project.projectName, picture )" ng-src="{{ picture }}.thumb" />
+    <ion-item class="item" ng-bind="project.projectName"></ion-item>
+    <img class="imagePrv" ng-repeat="picture in project.images" ng-click="openPreview( project.projectName, picture )" ng-src="{{ picture }}.thumb" />
 </ion-list>
-
-<button ng-click="goBack()" class="button-clear button-positive">
-    Wróć
-</button>
