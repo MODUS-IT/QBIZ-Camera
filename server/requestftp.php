@@ -1,9 +1,11 @@
 <?php
 
     class Project {
-        private $dir;
+        public $dir;
         private $uid;
         private $config;
+        private $ftp;
+        private $remoteDir;
         public function __construct( $dir, $uid ) {
             $this -> dir = $dir;
             $this -> uid = $uid;
@@ -15,50 +17,115 @@
                 $this -> config = json_decode( $config, true );
             }
             else {
-                
+                echo "Dahm";
             }
         }
         
-        private function UploadFiles( $ftp, $dir ) {
-            if(ftp_mkdir( $ftp, $dir."/".$this -> uid ) ) {
-                foreach ( $this -> config["images"] as $fName ) {
-                    ftp_put( $ftp, $this -> dir."/".$this -> uid."/".$fName, $dir."/".$this -> uid."/".$fName );
+        public function UploadFiles( $ftp, $dir ) {
+            var_dump("UPLOAD FILES");
+            $this -> ftp = $ftp;
+            $this -> remoteDir = $dir."/".$this -> uid."/".$this -> dir;
+            if( ftp_mkdir( $ftp, $this -> remoteDir ) ) {
+                var_dump("BEFORE FOREACH");
+                $this -> uploadPhotos();
+                $this -> uploadThreesixty();
+            }
+            else {
+                var_dump("DIR NOT CREATED");
+            }
+        }
+        
+        private function uploadThreesixty() {
+            var_dump("THREESIXTY NO SCOPE");
+            $lastErr = "";
+            $currentDir = $this -> uid."/".$this -> dir;
+            var_dump($currentDir);
+            var_dump($this -> remoteDir);
+            if(!ftp_put( $this -> ftp, $this -> remoteDir."/index.html", $currentDir."/index.html", FTP_BINARY )) {
+                $lastErr .= "index";
+            }
+            if(!ftp_put( $this -> ftp, $this -> remoteDir."/threesixty.css", $currentDir."/threesixty.css", FTP_BINARY )) {
+                $lastErr .= "css";
+            }
+            if(!ftp_put( $this -> ftp, $this -> remoteDir."/threesixty.min.js", $currentDir."/threesixty.min.js", FTP_BINARY )) {
+                $lastErr .= "js";
+            }
+            if(!ftp_put( $this -> ftp, $this -> remoteDir."/custom.js", $currentDir."/custom.js", FTP_BINARY )) {
+                $lastErr .= "custom";
+            }
+            if(ftp_mkdir($this -> ftp, $this -> remoteDir."/assets/")) {
+                if(!ftp_put( $this -> ftp, $this -> remoteDir."/assets/sprites.png", $currentDir."/assets/sprites.png", FTP_BINARY )) {
+                    $lastErr .= "sprites";
                 }
             }
-            else echo "fuck";
+            else {
+                $lastErr = "assets";
+            }
+            var_dump($lastErr);
+        }
+        
+        private function uploadPhotos() {
+            foreach ( $this -> config["images"] as $fName ) {
+                $_currentFile = $this -> uid."/".$this -> dir."/".$fName;
+                $_remoteFile = $this -> remoteDir."/".$fName;
+
+                $img = imagecreatefromjpeg( $_currentFile );
+                $imgSize = getimagesize( $_currentFile );
+                $hToWRatio = $imgSize[1]/$imgSize[0];
+                var_dump( $hToWRatio );
+                $scaledImg = imagecreatetruecolor( 720, 720*$hToWRatio );
+                imagecopyresampled( $scaledImg, $img, 0, 0, 0, 0, 720, 720*$hToWRatio, $imgSize[0], $imgSize[1] );
+                if( !imagejpeg( $scaledImg, $_currentFile, 100 ) ) {
+                    echo "dahm not working";
+                }
+                var_dump( getimagesize( $_currentFile ) );
+                
+                if(ftp_put( $this -> ftp, $_remoteFile, $_currentFile, FTP_BINARY )) {
+                    var_dump( "uploaded" );
+                } else {
+                    var_dump( "nie pykło" );
+                }
+            }
         }
         
     }
     
     class Projects {
         private $config;
-        private $projects = [];
+        private $projs = [];
         private $ftp;
         private $uid;
         public function __construct( $uid ) {
             $this -> uid = $uid;
-            var_dump($uid);
+            
             if( $this -> connectFtp() ) {
                 $this -> getConfig( $uid );
                 if( $this -> createDir( "qbiz" ) ) {
-                    foreach( $projects as $project ) {
-                        $project -> UploadFiles( $this -> ftp, "qbiz" );
-                    }
+                    echo "created qbiz";
+                } else {
+                    echo "qbiz is on srv";
                 }
+                
+                foreach( $this -> projs as $project ) {
+                    $this -> createDir( "qbiz/".$this -> uid );
+                    $project -> UploadFiles( $this -> ftp, "qbiz" );
+                }
+                
                 //stwórz katalog QBIZ na serwerze
                 //w katalogu qbiz stwórz katalogi projektów
                 //do projektów wrzuć pliki z katalogu
-                var_dump( $this -> projects );
+                
+                $this -> deleteDir( $uid );
+                
             }
             else {
                 echo "No kurde FU!";
             }
+            
         }
         
         private function connectFtp() {
-            var_dump( "connectFTP" );
             if( $ftpConfig = file_get_contents( $this -> uid ."/ftp.json" ) ) {
-                var_dump( "gotJson" );
                 $ftpConfig = base64_decode( $ftpConfig );
                 $ftpConfig = json_decode( $ftpConfig, true );
                 
@@ -71,6 +138,8 @@
                         //TODO
                         return false;
                     }
+                } else {
+                    return false;
                 }
             }
             else {
@@ -84,20 +153,35 @@
             $this -> config = json_decode( $configStr, true );
             foreach ($this -> config as $dir) {
                 $projectInstance = new Project( $dir, $uid );
-                array_push( $this -> projects, $projectInstance );
+                array_push( $this -> projs, $projectInstance );
             }
         }
         
+        
         private function createDir( $dir ) {
-            if( ftp_mkdir( $this -> ftp, $dir ) ) {
+            if( @ftp_mkdir( $this -> ftp, $dir ) ) {
                 return true;
             }
             return false;
         }
         
+        private function deleteDir( $dir ) {
+            $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+            $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+            foreach($files as $file) {
+                if ($file->isDir()){
+                    rmdir($file->getRealPath());
+                } else {
+                    unlink($file->getRealPath());
+                }
+            }
+            rmdir($dir);
+        }
+        
     }
 
 	$postdata = file_get_contents("php://input");
+    echo $postdata;
     new Projects( $postdata );
     
      /*

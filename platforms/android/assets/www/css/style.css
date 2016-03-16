@@ -64,7 +64,22 @@ body {
 }
 
 .button.button-positive {
-    background-color: #2196F3 !important;
+    background-color: #2F62A5;
+}
+
+a.tab-item {
+    border-color: #fff;
+    color: #fff !important;
+}
+
+.tabs-light > .tabs, .tabs-striped.tabs-light .tab-item.tab-item-active {
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+a.tabs-striped.tabs-light .tab-item.tab-item-active {
+    color: #fff !important;
+    border-color: #fff;
 }
 
 .button.button-assertive {
@@ -80,4 +95,62 @@ ion-list .list {
 
 .button-bar > .button {
     padding-top: 4px !important;
+}
+
+div.newWorld {
+    position: absolute;
+    width: 90%;
+    height: 15%;
+    top: 80%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    background: rgba( 0, 145, 234, .4 );
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 45px;
+}
+
+div.newWorld button.smallBtn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    border: none;
+    background: transparent;
+    color: #fff;
+}
+
+div.newWorld button.smallBtn:before {
+    font-size: 36px;
+}
+
+div.newWorld button.rightBtn {
+    left: 50%;
+    right: 0;
+    padding-left: 17%;
+}
+
+div.newWorld button.leftBtn {
+    left: 0;
+    right: 50%;
+    padding-right: 17%;
+}
+
+button.cameraBtn {
+    position: absolute;
+    top: 80%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: rgb(52, 136, 195);
+    border: 2px solid #fff;
+    border-radius: 100%;
+    width: 32%;
+    height: 18%;
+    max-width: 240px;
+    max-height: 240px;
 }

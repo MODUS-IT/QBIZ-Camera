@@ -1,0 +1,8 @@
+{
+  "name"        : "quojs",
+  "version"     : "3.0.7",
+  "homepage"    : "http://quojs.tapquo.com",
+  "description" : "Micro JavaScript Library for Mobile Devices",
+  "main"        : "quo.js",
+  "ignore"      : []
+}

@@ -1,0 +1,51 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.mbppower.camerapreview": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        }
+    },
+    "dependent_plugins": {}
+}

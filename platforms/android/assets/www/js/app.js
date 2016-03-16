@@ -189,21 +189,30 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             pictureInterval: 8,
             time: '5s'
         }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
-
+        
+        window.onresize = function() {
+            $scope.styleCameraBtn();
+            $scope.styleSmallBtn();
+        }
+        
         $scope.styleCameraBtn = function( ) {
+            /*
             var takePic = document.getElementsByClassName('cameraBtn')[0];
-            takePic.style.width = screen.width/4 + "px";
+            takePic.style.width = window.innerWidth/4 + "px";
             takePic.style.height = takePic.style.width;
-            takePic.style.borderRadius = screen.width/8 + "px";
+            takePic.style.borderRadius = window.innerWidth/8 + "px";
+            */
         }
         $scope.styleSmallBtn = function() {
+            /*
             var smallBtn = document.getElementsByClassName('smallBtn');
             for( var i = 0; i < smallBtn.length; i ++ ) {
                 var element = smallBtn[i];
-                element.style.width = (screen.width/4)*0.6 + "px";
+                element.style.width = (window.innerWidth/4)*0.6 + "px";
                 element.style.height = element.style.width;
-                element.style.borderRadius = (screen.width/8)*0.6 + "px";
+                element.style.borderRadius = (window.innerWidth/8)*0.6 + "px";
             };
+            */
         }
         
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
@@ -213,10 +222,15 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			dataStorageUri = cordova.file.dataDirectory;
 			updateGallery();
             
+            $$('body').swipeLeft(function() {
+                console.error('swipeLeft');
+                $state.go('settings');
+            });
+            
 			if (!$scope.cameraInitialized) {
 				$scope.cameraInitialized = true;
 
-				var options = { x: 0, y: 0, width: screen.width, height: screen.height };
+				var options = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight };
 				//Options, default camera, tapToTakePicture, DragEnabled, SendToBack
 				cordova.plugins.camerapreview.startCamera(options, "back", false, false, true);
 

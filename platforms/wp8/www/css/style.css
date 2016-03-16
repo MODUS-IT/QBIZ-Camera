@@ -1,0 +1,83 @@
+/* Empty. Add your own CSS if you like */
+
+.bg-alpha {
+    background: rgba(255,255,255,.9);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.pane {
+    background: #f0f0f0;
+}
+
+.view-container {
+    background: transparent !important;
+}
+
+.toggleContainer {
+    margin: 10px 0 0;
+    margin-top: 0;
+    padding: 0 !important;
+    border-radius: 0;
+}
+
+.row {
+    padding: 0;
+}
+
+.row + .row {
+    margin-top: 0;
+}
+
+.toggleMenu {
+    background: rgba(255,255,255,.9) !important;
+    border-radius: 0;
+    font-size: 24px;
+}
+
+.imagePrv {
+    width: 50%;
+    height: auto;
+    flex: 1;
+    display: inline-block;
+}
+
+.button-bar {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.scroll .button {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+}
+.button.button-balanced {
+    background-color: #49A71A !important;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.button.button-positive.button-clear {
+    background-color: none !important; 
+}
+
+.button.button-positive {
+    background-color: #2196F3 !important;
+}
+
+.button.button-assertive {
+    background-color: #D50000 !important;
+}
+
+ion-list .list {
+    overflow: hidden;
+    margin: 57px 10px 10px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.button-bar > .button {
+    padding-top: 4px !important;
+}

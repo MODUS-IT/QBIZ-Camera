@@ -1,0 +1,18 @@
+{
+  "name": "quojs",
+  "version": "3.0.7",
+  "homepage": "http://quojs.tapquo.com",
+  "description": "Micro JavaScript Library for Mobile Devices",
+  "main": "quo.js",
+  "ignore": [],
+  "_release": "3.0.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.0.7",
+    "commit": "cf6159186992a3adfb1acc39974ea28afc84a98c"
+  },
+  "_source": "git://github.com/soyjavi/bower-quojs.git",
+  "_target": "^3.0.7",
+  "_originalSource": "quojs",
+  "_direct": true
+}
