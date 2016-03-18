@@ -4,6 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 "use strict";
+
+function hello() {
+    console.log('hello');
+}
+
 function log( obj, msg ) {
     console.log(obj);
     console.log("^ " + msg);
@@ -179,7 +184,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         }
 	})
 
-	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		$scope.projects = [];
 		$scope.state = $state;
 		$scope.cameraInitialized = false;
@@ -189,6 +194,40 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             pictureInterval: 8,
             time: '5s'
         }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
+        
+        $scope.swipeLeft = function() {
+            switch( $state.current.name ) {
+                case "browser.imageBrowser": 
+                    $state.go('mainView');
+                    break;
+                case "browser.projectBrowser":
+                    $state.go('mainView');
+                    break;
+                case "settings":
+                    $state.go('browser.projectBrowser');
+                    break;
+                case "mainView":
+                    $state.go('settings');
+                    break;
+            }
+        }
+        
+        $scope.swipeRight = function() {
+            switch( $state.current.name ) {
+                case "browser.imageBrowser": 
+                    $state.go('settings');
+                    break;
+                case "browser.projectBrowser":
+                    $state.go('settings');
+                    break;
+                case "settings":
+                    $state.go('mainView');
+                    break;
+                case "mainView":
+                    $state.go('browser.projectBrowser');
+                    break;
+            }
+        }
         
         window.onresize = function() {
             $scope.styleCameraBtn();
@@ -221,11 +260,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
 			updateGallery();
-            
-            $$('body').swipeLeft(function() {
-                console.error('swipeLeft');
-                $state.go('settings');
-            });
             
 			if (!$scope.cameraInitialized) {
 				$scope.cameraInitialized = true;

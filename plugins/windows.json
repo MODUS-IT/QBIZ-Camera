@@ -1,0 +1,51 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.mbppower.camerapreview": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        }
+    },
+    "dependent_plugins": {}
+}

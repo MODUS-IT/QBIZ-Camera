@@ -4,6 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 "use strict";
+
+function hello() {
+    console.log('hello');
+}
+
 function log( obj, msg ) {
     console.log(obj);
     console.log("^ " + msg);
@@ -179,7 +184,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         }
 	})
 
-	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		$scope.projects = [];
 		$scope.state = $state;
 		$scope.cameraInitialized = false;
@@ -190,18 +195,55 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             time: '5s'
         }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
         
+        $scope.swipeLeft = function() {
+            switch( $state.current.name ) {
+                case "browser.imageBrowser": 
+                    $state.go('mainView');
+                    break;
+                case "browser.projectBrowser":
+                    $state.go('mainView');
+                    break;
+                case "settings":
+                    $state.go('browser.projectBrowser');
+                    break;
+                case "mainView":
+                    $state.go('settings');
+                    break;
+            }
+        }
+        
+        $scope.swipeRight = function() {
+            switch( $state.current.name ) {
+                case "browser.imageBrowser": 
+                    $state.go('settings');
+                    break;
+                case "browser.projectBrowser":
+                    $state.go('settings');
+                    break;
+                case "settings":
+                    $state.go('mainView');
+                    break;
+                case "mainView":
+                    $state.go('browser.projectBrowser');
+                    break;
+            }
+        }
+        
         window.onresize = function() {
             $scope.styleCameraBtn();
             $scope.styleSmallBtn();
         }
         
         $scope.styleCameraBtn = function( ) {
+            /*
             var takePic = document.getElementsByClassName('cameraBtn')[0];
             takePic.style.width = window.innerWidth/4 + "px";
             takePic.style.height = takePic.style.width;
             takePic.style.borderRadius = window.innerWidth/8 + "px";
+            */
         }
         $scope.styleSmallBtn = function() {
+            /*
             var smallBtn = document.getElementsByClassName('smallBtn');
             for( var i = 0; i < smallBtn.length; i ++ ) {
                 var element = smallBtn[i];
@@ -209,6 +251,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                 element.style.height = element.style.width;
                 element.style.borderRadius = (window.innerWidth/8)*0.6 + "px";
             };
+            */
         }
         
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };

@@ -11,7 +11,7 @@
     <style>
         .tab-nav.tabs {
             top: 0 !important;
-            background-color: rgba( 255,255,255, .8 ) !important;
+            background-color: rgba( 0,145,234, .75 ) !important;
         }
     </style>
     <!-- ionic/angularjs js -->
@@ -23,15 +23,15 @@
     <script src="js/app.js"></script>
 </head>
 
-<body ng-app="cameraApp" style="background: transparent !important" ng-controller="mainCtrl" class="platform-wp8 platform-cordova platform-webview">
+<body ng-app="cameraApp" style="background: transparent !important" on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()" ng-controller="mainCtrl">
     <ion-tabs class="tabs-light tabs-top">
-        <ion-tab icon="ion-ios-camera-outline" ui-sref="mainView">
+        <ion-tab icon="ion-ios-camera" ui-sref="mainView">
             <ion-nav-view name="mainView"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon="ion-ios-photos-outline" ui-sref="browser.projectBrowser">
+        <ion-tab icon="ion-images" ui-sref="browser.projectBrowser">
             <ion-nav-view name="browser"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon="ion-ios-cog-outline" ui-sref="settings">
+        <ion-tab icon="ion-ios-gear" ui-sref="settings">
             <ion-nav-view name="settings"></ion-nav-view>
         </ion-tab>
     </ion-tabs>
