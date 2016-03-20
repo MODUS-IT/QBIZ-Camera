@@ -5,10 +5,6 @@
 // the 2nd parameter is an array of 'requires'
 "use strict";
 
-function hello() {
-    console.log('hello');
-}
-
 function log( obj, msg ) {
     console.log(obj);
     console.log("^ " + msg);
@@ -24,9 +20,7 @@ class Project {
 }
 
 angular.module('cameraApp', ['ionic', 'ngCordova'])
-
 	.run(function($ionicPlatform, $state) {
-        
         $ionicPlatform.registerBackButtonAction(function() {
             switch( $state.current.name ) {
                 case "browser.imageBrowser": 
@@ -76,7 +70,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             .state('browser', {
                 url: '/browser',
                 views: {
-                    "browser": {
+                    "mainView": {
                         templateUrl: 'browser/browser.html'
                     }
                 }
@@ -103,7 +97,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			.state('settings', {
 				url: '/settings',
 				views: {
-					settings: {
+					mainView: {
 						templateUrl: 'settings.html'
 					}
 				}
@@ -184,7 +178,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
         }
 	})
 
-	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		$scope.projects = [];
 		$scope.state = $state;
 		$scope.cameraInitialized = false;
@@ -195,26 +189,33 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             time: '5s'
         }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
         
-        $scope.swipeLeft = function() {
-            switch( $state.current.name ) {
-                case "browser.imageBrowser": 
-                    $state.go('mainView');
-                    break;
-                case "browser.projectBrowser":
-                    $state.go('mainView');
-                    break;
-                case "settings":
-                    $state.go('browser.projectBrowser');
-                    break;
-                case "mainView":
-                    $state.go('settings');
-                    break;
-            }
+        $scope.hello = function() {
+            log("hello!", "hello");
         }
         
         $scope.swipeRight = function() {
             switch( $state.current.name ) {
                 case "browser.imageBrowser": 
+                    $state.go('mainView');
+                    break;
+                case "browser.projectBrowser":
+                    $state.go('mainView');
+                    break;
+                case "settings":
+                    $state.go('browser.projectBrowser');
+                    break;
+                case "mainView":
+                    $state.go('settings');
+                    $timeout(function() {
+                        $scope.cameraHide();
+                    }, 350);
+                    break;
+            }
+        }
+        
+        $scope.swipeLeft = function() {
+            switch( $state.current.name ) {
+                case "browser.imageBrowser": 
                     $state.go('settings');
                     break;
                 case "browser.projectBrowser":
@@ -225,33 +226,11 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                     break;
                 case "mainView":
                     $state.go('browser.projectBrowser');
+                    $timeout(function() {
+                        $scope.cameraHide();
+                    }, 350);
                     break;
             }
-        }
-        
-        window.onresize = function() {
-            $scope.styleCameraBtn();
-            $scope.styleSmallBtn();
-        }
-        
-        $scope.styleCameraBtn = function( ) {
-            /*
-            var takePic = document.getElementsByClassName('cameraBtn')[0];
-            takePic.style.width = window.innerWidth/4 + "px";
-            takePic.style.height = takePic.style.width;
-            takePic.style.borderRadius = window.innerWidth/8 + "px";
-            */
-        }
-        $scope.styleSmallBtn = function() {
-            /*
-            var smallBtn = document.getElementsByClassName('smallBtn');
-            for( var i = 0; i < smallBtn.length; i ++ ) {
-                var element = smallBtn[i];
-                element.style.width = (window.innerWidth/4)*0.6 + "px";
-                element.style.height = element.style.width;
-                element.style.borderRadius = (window.innerWidth/8)*0.6 + "px";
-            };
-            */
         }
         
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
@@ -384,8 +363,7 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 
 		$scope.$watch('state.current.name', function() {
 			if ($scope.state.current.name == 'browser.projectBrowser') updateGallery();
-			if ($scope.state.current.name != 'mainView') $scope.cameraHide();
-			else $scope.cameraShow();
+			if ($scope.state.current.name == 'mainView') $scope.cameraShow();
 		});
 
 	})

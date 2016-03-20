@@ -1,9 +1,12 @@
 <div>
-    <div class="newWorld">
-        <button ng-click="toggleMenu()" ng-class="styleSmallBtn()" class="button icon ion-ios-settings-strong rightBtn smallBtn"></button>
-        <button ng-click="" ng-class="styleSmallBtn()" class="button icon ion-ios-timer leftBtn smallBtn"></button>
+    <div class="picTimer">
+        20
     </div>
-    <button ng-click="takePicture()" ng-class="styleCameraBtn()" class="button icon ion-ios-camera-outline cameraBtn"></button>
+    <div class="newWorld">
+        <button ng-click="toggleMenu()" class="button icon ion-ios-settings-strong rightBtn smallBtn"></button>
+        <button ng-click="" class="button icon ion-ios-timer leftBtn smallBtn"></button>
+    </div>
+    <button ng-click="takePicture()" class="button icon ion-ios-camera-outline cameraBtn"></button>
         <div class="settingsMenu">
 
             <div ng-show="menuOpened" style="width: 100%">
@@ -16,7 +19,7 @@
                     <i class="icon ion-ios-photos"></i>
                 </div>
                     <!-- Odstęp czasowy -->
-                <div class="item item-text-wrap bg-alpha" style="text-align: right">
+                <div class="item item-text-wrap bg-alpha">
                     Czas na ustawienie zdjęcia {{ params.pictureInterval | number : 0 }}s
                 </div>
                 
@@ -26,65 +29,5 @@
                     <i class="icon ion-ios-time"></i>
                 </div>
             </div>
-            
-        </div>
-    
-    
-    <style>
-        ion-nav-view[name="mainView"] .pane {
-            background: transparent !important;
-        }
-        
-        .cameraBtn {
-            position: absolute; 
-            top: 80%; 
-            bottom: 0; 
-            left: 0; 
-            right: 0;
-            margin: auto;
-            background: rgba(0, 145, 234, .8);
-            border: 2px solid rgba(255,255,255,.8);
-            color: #fff;
-        }
-        .cameraBtn::before {
-            font-size: 3em !important;
-        }
-        .smallBtn {
-            position: absolute;
-            top: 80%;
-            bottom: 0;
-            background: rgba(255,255,255,.8);
-            border: 1px solid rgba(0,0,0,.8);
-            margin: auto;
-        }
-        .smallBtn::before {
-            font-size: 26px;
-        }
-        .rightBtn {
-            left: 50%;
-            right:0
-        }
-        .leftBtn {
-            left: 0;
-            right: 50%;
-        }
-        .settingsMenu {
-            width: 90%;
-            bottom: 20%;
-            left: 0;
-            right: 0;
-            position: absolute;
-            margin: 100% auto 0;
-            border: 5px solid rgba(0,0,0,0);
-        }
-        
-        .settingsMenu div div:first-child {
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .settingsMenu div div:last-child {
-            border-radius: 0 0 10px 10px;
-        }
-    </style>
-    
+        </div>    
 </div>

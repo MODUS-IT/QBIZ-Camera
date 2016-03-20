@@ -1,15 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
-.bg-alpha {
-    background: rgba(255,255,255,.9);
-}
-
 body {
     font-family: 'Open Sans', sans-serif;
-}
-
-.pane {
-    background: #f0f0f0;
 }
 
 .view-container {
@@ -23,16 +15,8 @@ body {
     border-radius: 0;
 }
 
-.row {
-    padding: 0;
-}
-
-.row + .row {
-    margin-top: 0;
-}
-
 .toggleMenu {
-    background: rgba(255,255,255,.9) !important;
+    background: rgba(255, 255, 255, .9) !important;
     border-radius: 0;
     font-size: 24px;
 }
@@ -53,6 +37,7 @@ body {
     margin-top: 10px;
     margin-bottom: 0 !important;
 }
+
 .button.button-balanced {
     background-color: #49A71A !important;
     width: calc(100% - 20px);
@@ -60,12 +45,15 @@ body {
 }
 
 .button.button-positive.button-clear {
-    background-color: none !important; 
+    background-color: none !important;
 }
 
 .button.button-positive {
     background-color: #2F62A5;
 }
+
+
+/* TOP MENU */
 
 a.tab-item {
     border-color: #fff;
@@ -82,6 +70,9 @@ a.tabs-striped.tabs-light .tab-item.tab-item-active {
     border-color: #fff;
 }
 
+
+/* EO TOP MENU */
+
 .button.button-assertive {
     background-color: #D50000 !important;
 }
@@ -97,6 +88,39 @@ ion-list .list {
     padding-top: 4px !important;
 }
 
+
+/* CAMERA MENU */
+
+.bg-alpha {
+    background: rgba(255,255,255, .85);
+    color: #000;
+}
+
+ion-nav-view[name="mainView"] div.pane {
+    background: transparent !important;
+}
+
+.settingsMenu {
+    width: 90%;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: 100% auto 0;
+    border: 5px solid rgba(0, 0, 0, 0);
+}
+
+.settingsMenu div div:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.settingsMenu div div:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+
+/* NEW BUTTONS CAMERA */
+
 div.newWorld {
     position: absolute;
     width: 90%;
@@ -106,8 +130,7 @@ div.newWorld {
     left: 0;
     right: 0;
     margin: auto;
-
-    background: rgba( 0, 145, 234, .4 );
+    background: rgba( 0, 145, 234, .4);
     border: 2px solid rgba(255, 255, 255, .8);
     border-radius: 45px;
 }
@@ -139,6 +162,10 @@ div.newWorld button.leftBtn {
     padding-right: 17%;
 }
 
+button.cameraBtn::before {
+    font-size: 3em !important;
+}
+
 button.cameraBtn {
     position: absolute;
     top: 80%;
@@ -146,6 +173,7 @@ button.cameraBtn {
     left: 0;
     right: 0;
     margin: auto;
+    color: #fff;
     background: rgb(52, 136, 195);
     border: 2px solid #fff;
     border-radius: 100%;
@@ -153,4 +181,9 @@ button.cameraBtn {
     height: 18%;
     max-width: 240px;
     max-height: 240px;
+}
+
+button.cameraBtn:hover {
+    color: #fff;
+    background: rgb(32, 116, 175);
 }

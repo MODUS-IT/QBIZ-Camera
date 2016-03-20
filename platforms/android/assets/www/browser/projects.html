@@ -1,3 +1,5 @@
 <ion-list ng-repeat="project in projects">
-    <ion-item ng-click="selectProject( project )" ng-bind="project.projectName"></ion-item>
+    <ion-item class="item-button-right" ng-click="selectProject( project ); hello()">
+        {{ project.projectName }} 
+    </ion-item>
 </ion-list>
