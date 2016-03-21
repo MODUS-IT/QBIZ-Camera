@@ -2,6 +2,25 @@
     <div class="picTimer">
         20
     </div>
+    <div ng-show="params.grid" class="gridContainer">
+        <div class="grid">
+            <div class="gridCol">
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+            </div>
+            <div class="gridCol">
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+            </div>
+            <div class="gridCol">
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+                <div class="gridRow"></div>
+            </div>
+        </div>
+    </div>
     <div class="newWorld">
         <button ng-click="toggleMenu()" class="button icon ion-ios-settings-strong rightBtn smallBtn"></button>
         <button ng-click="" class="button icon ion-ios-timer leftBtn smallBtn"></button>
@@ -10,12 +29,21 @@
         <div class="settingsMenu">
 
             <div ng-show="menuOpened" style="width: 100%">
+                <li class="item item-toggle bg-alpha">
+                    Siatka
+                    <label class="toggle toggle-positive">
+                    <input ng-model="params.grid" type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                    </label>
+                </li>
                 <!-- Wymagany kąt obrotu {{ 360/params.pictures | number: 0 }}° -->
                 <div class="item item-text-wrap bg-alpha">Ilość zdjęć: {{ params.pictures }}</div>
                     <!-- ilośc zdjęć -->
                 <div class="item range range-positive bg-alpha">
                     <i class="icon ion-ios-photos-outline"></i>
-                    <input ng-model="params.pictures" type="range" min="6" max="24" value="12">
+                    <input ng-model="params.pictures" type="range" min="6" max="24">
                     <i class="icon ion-ios-photos"></i>
                 </div>
                     <!-- Odstęp czasowy -->
@@ -25,7 +53,7 @@
                 
                 <div class="item range range-positive bg-alpha">
                     <i class="icon ion-ios-time-outline"></i>
-                    <input ng-model="params.pictureInterval" type="range" min="6" max="60" value="30" step="2">
+                    <input ng-model="params.pictureInterval" type="range" min="6" max="60" step="2">
                     <i class="icon ion-ios-time"></i>
                 </div>
             </div>

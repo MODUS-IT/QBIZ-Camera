@@ -1,8 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 "use strict";
 
 function log( obj, msg ) {
@@ -16,12 +11,16 @@ class Project {
         this.projectName = projectName;
         this.images = [];
     }
-    
+}
+
+function closeApp() {
+    navigator.app.exitApp();
 }
 
 angular.module('cameraApp', ['ionic', 'ngCordova'])
 	.run(function($ionicPlatform, $state) {
-        $ionicPlatform.registerBackButtonAction(function() {
+		$ionicPlatform.ready(function() {
+            $ionicPlatform.registerBackButtonAction(function() {
             switch( $state.current.name ) {
                 case "browser.imageBrowser": 
                     $state.go('^.projectBrowser');
@@ -33,12 +32,11 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                     $state.go('mainView');
                     break;
                 case "mainView":
-                    navigator.app.exitApp();
+                    closeApp();
                     break;
             }
-        }, 100);
-        
-		$ionicPlatform.ready(function() {
+        }, 101);
+            
             window.screen.lockOrientation('portrait');
 			if (window.cordova && window.cordova.plugins.Keyboard) {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -181,19 +179,19 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 	.controller('mainCtrl', function($q, $scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		$scope.projects = [];
 		$scope.state = $state;
-		$scope.cameraInitialized = false;
+		var cameraInitialized = false;
 		$scope.menuOpened = false; //Controls menu
+        $scope.showGrid = false;
 		$scope.params = {
-            pictures: 6,
-            pictureInterval: 8,
-            time: '5s'
-        }; /* pictures - holds picture count from model | pictureInterval - holds interval beetween pictures in seconds */
+            grid: undefined, //Show grid
+            pictures: undefined, //No of pics
+            pictureInterval: undefined, //Interval between pics in secs
+        };
         
-        $scope.hello = function() {
-            log("hello!", "hello");
-        }
+        $scope.swipeRight = viewGoForward;
+        $scope.swipeLeft = viewGoBack;
         
-        $scope.swipeRight = function() {
+        function viewGoForward() {
             switch( $state.current.name ) {
                 case "browser.imageBrowser": 
                     $state.go('mainView');
@@ -206,14 +204,12 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                     break;
                 case "mainView":
                     $state.go('settings');
-                    $timeout(function() {
-                        $scope.cameraHide();
-                    }, 350);
+                    $timeout($scope.cameraHide, 350);
                     break;
             }
         }
         
-        $scope.swipeLeft = function() {
+        function viewGoBack() {
             switch( $state.current.name ) {
                 case "browser.imageBrowser": 
                     $state.go('settings');
@@ -226,32 +222,35 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
                     break;
                 case "mainView":
                     $state.go('browser.projectBrowser');
-                    $timeout(function() {
-                        $scope.cameraHide();
-                    }, 350);
+                    $timeout($scope.cameraHide, 350);
                     break;
             }
         }
         
 		var pictureLoop = { loop: undefined, counter: undefined, timer: undefined, timerCounter: undefined };
-		var dataStorageUri = undefined;
+		var dataStorageUri;
         
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
 			updateGallery();
             
-			if (!$scope.cameraInitialized) {
-				$scope.cameraInitialized = true;
-
+            $scope.params = localStorage.getCameraData();
+            $scope.$watch('params.grid', function() {
+                localStorage.saveCameraData( $scope.params );
+            });
+            $scope.$watch('params.pictures', function() {
+                localStorage.saveCameraData( $scope.params );
+            });
+            $scope.$watch('params.pictureInterval', function() {
+                localStorage.saveCameraData( $scope.params );
+            });
+            
+			if (!cameraInitialized) {
+				cameraInitialized = true;
 				var options = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight };
 				//Options, default camera, tapToTakePicture, DragEnabled, SendToBack
 				cordova.plugins.camerapreview.startCamera(options, "back", false, false, true);
-
-				/* Camera aspect ratio & resolution fix */
-				setTimeout(function() {
-					cordova.plugins.camerapreview.switchCamera();
-					cordova.plugins.camerapreview.switchCamera();
-				 }, 1000);
+                setTimeout(function() {cordova.plugins.camerapreview.fullRes();} , 350);
 			}
 		});
         
@@ -268,10 +267,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 			$scope.preview.pictureURL = pictureURL;
             FileManipulationService.getFile( dataStorageUri, pictureURL, "TEXT" );
 		}
-
-		$scope.closePreview = function() {
-			$scope.preview.hide();
-		}
         
         $scope.selectProject = function( project ) {
             $scope.project = project;
@@ -279,17 +274,12 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             $state.go('^.imageBrowser');
         }
 
-		$scope.toggleMenu = function() {
-			if (!$scope.menuOpened)
-				$scope.menuOpened = true;
-			else
-				$scope.menuOpened = false;
-		}
+		$scope.toggleMenu = function() { $scope.menuOpened == true ? $scope.menuOpened = false : $scope.menuOpened = true; }
 
 		$scope.cameraShow = function() {
-			$ionicPlatform.ready(function() {
-				cordova.plugins.camerapreview.show();
-			});
+			$ionicPlatform.ready(function(){ 
+                cordova.plugins.camerapreview.show() 
+            });
 		}
 
 		$scope.cameraHide = function() {
@@ -301,7 +291,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 		var even = true;
 		 $scope.takePicture = function() {
             $cordovaDialogs.prompt("Wprowadź nazwę projektu", "Projekt", ["Start", "Anuluj"], "").then(function( projectPrompt ) {
-				log(projectPrompt, "prompt");
                 if( projectPrompt.buttonIndex == 2 ) return;
                 window.project = new Project( $scope.projects.length + 1, projectPrompt.input1 );
                 $scope.projects.push( window.project );
@@ -380,6 +369,18 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
 		this.saveConfigurationData = function(configurationData) {
 			window.localStorage['FTPconfig'] = angular.toJson(configurationData);
 		}
+        
+        this.saveCameraData = function( params ) {
+            window.localStorage['camera'] = angular.toJson(params);
+        }
+        
+        this.getCameraData = function() {
+            var cameraData = window.localStorage['camera'];
+            if(cameraData) {
+                return angular.fromJson(cameraData);
+            }
+            return { grid: false, pictures: 8, pictureInterval: 30 };
+        }
         
         this.getUID = function() {
             var UID = window.localStorage['devUID'];
@@ -593,7 +594,6 @@ angular.module('cameraApp', ['ionic', 'ngCordova'])
             getFile( dataURI, 'main.json', "text" ).then( parseJson, createAndRepeat );
 
             function parseJson( jsonText ) {
-                log(jsonText, "json");
                 var obj = angular.fromJson( jsonText );
                 deferred.resolve( obj );
             }

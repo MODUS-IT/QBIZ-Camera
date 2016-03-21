@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
 }
 
 .view-container {
@@ -13,6 +14,45 @@ body {
     margin-top: 0;
     padding: 0 !important;
     border-radius: 0;
+}
+
+.gridContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.gridContainer .grid {
+    width: 100%;
+    height: 100%;
+}
+
+.gridContainer .grid .gridCol {
+    height: calc(100% / 3);
+    display: flex;
+}
+
+.gridContainer .grid .gridCol .gridRow {
+    border: 1px solid rgba(255,255,255, .6);
+    flex: 1;
+}
+
+.gridContainer .grid .gridCol:first-child .gridRow {
+    border-top: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:first-child {
+    border-left: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:last-child {
+    border-right: 0;
+}
+
+.gridContainer .grid .gridCol:last-child .gridRow {
+    border-bottom: 0;
 }
 
 .toggleMenu {
@@ -54,6 +94,11 @@ body {
 
 
 /* TOP MENU */
+
+.tab-nav.tabs {
+    top: 0 !important;
+    background-color: rgba( 0,145,234, .75 ) !important;
+}
 
 a.tab-item {
     border-color: #fff;
@@ -110,14 +155,25 @@ ion-nav-view[name="mainView"] div.pane {
     border: 5px solid rgba(0, 0, 0, 0);
 }
 
-.settingsMenu div div:first-child {
+.settingsMenu > div > :first-child {
     border-radius: 10px 10px 0 0;
 }
 
-.settingsMenu div div:last-child {
+.settingsMenu > div > div:last-child {
     border-radius: 0 0 10px 10px;
 }
 
+.handle {
+    border-radius: 27px !important;
+}
+
+.picTimer {
+    position: absolute;
+    top: 59px;
+    right: 10px;
+    color: #fff;
+    font-size: 24px;
+}
 
 /* NEW BUTTONS CAMERA */
 

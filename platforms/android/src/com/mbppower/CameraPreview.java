@@ -17,7 +17,7 @@ import org.json.JSONException;
 
 public class CameraPreview extends CordovaPlugin implements CameraActivity.CameraPreviewListener {
 
-	private final String TAG = "CameraPreview";
+	private final String TAG = "QBIZ CameraPreview";
 	private final String setOnPictureTakenHandlerAction = "setOnPictureTakenHandler";
 	private final String setColorEffectAction = "setColorEffect";
 	private final String startCameraAction = "startCamera";
@@ -61,6 +61,8 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 	    }
         else if (action.equals("logCamera")) {
             return logCamera(args, callbackContext);
+        } else if(action.equals("doSth")) {
+            return doGood(args, callbackContext);
         }
 
     	return false;
@@ -203,8 +205,14 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
         return true;
     }
     
+    private boolean doGood(final JSONArray args, CallbackContext callbackContext) {
+        if(fragment == null) return false;
+        fragment.doGood();
+        return true;
+    }
+    
     private boolean setOnPictureTakenHandler(JSONArray args, CallbackContext callbackContext) {
-    	Log.d(TAG, "setOnPictureTakenHandler");
+        Log.d(TAG, "--- setOnPictureTakenHandler ---");
 	    takePictureCallbackContext = callbackContext;
     	return true;
 	}
