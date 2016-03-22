@@ -115,7 +115,6 @@ a.tabs-striped.tabs-light .tab-item.tab-item-active {
     border-color: #fff;
 }
 
-
 /* EO TOP MENU */
 
 .button.button-assertive {
@@ -156,11 +155,11 @@ ion-nav-view[name="mainView"] div.pane {
 }
 
 .settingsMenu > div > :first-child {
-    border-radius: 10px 10px 0 0;
+    border-radius: 20px 20px 0 0;
 }
 
-.settingsMenu > div > div:last-child {
-    border-radius: 0 0 10px 10px;
+.settingsMenu > div > :last-child {
+    border-radius: 0 0 20px 20px;
 }
 
 .handle {
@@ -169,10 +168,21 @@ ion-nav-view[name="mainView"] div.pane {
 
 .picTimer {
     position: absolute;
-    top: 59px;
-    right: 10px;
+    top: 40%;
+    right: 0;
+    width: 80px;
+    height: 80px;
     color: #fff;
-    font-size: 24px;
+    font-size: 38px;
+    padding: 10px;
+    background: rgba( 10, 145, 234, .4);
+    border: 2px solid rgba( 255, 255, 255, 1);
+    border-radius: 10px;
+    line-height: 60px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
 
 /* NEW BUTTONS CAMERA */
@@ -218,8 +228,13 @@ div.newWorld button.leftBtn {
     padding-right: 17%;
 }
 
-button.cameraBtn::before {
-    font-size: 3em !important;
+button.cameraBtn i::before {
+    font-size: 3.5em !important;
+}
+
+button.cameraBtn span {
+    font-size: 3em;
+    display:block;
 }
 
 button.cameraBtn {
@@ -242,4 +257,20 @@ button.cameraBtn {
 button.cameraBtn:hover {
     color: #fff;
     background: rgb(32, 116, 175);
+}
+
+/* PROJECTS */
+.largeNotice, .smallNotice {
+    color: #ccc;
+}
+.largeNotice {
+    text-align: center;
+    margin-top: 79px;
+    font-size: 36px;
+}
+.smallNotice {
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 10px;
+    font-size: 18px;
 }

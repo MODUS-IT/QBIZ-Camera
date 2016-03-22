@@ -1,3 +1,5 @@
-<ion-list ng-repeat="project in projects">
-    <ion-item ng-click="selectProject( project )" ng-bind="project.projectName"></ion-item>
+<ion-list ng-show="projects.length">
+    <ion-item ng-repeat="project in projects" ng-click="selectProject( project );" ng-bind="project.projectName"></ion-item>
 </ion-list>
+<div class="largeNotice" ng-hide="projects.length">brak projektów...</div>
+<div class="smallNotice" ng-hide="projects.length">...ale bida</div>

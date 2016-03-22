@@ -1,0 +1,29 @@
+<div class="settingsMenu">
+    <div ng-show="rightMenu" style="width: 100%">
+        <li class="item item-toggle bg-alpha">
+            Siatka
+            <label class="toggle toggle-dark">
+            <input ng-model="params.grid" type="checkbox">
+            <div class="track">
+                <div class="handle"></div>
+            </div>
+            </label>
+        </li>
+        <li class="item item-text-wrap bg-alpha">Wymagany kąt obrotu {{ 360/params.pictures | number: 0 }}°</li>
+        <li class="item item-text-wrap bg-alpha">Ilość zdjęć: {{ params.pictures }}</li>
+        <li class="item range range-dark bg-alpha">
+            <i class="icon ion-ios-photos-outline"></i>
+            <input ng-model="params.pictures" ng-disabled="isTakingPictures" type="range" min="6" max="24">
+            <i class="icon ion-ios-photos"></i>
+        </li>
+        <!-- Odstęp czasowy -->
+        <li class="item item-text-wrap bg-alpha">
+            Czas na ustawienie zdjęcia {{ params.pictureInterval | number : 0 }}s
+        </li>
+        <li class="item range range-dark bg-alpha">
+            <i class="icon ion-ios-time-outline"></i>
+            <input ng-model="params.pictureInterval" ng-disabled="isTakingPictures" type="range" min="6" max="60" step="2">
+            <i class="icon ion-ios-time"></i>
+        </li>
+    </div>
+</div> 

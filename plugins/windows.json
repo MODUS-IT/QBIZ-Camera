@@ -45,6 +45,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "QBIZ Camera360"
         }
     },
     "dependent_plugins": {}

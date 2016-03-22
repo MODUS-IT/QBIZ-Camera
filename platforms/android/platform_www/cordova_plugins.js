@@ -251,6 +251,13 @@ module.exports = [
         "merges": [
             "cordova.plugins.screenorientation"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+        "id": "cordova-plugin-nativeaudio.nativeaudio",
+        "clobbers": [
+            "window.plugins.NativeAudio"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -268,7 +275,8 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.5.1-dev",
     "cordova-plugin-x-toast": "2.4.2",
     "cordova-plugin-dialogs": "1.2.0",
-    "cordova-plugin-screen-orientation": "1.4.0"
+    "cordova-plugin-screen-orientation": "1.4.0",
+    "cordova-plugin-nativeaudio": "3.0.6"
 };
 // BOTTOM OF METADATA
 });

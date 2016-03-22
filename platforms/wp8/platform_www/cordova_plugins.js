@@ -266,6 +266,14 @@ module.exports = [
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests",
         "pluginId": "cordova-plugin-x-toast"
+    },
+    {
+        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+        "id": "cordova-plugin-nativeaudio.nativeaudio",
+        "pluginId": "cordova-plugin-nativeaudio",
+        "clobbers": [
+            "window.plugins.NativeAudio"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -283,7 +291,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.1",
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-toast": "2.4.2",
-    "ionic-plugin-keyboard": "1.0.8"
+    "ionic-plugin-keyboard": "1.0.8",
+    "cordova-plugin-nativeaudio": "3.0.6"
 }
 // BOTTOM OF METADATA
 });

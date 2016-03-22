@@ -48,5 +48,14 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-nativeaudio": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/SidneyS/cordova-plugin-nativeaudio.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

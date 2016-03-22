@@ -1,9 +1,9 @@
 <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">{{ preview.dirName }}</h1>
-        <button class="button button-clear button-positive" ng-click="closePreview()">Zamknij</button>
+        <h1 class="title">{{ imagePreview.dirName }}</h1>
+        <button class="button button-clear button-positive" ng-click="imagePreview.hide()">Zamknij</button>
     </ion-header-bar>
     <ion-content>
-        <img ng-src="{{ preview.pictureURL }}" style="width: 100%" />
+        <img ng-src="{{ imagePreview.pictureURL }}.thumb" style="width: 100%" />
     </ion-content>
 </ion-modal-view>

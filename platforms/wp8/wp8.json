@@ -102,6 +102,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
         }
     },
     "dependent_plugins": {},
@@ -372,6 +375,14 @@
             "file": "plugins/cordova-plugin-x-toast/test/tests.js",
             "id": "cordova-plugin-x-toast.tests",
             "pluginId": "cordova-plugin-x-toast"
+        },
+        {
+            "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+            "id": "cordova-plugin-nativeaudio.nativeaudio",
+            "pluginId": "cordova-plugin-nativeaudio",
+            "clobbers": [
+                "window.plugins.NativeAudio"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -387,6 +398,7 @@
         "cordova-plugin-statusbar": "2.1.1",
         "cordova-plugin-whitelist": "1.2.1",
         "cordova-plugin-x-toast": "2.4.2",
-        "ionic-plugin-keyboard": "1.0.8"
+        "ionic-plugin-keyboard": "1.0.8",
+        "cordova-plugin-nativeaudio": "3.0.6"
     }
 }

@@ -1,15 +1,8 @@
 /* Empty. Add your own CSS if you like */
 
-.bg-alpha {
-    background: rgba(255,255,255,.9);
-}
-
 body {
     font-family: 'Open Sans', sans-serif;
-}
-
-.pane {
-    background: #f0f0f0;
+    overflow: hidden;
 }
 
 .view-container {
@@ -23,16 +16,47 @@ body {
     border-radius: 0;
 }
 
-.row {
-    padding: 0;
+.gridContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-.row + .row {
-    margin-top: 0;
+.gridContainer .grid {
+    width: 100%;
+    height: 100%;
+}
+
+.gridContainer .grid .gridCol {
+    height: calc(100% / 3);
+    display: flex;
+}
+
+.gridContainer .grid .gridCol .gridRow {
+    border: 1px solid rgba(255,255,255, .6);
+    flex: 1;
+}
+
+.gridContainer .grid .gridCol:first-child .gridRow {
+    border-top: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:first-child {
+    border-left: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:last-child {
+    border-right: 0;
+}
+
+.gridContainer .grid .gridCol:last-child .gridRow {
+    border-bottom: 0;
 }
 
 .toggleMenu {
-    background: rgba(255,255,255,.9) !important;
+    background: rgba(255, 255, 255, .9) !important;
     border-radius: 0;
     font-size: 24px;
 }
@@ -53,6 +77,7 @@ body {
     margin-top: 10px;
     margin-bottom: 0 !important;
 }
+
 .button.button-balanced {
     background-color: #49A71A !important;
     width: calc(100% - 20px);
@@ -60,11 +85,19 @@ body {
 }
 
 .button.button-positive.button-clear {
-    background-color: none !important; 
+    background-color: none !important;
 }
 
 .button.button-positive {
     background-color: #2F62A5;
+}
+
+
+/* TOP MENU */
+
+.tab-nav.tabs {
+    top: 0 !important;
+    background-color: rgba( 0,145,234, .75 ) !important;
 }
 
 a.tab-item {
@@ -82,6 +115,8 @@ a.tabs-striped.tabs-light .tab-item.tab-item-active {
     border-color: #fff;
 }
 
+/* EO TOP MENU */
+
 .button.button-assertive {
     background-color: #D50000 !important;
 }
@@ -97,6 +132,61 @@ ion-list .list {
     padding-top: 4px !important;
 }
 
+
+/* CAMERA MENU */
+
+.bg-alpha {
+    background: rgba(255,255,255, .85);
+    color: #000;
+}
+
+ion-nav-view[name="mainView"] div.pane {
+    background: transparent !important;
+}
+
+.settingsMenu {
+    width: 90%;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: 100% auto 0;
+    border: 5px solid rgba(0, 0, 0, 0);
+}
+
+.settingsMenu > div > :first-child {
+    border-radius: 20px 20px 0 0;
+}
+
+.settingsMenu > div > :last-child {
+    border-radius: 0 0 20px 20px;
+}
+
+.handle {
+    border-radius: 27px !important;
+}
+
+.picTimer {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    color: #fff;
+    font-size: 38px;
+    padding: 10px;
+    background: rgba( 10, 145, 234, .4);
+    border: 2px solid rgba( 255, 255, 255, 1);
+    border-radius: 10px;
+    line-height: 60px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+/* NEW BUTTONS CAMERA */
+
 div.newWorld {
     position: absolute;
     width: 90%;
@@ -106,8 +196,7 @@ div.newWorld {
     left: 0;
     right: 0;
     margin: auto;
-
-    background: rgba( 0, 145, 234, .4 );
+    background: rgba( 0, 145, 234, .4);
     border: 2px solid rgba(255, 255, 255, .8);
     border-radius: 45px;
 }
@@ -139,6 +228,15 @@ div.newWorld button.leftBtn {
     padding-right: 17%;
 }
 
+button.cameraBtn i::before {
+    font-size: 3.5em !important;
+}
+
+button.cameraBtn span {
+    font-size: 3em;
+    display:block;
+}
+
 button.cameraBtn {
     position: absolute;
     top: 80%;
@@ -146,6 +244,7 @@ button.cameraBtn {
     left: 0;
     right: 0;
     margin: auto;
+    color: #fff;
     background: rgb(52, 136, 195);
     border: 2px solid #fff;
     border-radius: 100%;
@@ -153,4 +252,25 @@ button.cameraBtn {
     height: 18%;
     max-width: 240px;
     max-height: 240px;
+}
+
+button.cameraBtn:hover {
+    color: #fff;
+    background: rgb(32, 116, 175);
+}
+
+/* PROJECTS */
+.largeNotice, .smallNotice {
+    color: #ccc;
+}
+.largeNotice {
+    text-align: center;
+    margin-top: 79px;
+    font-size: 36px;
+}
+.smallNotice {
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 10px;
+    font-size: 18px;
 }

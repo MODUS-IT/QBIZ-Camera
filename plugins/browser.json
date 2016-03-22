@@ -45,6 +45,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         }
     },
     "dependent_plugins": {}

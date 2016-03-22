@@ -45,6 +45,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "{d7cb6630-eb84-11e5-b3e6-2b3c2395de1f}"
         }
     },
     "dependent_plugins": {}
