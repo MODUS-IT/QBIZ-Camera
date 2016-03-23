@@ -5,7 +5,7 @@ body {
     overflow: hidden;
 }
 
-.view-container {
+.transparent, ion-nav-view[name="mainView"] ion-content.pane.mV, .view-container, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio div.radio-content div.item-content, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio div.radio-content {
     background: transparent !important;
 }
 
@@ -74,7 +74,7 @@ body {
 }
 
 .scroll .button {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0 !important;
 }
 
@@ -135,13 +135,18 @@ ion-list .list {
 
 /* CAMERA MENU */
 
+.settingsMenu div {
+    border-radius: 20px;
+    background: rgba(255,255,255,.8);
+}
+
+.shutterSettings div.list {
+    margin: 0;
+}
+
 .bg-alpha {
     background: rgba(255,255,255, .85);
     color: #000;
-}
-
-ion-nav-view[name="mainView"] div.pane {
-    background: transparent !important;
 }
 
 .settingsMenu {
@@ -155,38 +160,20 @@ ion-nav-view[name="mainView"] div.pane {
 }
 
 .settingsMenu > div > :first-child {
-    border-radius: 20px 20px 0 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .settingsMenu > div > :last-child {
-    border-radius: 0 0 20px 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .handle {
     border-radius: 27px !important;
 }
 
-.picTimer {
-    position: absolute;
-    top: 40%;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    color: #fff;
-    font-size: 38px;
-    padding: 10px;
-    background: rgba( 10, 145, 234, .4);
-    border: 2px solid rgba( 255, 255, 255, 1);
-    border-radius: 10px;
-    line-height: 60px;
-    text-align: center;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-}
-
 /* NEW BUTTONS CAMERA */
-
 div.newWorld {
     position: absolute;
     width: 90%;
@@ -212,7 +199,7 @@ div.newWorld button.smallBtn {
     color: #fff;
 }
 
-div.newWorld button.smallBtn:before {
+div.newWorld button.smallBtn::before {
     font-size: 36px;
 }
 

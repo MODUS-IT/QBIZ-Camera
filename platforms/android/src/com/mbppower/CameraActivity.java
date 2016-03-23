@@ -85,7 +85,8 @@ public class CameraActivity extends Fragment {
     public int frameCount;
     private IMotionDetection detector = new LumaMotionDetection();
     private boolean isUsingMotionDetection = false;
-
+    private int framesStill = 0;
+    private boolean locked = false;
 
 	public void setEventListener(CameraPreviewListener listener){
 		eventListener = listener;
@@ -212,8 +213,49 @@ public class CameraActivity extends Fragment {
 		
 		mCamera.setParameters(params);
 		mCamera.startPreview();
-		return "PreviewSize: " + mCamera.getParameters().getPreviewSize().width + " x " + mCamera.getParameters().getPreviewSize().height + " PicSize: " + mCamera.getParameters().getPictureSize().width + " x " + mCamera.getParameters().getPictureSize().height;
+		return " -- PreviewSize: " + mCamera.getParameters().getPreviewSize().width + " x " + mCamera.getParameters().getPreviewSize().height + " PicSize: " + mCamera.getParameters().getPictureSize().width + " x " + mCamera.getParameters().getPictureSize().height + " fRate: " + mCamera.getParameters().getPreviewFrameRate();
 	}
+    
+    public void useMotionDetection() {
+        isUsingMotionDetection = true;
+        Log.d(TAG, "Hello. I'm using motion detection");
+    }
+    
+    public void motionDetectionStart() {
+        mCamera.setPreviewCallback( new Camera.PreviewCallback() {
+            @Override
+            public void onPreviewFrame(byte[] data, Camera camera) {
+                if( !locked && !isTakingPicture && isUsingMotionDetection ) {
+                    frameCount++;
+                }
+                if(frameCount%30 == 0 && isUsingMotionDetection && !isTakingPicture && !locked) {
+                    int[] hsl = ImageProcessing.decodeYUV420SPtoLuma( data, 1920, 1080 );
+                    boolean detected = detector.detect( hsl, 1920, 1080 );
+                    if(!detected) {
+                        framesStill++;
+                    }
+                    else framesStill = 0;
+                    
+                    if( framesStill >= 3 ) {
+                        takePicture( 0, 0 );
+                        framesStill = 0;
+                    }
+                }
+            }
+        });
+    }
+    
+    public void motionDetectionStop() {
+        mCamera.setPreviewCallback( new Camera.PreviewCallback(){
+            @Override
+            public void onPreviewFrame(byte[] data, Camera camera) {}
+        });
+    }
+    
+    public void useTimer() {
+        isUsingMotionDetection = false;
+        Log.d(TAG, "Hello. I'm using timer");
+    }
     
     public void doGood() {
         setLargestCameraResolution();
@@ -247,17 +289,6 @@ public class CameraActivity extends Fragment {
 
 		Log.d(TAG, "cameraCurrentlyLocked new: " + cameraCurrentlyLocked);
         setLargestCameraResolution();
-        mCamera.setPreviewCallback( new Camera.PreviewCallback() {
-            @Override
-            public void onPreviewFrame(byte[] data, Camera camera) {
-                frameCount++;
-                if(frameCount%30 == 0 && isUsingMotionDetection) {
-                    int[] hsl = ImageProcessing.decodeYUV420SPtoLuma(data, 1920, 1080);
-                    boolean detected = detector.detect(hsl, 1920, 1080);
-                    Log.d(TAG, "Frame: " + frameCount + "D: " + detected);
-                }
-            }
-        });
 		// Start the preview
 		mCamera.startPreview();
 	}
@@ -277,6 +308,7 @@ public class CameraActivity extends Fragment {
 	//This method takes photo
 	public void takePicture(final double maxWidth, final double maxHeight){
 		isTakingPicture = true;
+        locked = true;
 		Log.d(TAG, "--- takePicture ---");
 		if(mPreview != null) {
 			if(!canTakePicture) return;
@@ -289,6 +321,7 @@ public class CameraActivity extends Fragment {
 					new Timer().schedule(new TimerTask() {          
 						@Override
 						public void run() {
+                            Log.d(TAG, "be4 takePictureUtility");
                             takePictureUtility();     
 						}
 					}, 250);
@@ -306,6 +339,7 @@ public class CameraActivity extends Fragment {
 		mCamera.takePicture( null, null, new Camera.PictureCallback() {
 			@Override
 			public void onPictureTaken(byte[] data, Camera camera) {
+                Log.d(TAG, "--- onPictureTaken");
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inSampleSize = 1; //Skala
 				options.inDither = false; // Disable Dithering mode
@@ -336,10 +370,17 @@ public class CameraActivity extends Fragment {
 				Bitmap bThumb = Bitmap.createScaledBitmap( bMapRotate, bMapRotate.getWidth()/6, bMapRotate.getHeight()/6, true );
 				File thumb = storeThumbnail( bThumb, "_qbiz" );
 				final File picFile = storeImage( bMapRotate, "_qbiz");
+                Log.d(TAG, "eventListener");
 				eventListener.onPictureTaken( picFile.getAbsolutePath() );
 				//Start preview and unlock taking picture
 				mCamera.startPreview();
 				canTakePicture = true;
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        locked = false;
+                    }
+                }, 3000);
 			}
 		});
 	}

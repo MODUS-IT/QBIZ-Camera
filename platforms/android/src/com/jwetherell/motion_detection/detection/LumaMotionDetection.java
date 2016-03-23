@@ -16,8 +16,8 @@ public class LumaMotionDetection implements IMotionDetection {
     // private static final String TAG = "LumaMotionDetection";
 
     // Specific settings
-    private static final int mPixelThreshold = 50; // Difference in luma value
-    private static final int mThreshold = 10000; // Number of different pixels
+    private static final int mPixelThreshold = 120; // Difference in luma value
+    private static final int mThreshold = 30000; // Number of different pixels
 
     private static int[] mPrevious = null;
     private static int mPreviousWidth = 0;

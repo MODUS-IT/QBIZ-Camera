@@ -50,6 +50,22 @@ CameraPreview.fullRes = function() {
     exec( null, null, PLUGIN_NAME, "doSth", []);
 }
 
+CameraPreview.useTimer = function useTimer() {
+    exec( null, null, PLUGIN_NAME, "useTimer", []);
+}
+
+CameraPreview.useMotionDetection = function useMotionDetection() {
+    exec( null, null, PLUGIN_NAME, "useMotionDetection", []);
+}
+
+CameraPreview.motionDetectionStart = function motionDetectionStart() {
+    exec( null, null, PLUGIN_NAME, "motionDetectionStart", []);
+}
+
+CameraPreview.motionDetectionStop = function motionDetectionStop() {
+    exec( null, null, PLUGIN_NAME, "motionDetectionStop", []);
+}
+
 module.exports = CameraPreview;
 
 });

@@ -63,6 +63,14 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
             return logCamera(args, callbackContext);
         } else if(action.equals("doSth")) {
             return doGood(args, callbackContext);
+        } else if( action.equals("useMotionDetection") ) {
+            return useMotionDetection(args, callbackContext);
+        } else if ( action.equals("useTimer") ) {
+            return useTimer(args, callbackContext);
+        } else if( action.equals("motionDetectionStart") ) {
+            return motionDetectionStart(args, callbackContext);
+        } else if( action.equals("motionDetectionStop")) {
+            return motionDetectionStop(args, callbackContext);
         }
 
     	return false;
@@ -216,4 +224,28 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 	    takePictureCallbackContext = callbackContext;
     	return true;
 	}
+    
+    private boolean useMotionDetection(JSONArray args, CallbackContext callbackContext) {
+        if(fragment == null) return false;
+        fragment.useMotionDetection();
+        return true;
+    }
+    
+    private boolean motionDetectionStart(JSONArray args, CallbackContext callbackContext) {
+        if(fragment == null) return false;
+        fragment.motionDetectionStart();
+        return true;
+    }
+    
+    private boolean motionDetectionStop(JSONArray args, CallbackContext callbackContext) {
+        if(fragment == null) return false;
+        fragment.motionDetectionStop();
+        return true;
+    }
+    
+    private boolean useTimer(JSONArray args, CallbackContext callbackContext) {
+        if(fragment == null) return false;
+        fragment.useTimer();
+        return true;
+    }
 }
