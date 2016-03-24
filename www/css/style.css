@@ -164,7 +164,7 @@ ion-list .list {
     border-top-right-radius: 20px;
 }
 
-.settingsMenu > div > :last-child {
+.settingsMenu > div > :last-child, .settingsMenu > div > .last {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
