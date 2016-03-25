@@ -13,7 +13,25 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
         "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
+        "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         },
         "cordova-plugin-splashscreen": {
@@ -25,31 +43,15 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
+        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         },
         "com.mbppower.camerapreview": {
             "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        },
-        "cordova-plugin-screen-orientation": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        },
-        "cordova-plugin-nativeaudio": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.ionicframework.cameraapp997130"
-        }
-    }
+    "dependent_plugins": {}
 }

@@ -7,13 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.mbppower.camerapreview": {
-            "PACKAGE_NAME": "QBIZ Camera360"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-dialogs": {
@@ -26,6 +26,9 @@
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-screen-orientation": {
@@ -46,20 +49,12 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
-        "cordova-plugin-nativeaudio": {
+        "com.mbppower.camerapreview": {
             "PACKAGE_NAME": "QBIZ Camera360"
         }
     },
     "dependent_plugins": {},
     "modules": [
-        {
-            "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
-            "id": "com.mbppower.camerapreview.CameraPreview",
-            "pluginId": "com.mbppower.camerapreview",
-            "clobbers": [
-                "cordova.plugins.camerapreview"
-            ]
-        },
         {
             "file": "plugins/cordova-plugin-console/www/logger.js",
             "id": "cordova-plugin-console.logger",
@@ -88,6 +83,38 @@
             "file": "plugins/cordova-plugin-device/src/windows/DeviceProxy.js",
             "id": "cordova-plugin-device.DeviceProxy",
             "pluginId": "cordova-plugin-device",
+            "merges": [
+                ""
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
+            "id": "cordova-plugin-device-orientation.CompassError",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "CompassError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
+            "id": "cordova-plugin-device-orientation.CompassHeading",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "CompassHeading"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
+            "id": "cordova-plugin-device-orientation.compass",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "navigator.compass"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-orientation/src/windows/CompassProxy.js",
+            "id": "cordova-plugin-device-orientation.CompassProxy",
+            "pluginId": "cordova-plugin-device-orientation",
             "merges": [
                 ""
             ]
@@ -316,6 +343,14 @@
             ]
         },
         {
+            "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+            "id": "cordova-plugin-nativeaudio.nativeaudio",
+            "pluginId": "cordova-plugin-nativeaudio",
+            "clobbers": [
+                "window.plugins.NativeAudio"
+            ]
+        },
+        {
             "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
             "id": "cordova-plugin-screen-orientation.screenorientation",
             "pluginId": "cordova-plugin-screen-orientation",
@@ -384,11 +419,11 @@
             "runs": true
         },
         {
-            "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
-            "id": "cordova-plugin-nativeaudio.nativeaudio",
-            "pluginId": "cordova-plugin-nativeaudio",
+            "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
+            "id": "com.mbppower.camerapreview.CameraPreview",
+            "pluginId": "com.mbppower.camerapreview",
             "clobbers": [
-                "window.plugins.NativeAudio"
+                "cordova.plugins.camerapreview"
             ]
         }
     ]

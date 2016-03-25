@@ -1,13 +1,4 @@
 {
-    "com.mbppower.camerapreview": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/lpmusicon/CordovaCameraPreview.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-file-transfer": {
         "source": {
             "type": "git",
@@ -27,8 +18,9 @@
     },
     "cordova-plugin-x-toast": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-x-toast"
+            "type": "git",
+            "url": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
@@ -36,7 +28,7 @@
     "cordova-plugin-dialogs": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-dialogs@~1.2.0"
+            "id": "cordova-plugin-dialogs@1.2.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -54,6 +46,22 @@
             "type": "git",
             "url": "https://github.com/SidneyS/cordova-plugin-nativeaudio.git",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device-orientation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device-orientation@~1.0.2"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.mbppower.camerapreview": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Modus\\Documents\\GitHub\\CordovaCameraPreview"
         },
         "is_top_level": true,
         "variables": {}

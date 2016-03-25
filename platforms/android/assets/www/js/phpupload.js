@@ -58,8 +58,9 @@ angular.module('cameraApp.PHPUpload', [])
 			$http.post( handshakeURL, mixedData ).then( checkCallback, log );
 			
 			function checkCallback( callback ) {
-				if( callback.data.bool ) deferred.resolve( callback.data.bool );
-				else deferred.reject( callback.data.bool );
+                log(callback, "Handshake");
+				if( callback.data.bool ) deferred.resolve( callback.data );
+				else deferred.reject( callback.data );
 				
 			}
 			return deferred.promise;

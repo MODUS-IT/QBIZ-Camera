@@ -1,7 +1,8 @@
 cordova.define("com.mbppower.camerapreview.CameraPreview", function(require, exports, module) {
+// cordova.define("com.mbppower.camerapreview.CameraPreview", function(require, exports, module) {
 var argscheck = require('cordova/argscheck'),
-  utils = require('cordova/utils'),
-  exec = require('cordova/exec');
+    utils = require('cordova/utils'),
+    exec = require('cordova/exec');
 
 var PLUGIN_NAME = "CameraPreview";
 
@@ -67,5 +68,7 @@ CameraPreview.motionDetectionStop = function motionDetectionStop() {
 }
 
 module.exports = CameraPreview;
+
+// });
 
 });

@@ -20,8 +20,6 @@
                 <SplashScreen Image="images\splashscreen.png" />
                 <InitialRotationPreference>
                     <Rotation Preference="portrait" />
-                    <Rotation Preference="landscape" />
-                    <Rotation Preference="landscapeFlipped" />
                 </InitialRotationPreference>
             </VisualElements>
         </Application>

@@ -1,45 +1,58 @@
 angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function($scope, localStorage, FileManipulationService, PHPUploadService, $ionicPlatform, $cordovaDialogs) {
-		//FTP Config Data
-		$scope.ftp = {};
-		var dataStorageUri;
-
+		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
+        $scope.readConfigurationData = readConfigurationData;
+        $scope.saveConfigurationData = saveConfigurationData;
+        $scope.deleteAllProjects = deleteAllProjects;
+        $scope.uploadAllProjects = uploadAllProjects;
+        /*----------------------------------------VARS----------------------------------------------------------------------------------------------------------------*/
+        $scope.ftp = {};
+        var dataStorageUri;
+        /*----------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------------------------*/
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
 		});
 
-		$scope.readConfigurationData = function() {
+		function readConfigurationData() {
 			var configurationData = localStorage.getConfigurationData();
 			$scope.ftp.server = configurationData.server;
 			$scope.ftp.user = configurationData.user;
 			$scope.ftp.password = configurationData.password;
 		}
 
-		$scope.saveConfigurationData = function() {
+		function saveConfigurationData() {
 			localStorage.saveConfigurationData($scope.ftp);
 		}
 
-		var rejectError = function() {
-			navigator.notification.alert("Wystąpił błąd. Spróbuj jeszcze raz.");
+		var rejectError = function( err ) {
+            log(err, "fKin error");
+            var errStr;
+            switch( err.errc ) {
+                case 1: errStr = "Nie rozpoznano nazwy hosta."; break;
+                case 2: errStr = "Niepoprawne dane logowania."; break;
+                case 3: errStr = "Błąd zapisu danych. Spróbuj ponownie później."; break;
+                case 4: errStr = "Błędne ID. Spróbuj ponownie później."; break;
+            }
+			$cordovaDialogs.alert("Wystąpił błąd. " + errStr , "Wysyłanie", "OK");
 		}
 
 		var informGood = function() {
-			navigator.notification.alert("Zdjęcia zostały wysłane! Kliknij Usuń wszystkie, aby wyczyścić pamięć urządzenia");
+			$cordovaDialogs.alert("Zdjęcia zostały wysłane! Kliknij Usuń wszystkie, aby wyczyścić pamięć urządzenia", "Wysyłanie", "OK");
 		}
 
-		$scope.purgeDir = function() {
+		function deleteAllProjects() {
 			FileManipulationService.purgeProjects( dataStorageUri ).then( log, log );
 		}
 		
-		$scope.sendPhotos = function() {
+		function uploadAllProjects() {
 			var UID = PHPUploadService.beginTransaction();
 			if( UID ) {
 				PHPUploadService.uploadInitialData( UID, $scope.ftp ).then( canProceed, canProceed );
 				function canProceed( promise ) {
-					if( promise ) FileManipulationService.getProjects( dataStorageUri ).then( uploadConfig, log );
-					else $cordovaToast.showShortTop('Nie powiodło się');
+					if( promise.bool ) FileManipulationService.getProjects( dataStorageUri ).then( uploadConfig, rejectError );
+					else rejectError( promise );
 					function uploadConfig( config ) {
 						$scope.config = config;
-						PHPUploadService.uploadConfig( UID, config ).then( uploadPhotos, log );
+						PHPUploadService.uploadConfig( UID, config ).then( uploadPhotos, rejectError );
 						function uploadPhotos( callback ) {
 							var imagesCount = 0;
 							var uploadedImages = 0;
@@ -52,14 +65,14 @@ angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function
 											uploadedImages++;
 											if( imagesCount == uploadedImages ) {
 												console.log("All uploaded");
-												PHPUploadService.cleanUp( UID ).then( uploadImages, log );
+												PHPUploadService.cleanUp( UID ).then( uploadImages, rejectError );
 												function uploadImages( callback ) {
 													if( callback ) {
-														PHPUploadService.uploadToHost( UID ).then(log, log);
+														PHPUploadService.uploadToHost( UID ).then( informGood, rejectError );
 													}
 												}
 											}
-										}, log );
+										}, rejectError );
 									}
 								}
 							}

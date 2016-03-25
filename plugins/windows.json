@@ -7,13 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.mbppower.camerapreview": {
-            "PACKAGE_NAME": "QBIZ Camera360"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-dialogs": {
@@ -26,6 +26,9 @@
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "QBIZ Camera360"
+        },
+        "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
         "cordova-plugin-screen-orientation": {
@@ -46,7 +49,7 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "QBIZ Camera360"
         },
-        "cordova-plugin-nativeaudio": {
+        "com.mbppower.camerapreview": {
             "PACKAGE_NAME": "QBIZ Camera360"
         }
     },

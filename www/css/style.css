@@ -135,6 +135,11 @@ ion-list .list {
 
 /* CAMERA MENU */
 
+camera {
+    display:block;
+    height: 100vh;
+}
+
 .settingsMenu div {
     border-radius: 20px;
     background: rgba(255,255,255,.8);

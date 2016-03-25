@@ -1,14 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
-        "id": "com.mbppower.camerapreview.CameraPreview",
-        "pluginId": "com.mbppower.camerapreview",
-        "clobbers": [
-            "cordova.plugins.camerapreview"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
         "pluginId": "cordova-plugin-console",
@@ -36,6 +28,38 @@ module.exports = [
         "file": "plugins/cordova-plugin-device/src/windows/DeviceProxy.js",
         "id": "cordova-plugin-device.DeviceProxy",
         "pluginId": "cordova-plugin-device",
+        "merges": [
+            ""
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
+        "id": "cordova-plugin-device-orientation.CompassError",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "CompassError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
+        "id": "cordova-plugin-device-orientation.CompassHeading",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "CompassHeading"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
+        "id": "cordova-plugin-device-orientation.compass",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "navigator.compass"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-orientation/src/windows/CompassProxy.js",
+        "id": "cordova-plugin-device-orientation.CompassProxy",
+        "pluginId": "cordova-plugin-device-orientation",
         "merges": [
             ""
         ]
@@ -264,6 +288,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+        "id": "cordova-plugin-nativeaudio.nativeaudio",
+        "pluginId": "cordova-plugin-nativeaudio",
+        "clobbers": [
+            "window.plugins.NativeAudio"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
         "id": "cordova-plugin-screen-orientation.screenorientation",
         "pluginId": "cordova-plugin-screen-orientation",
@@ -332,11 +364,11 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
-        "id": "cordova-plugin-nativeaudio.nativeaudio",
-        "pluginId": "cordova-plugin-nativeaudio",
+        "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
+        "id": "com.mbppower.camerapreview.CameraPreview",
+        "pluginId": "com.mbppower.camerapreview",
         "clobbers": [
-            "window.plugins.NativeAudio"
+            "cordova.plugins.camerapreview"
         ]
     }
 ];

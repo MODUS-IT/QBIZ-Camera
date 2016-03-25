@@ -1,7 +1,8 @@
 cordova.define("com.mbppower.camerapreview.CameraPreview", function(require, exports, module) {
+// cordova.define("com.mbppower.camerapreview.CameraPreview", function(require, exports, module) {
 var argscheck = require('cordova/argscheck'),
-  utils = require('cordova/utils'),
-  exec = require('cordova/exec');
+    utils = require('cordova/utils'),
+    exec = require('cordova/exec');
 
 var PLUGIN_NAME = "CameraPreview";
 
@@ -29,10 +30,6 @@ CameraPreview.takePicture = function(size) {
   exec(null, null, PLUGIN_NAME, "takePicture", params);
 };
 
-CameraPreview.setColorEffect = function(effect) {
-  exec(null, null, PLUGIN_NAME, "setColorEffect", [effect]);
-};
-
 CameraPreview.switchCamera = function() {
   exec(null, null, PLUGIN_NAME, "switchCamera", []);
 };
@@ -45,10 +42,33 @@ CameraPreview.show = function() {
   exec(null, null, PLUGIN_NAME, "showCamera", []);
 };
 
-CameraPreview.disable = function(disable) {
-  exec(null, null, PLUGIN_NAME, "disable", [disable]);
-};
+CameraPreview.logCamera = function() {
+    exec( null , null, PLUGIN_NAME, "logCamera", []);
+    console.log('hello');
+}
+
+CameraPreview.fullRes = function() {
+    exec( null, null, PLUGIN_NAME, "doSth", []);
+}
+
+CameraPreview.useTimer = function useTimer() {
+    exec( null, null, PLUGIN_NAME, "useTimer", []);
+}
+
+CameraPreview.useMotionDetection = function useMotionDetection() {
+    exec( null, null, PLUGIN_NAME, "useMotionDetection", []);
+}
+
+CameraPreview.motionDetectionStart = function motionDetectionStart() {
+    exec( null, null, PLUGIN_NAME, "motionDetectionStart", []);
+}
+
+CameraPreview.motionDetectionStop = function motionDetectionStop() {
+    exec( null, null, PLUGIN_NAME, "motionDetectionStop", []);
+}
 
 module.exports = CameraPreview;
+
+// });
 
 });

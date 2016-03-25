@@ -20,6 +20,9 @@
         <li ng-hide="params.shutterActivation=='motion'" class="item item-text-wrap bg-alpha">
             Czas na ustawienie zdjęcia {{ params.pictureInterval | number : 0 }}s
         </li>
+        <li ng-show="params.shutterActivation=='motion'" class="item item-text-wrap bg-alpha last">
+            Tryb wykrywania ruchu włączony
+        </li>
         <li ng-hide="params.shutterActivation=='motion'" class="item range range-dark bg-alpha">
             <i class="icon ion-ios-time-outline"></i>
             <input ng-model="params.pictureInterval" ng-disabled="isTakingPictures" type="range" min="6" max="60" step="2">
