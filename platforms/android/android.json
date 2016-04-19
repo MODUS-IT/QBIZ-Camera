@@ -449,7 +449,8 @@
             "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
             "id": "com.mbppower.camerapreview.CameraPreview",
             "clobbers": [
-                "cordova.plugins.camerapreview"
+                "cordova.plugins.camerapreview",
+                "QBIZCamera"
             ]
         }
     ],
@@ -468,6 +469,6 @@
         "cordova-plugin-whitelist": "1.2.1",
         "cordova-plugin-x-toast": "2.4.2",
         "ionic-plugin-keyboard": "1.0.8",
-        "com.mbppower.camerapreview": "0.0.9"
+        "com.mbppower.camerapreview": "0.1.0"
     }
 }

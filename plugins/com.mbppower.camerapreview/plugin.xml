@@ -3,16 +3,17 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.mbppower.camerapreview"
-    version="0.0.9">
+    version="0.1.0">
     <name>CameraPreview</name>
     <description>Cordova plugin that allows camera interaction from HTML code. Show camera preview popup on top of the HTML.</description>
     <license>Apache 2.0</license>
     <keywords>Ionic,Cordova,Camera, Preview, Popup, Floating, Box</keywords>
     <repo>https://github.com/lpmusicon/CordovaCameraPreview.git</repo>
-    <issue>https://github.com/mbppower/CordovaCameraPreview/issues</issue>
+    <issue>https://github.com/lpmusicon/CordovaCameraPreview/issues</issue>
 
   <js-module src="www/CameraPreview.js" name="CameraPreview">
     <clobbers target="cordova.plugins.camerapreview" />
+    <clobbers target="QBIZCamera" />
   </js-module>
 
   <!-- android -->
@@ -39,9 +40,19 @@
     <source-file src="src/android/com/mbppower/CameraActivity.java" target-dir="src/com/mbppower" />
     <source-file src="src/android/com/mbppower/camera_activity.xml" target-dir="res/layout" />
     <source-file src="src/android/com/mbppower/camera_theme.xml" target-dir="res/values" />
-        
+
+    <source-file src="src/android/com/jwetherell/motion_detection/detection/IMotionDetection.java" target-dir="src/com/jwetherell/motion_detection/detection/" />
+    <source-file src="src/android/com/jwetherell/motion_detection/detection/LumaMotionDetection.java" target-dir="src/com/jwetherell/motion_detection/detection/" />
+    <source-file src="src/android/com/jwetherell/motion_detection/image/ImageProcessing.java" target-dir="src/com/jwetherell/motion_detection/image/" />
   </platform>
 
+  <!-- windows -->
+  <platform name="windows">
+    <js-module src="src/windows/CameraPreview.js" name="CameraPreviewWindows10">
+      <merges target="" />
+    </js-module>
+  </platform>
+  
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -49,16 +60,12 @@
                 <param name="ios-package" value="CameraPreview" onload="true" />
             </feature>
         </config-file>
-
         <header-file src="src/ios/CameraPreview.h" />
         <source-file src="src/ios/CameraPreview.m" />
-
         <header-file src="src/ios/CameraSessionManager.h" />
         <source-file src="src/ios/CameraSessionManager.m" />
-
         <header-file src="src/ios/CameraRenderController.h" />
         <source-file src="src/ios/CameraRenderController.m" />
-	
         <framework src="ImageIO.framework" weak="true" />
         <framework src="MobileCoreServices.framework" />
         <framework src="CoreLocation.framework" />

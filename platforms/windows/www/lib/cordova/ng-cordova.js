@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * ngCordova
  * v0.1.23-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/

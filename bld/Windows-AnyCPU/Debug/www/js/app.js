@@ -1,25 +1,24 @@
 ﻿"use strict";
 
-function log( obj, msg ) {
-	console.log(obj);
-	console.log("^ " + msg);
+function log(obj, msg) {
+    console.log(obj);
+    console.log('^ ' + msg);
 }
 
 /**
  * @param {number} projectId
  * @param {string} projectName
  */
-class Project {
-	constructor( projectId, projectName ) {
-		this.id = projectId;
-		this.projectName = projectName;
-		this.images = [];
-	}
+var Project = function Project (projectId, projectName) {
+    this.id = projectId;
+    this.projectName = projectName;
+    this.images = [];
 }
 
+
 function closeApp( index ) {
-    if(index != 1) return;
-	navigator.app.exitApp();
+    if (index != 1) return;
+    navigator.app.exitApp();
 }
 
 angular.module('cameraApp', ['ionic', 'ngCordova', 'cameraApp.PHPUpload', 'cameraApp.FileManipulation', 'cameraApp.localStorage', 'cameraApp.directives', 'cameraApp.settingsCtrl', 'cameraApp.mainCtrl'])
@@ -28,17 +27,17 @@ angular.module('cameraApp', ['ionic', 'ngCordova', 'cameraApp.PHPUpload', 'camer
             window.screen.lockOrientation('portrait');
 			$ionicPlatform.registerBackButtonAction(function() {
 			switch( $state.current.name ) {
-				case "browser.imageBrowser": 
+				case 'browser.imageBrowser': 
 					$state.go('^.projectBrowser');
 					break;
-				case "browser.projectBrowser":
+				case 'browser.projectBrowser':
 					$state.go('mainView');
 					break;
-				case "settings":
+				case 'settings':
 					$state.go('mainView');
 					break;
-				case "mainView":
-					$cordovaDialogs.confirm("Czy na pewno chcesz wyjść?", "QBIZ Camera360", ["Wyjdź", "Anuluj"]).then( closeApp );
+				case 'mainView':
+					$cordovaDialogs.confirm('Czy na pewno chcesz wyjść?', 'QBIZ Camera360', ['Wyjdź', 'Anuluj']).then( closeApp );
 					break;
 			}
 		}, 101);

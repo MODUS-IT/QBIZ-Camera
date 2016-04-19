@@ -2,10 +2,10 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
-    <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
+    <AndroidEmulatorID>363F7AED-462C-46BD-9FEC-F1DD3B79916C;VS Emulator 5" KitKat (4.4) XXHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\Modus\AppData\Local\Temp\QBIZCamera_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\QBIZCamera_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-ARM'">
     <DebuggerFlavor>PhoneDevice81</DebuggerFlavor>

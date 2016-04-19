@@ -98,6 +98,7 @@ www\main_view.html
 www\main-view-camera-config.html
 www\main-view-shutter-config.html
 www\menu-tabs.html
+www\plugins\com.mbppower.camerapreview\src\windows\CameraPreview.js
 www\plugins\com.mbppower.camerapreview\www\CameraPreview.js
 www\plugins\cordova-plugin-console\www\console-via-logger.js
 www\plugins\cordova-plugin-console\www\logger.js

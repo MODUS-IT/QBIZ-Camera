@@ -1,1 +1,1 @@
-C:\Users\Modus\Documents\GitHub\QBIZ-Camera\platforms\windows\AppPackages\CordovaApp.Windows10_0.4.1.0_anycpu_debug_Test\CordovaApp.Windows10_0.4.1.0_anycpu_debug.appx
+C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\AppPackages\CordovaApp.Windows10_0.4.2.0_x86_debug_Test\CordovaApp.Windows10_0.4.2.0_x86_debug.appx

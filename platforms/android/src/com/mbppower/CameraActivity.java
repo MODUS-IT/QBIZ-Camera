@@ -43,10 +43,8 @@ import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
 
-import com.jwetherell.motion_detection.detection.AggregateLumaMotionDetection;
 import com.jwetherell.motion_detection.detection.IMotionDetection;
 import com.jwetherell.motion_detection.detection.LumaMotionDetection;
-import com.jwetherell.motion_detection.detection.RgbMotionDetection;
 import com.jwetherell.motion_detection.image.ImageProcessing;
 
 //////////////////////////////////////////////////////////////////////
@@ -762,19 +760,13 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
 class TapGestureDetector extends GestureDetector.SimpleOnGestureListener{
 
 	@Override
-	public boolean onDown(MotionEvent e) {
-		return false;
-	}
+	public boolean onDown(MotionEvent e) {	return false; }
 
 	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		return true;
-	}
+	public boolean onSingleTapUp(MotionEvent e) { return true; }
 
 	@Override
-	public boolean onSingleTapConfirmed(MotionEvent e) {
-		return true;
-	}
+	public boolean onSingleTapConfirmed(MotionEvent e) { return true; }
 }
 
 class CustomSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
@@ -785,14 +777,11 @@ class CustomSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
 	}
 
 	@Override
-	public void surfaceCreated(SurfaceHolder holder) {
-	}
+	public void surfaceCreated(SurfaceHolder holder) {}
 
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-	}
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
 	@Override
-	public void surfaceDestroyed(SurfaceHolder holder) {
-	}
+	public void surfaceDestroyed(SurfaceHolder holder) {}
 }

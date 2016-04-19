@@ -1,4 +1,4 @@
-﻿angular.module('cameraApp.PHPUpload', [])
+angular.module('cameraApp.PHPUpload', [])
     .service('PHPUploadService', ['$q', '$cordovaFileTransfer', 'FileManipulationService', '$http', 'localStorage', function($q, $cordovaFileTransfer, FileManipulationService, $http, localStorage) {
 		this.beginTransaction = beginTransaction;
 		this.uploadInitialData = uploadInitialData;

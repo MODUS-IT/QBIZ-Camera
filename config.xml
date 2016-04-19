@@ -1,12 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.cameraapp997130" version="0.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultlocale="pl-PL">
+<widget id="com.ionicframework.cameraapp997130" version="0.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultlocale="pl-PL">
   <name>QBIZ Camera360</name>
-  <description>
-QBIZ 360 Camera
-    </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
-    </author>
+  <description>QBIZ 360 Camera</description>
+  <author email="you@example.com" href="http://example.com.com/">Grzegorz Mrózek   </author>
   <content src="index.html" />
   <access origin="*" />
   <preference name="webviewbounce" value="false" />
@@ -54,6 +50,6 @@ QBIZ 360 Camera
   <preference name="Orientation" value="portrait" />
   <plugin name="cordova-plugin-device-orientation" version="1.0.2" />
   <plugin name="cordova-plugin-x-toast" version="2.5.0" src="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
-  <plugin name="com.mbppower.camerapreview" version="0.0.9" src="C:\Users\Modus\Documents\GitHub\CordovaCameraPreview" />
   <preference name="windows-target-version" value="10.0" />
+  <plugin name="com.mbppower.camerapreview" version="0.1.0" src="C:\Users\Grzegorz\Documents\GitHub\CordovaCameraPreview" />
 </widget>

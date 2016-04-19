@@ -1,4 +1,4 @@
-﻿angular.module('cameraApp.FileManipulation', [])
+angular.module('cameraApp.FileManipulation', [])
     .service('FileManipulationService', ['$q', function($q) {
 		/**
 		 * Zwraca w resolve zawartość katalogu w tablicy.
@@ -42,8 +42,8 @@
 		 * @param {string} entrypoint - Ścieżka do katalogu
 		 */
 		function isDirEmpty( entrypoint ) {
-			var deferred = $q.defer();
-			listDirectory( entrypoint ).then(function( fileList ) {
+		    var deferred = $q.defer();
+		    listDirectory(entrypoint).then(function (fileList) {
 				if( fileList.length == 0) deferred.resolve(true);
 				deferred.resolve(false);
 			}, function( error ) {

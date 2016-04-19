@@ -1,4 +1,4 @@
-﻿angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
         $scope.swipeRight = viewGoForward;							//App swipe right view
 		$scope.swipeLeft = viewGoBack;								//App swipe left view
