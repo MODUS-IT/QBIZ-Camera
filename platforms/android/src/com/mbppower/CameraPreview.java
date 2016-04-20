@@ -61,8 +61,8 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 	    }
         else if (action.equals("logCamera")) {
             return logCamera(args, callbackContext);
-        } else if(action.equals("doSth")) {
-            return doGood(args, callbackContext);
+        } else if(action.equals("setupCamera")) {
+            return setupCamera(args, callbackContext);
         } else if( action.equals("useMotionDetection") ) {
             return useMotionDetection(args, callbackContext);
         } else if ( action.equals("useTimer") ) {
@@ -89,17 +89,12 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 
 				try {
 					DisplayMetrics metrics = cordova.getActivity().getResources().getDisplayMetrics();
-					int x = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(0), metrics);
-					int y = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(1), metrics);
-					int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(2), metrics);
-					int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(3), metrics);
-					String defaultCamera = args.getString(4);
-					Boolean tapToTakePicture = args.getBoolean(5);
-					Boolean dragEnabled = args.getBoolean(6);
-					Boolean toBack = true;
+					int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(1), metrics);
+					int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(2), metrics);
+					Boolean toBack = args.getBoolean(0);
 
-					fragment.defaultCamera = defaultCamera;
-					fragment.setRect(x, y, width, height);
+					fragment.defaultCamera = "back";
+					fragment.setRect(0, 0, width, height);
 
 					//create or update the layout params for the container view
 					FrameLayout containerView = (FrameLayout)cordova.getActivity().findViewById(containerViewId);
@@ -118,7 +113,6 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 					}
 					else{
 						//set camera back to front
-						containerView.setAlpha(Float.parseFloat(args.getString(8)));
 						containerView.bringToFront();
 					}
 
@@ -213,9 +207,9 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
         return true;
     }
     
-    private boolean doGood(final JSONArray args, CallbackContext callbackContext) {
+    private boolean setupCamera(final JSONArray args, CallbackContext callbackContext) {
         if(fragment == null) return false;
-        fragment.doGood();
+        fragment.setupCamera();
         return true;
     }
     

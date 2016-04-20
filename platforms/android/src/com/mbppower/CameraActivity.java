@@ -255,7 +255,7 @@ public class CameraActivity extends Fragment {
         Log.d(TAG, "Hello. I'm using timer");
     }
     
-    public void doGood() {
+    public void setupCamera() {
         setLargestCameraResolution();
     }
 	

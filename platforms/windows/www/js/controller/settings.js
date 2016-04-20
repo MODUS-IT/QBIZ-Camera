@@ -1,4 +1,4 @@
-angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function($scope, localStorage, FileManipulationService, PHPUploadService, $ionicPlatform, $cordovaDialogs) {
+﻿angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function($scope, localStorage, FileManipulationService, PHPUploadService, $ionicPlatform, $cordovaDialogs) {
 		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
         $scope.readConfigurationData = readConfigurationData;
         $scope.saveConfigurationData = saveConfigurationData;

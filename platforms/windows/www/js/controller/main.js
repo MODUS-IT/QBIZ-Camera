@@ -1,4 +1,4 @@
-angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+﻿angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
         $scope.swipeRight = viewGoForward;							//App swipe right view
 		$scope.swipeLeft = viewGoBack;								//App swipe left view
@@ -158,23 +158,22 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
 		/* camera */
 		function showCamera() {
 			$ionicPlatform.ready(function(){ 
-				cordova.plugins.camerapreview.show();
+				QBIZCamera.show();
 			});
 		}
 
 		function hideCamera() {
 			$ionicPlatform.ready(function() {
-				cordova.plugins.camerapreview.hide();
+				QBIZCamera.hide();
 			});
 		}
 		
 		function initCamera() {
 			if(cameraInitialized) return;
 			cameraInitialized = true;
-			var options = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight };
-			//Options, default camera, tapToTakePicture, DragEnabled, SendToBack
-			cordova.plugins.camerapreview.startCamera(options, "back", false, false, true);
-			setTimeout( function() { cordova.plugins.camerapreview.fullRes(); }, 1000);
+			var screen = { w: window.innerWidth, h: window.innerHeight };
+			QBIZCamera.startCamera(true, screen);
+			setTimeout( function() { QBIZCamera.fullRes(); }, 1000);
 		}
 
 		function takePicture() {
@@ -194,9 +193,9 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
 				//Init
                 switch( $scope.params.shutterActivation ) {
                     case "motion":
-                        cordova.plugins.camerapreview.useMotionDetection();
-                        cordova.plugins.camerapreview.motionDetectionStart();
-                        cordova.plugins.camerapreview.setOnPictureTakenHandler( function( result ) {
+                        QBIZCamera.useMotionDetection();
+                        QBIZCamera.motionDetectionStart();
+                        QBIZCamera.setOnPictureTakenHandler( function( result ) {
                             genericTakePicture( result[0] );
                         });
                         $scope.isTakingPictures = true;
@@ -215,7 +214,7 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
         }
         
         function finishMotionCapture() {
-            cordova.plugins.camerapreview.motionDetectionStop();
+            QBIZCamera.motionDetectionStop();
             $scope.isTakingPictures = false;
             if( window.project.images.length == 0 ) {
                 deleteProject( window.project.id );
@@ -226,12 +225,12 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
             switch( $scope.params.shutterActivation ) {
                 case "motion":
                     if( $scope.cameraPaused )  {
-                        cordova.plugins.camerapreview.motionDetectionStart();
-                        cordova.plugins.camerapreview.setOnPictureTakenHandler( function( result ) {
+                        QBIZCamera.motionDetectionStart();
+                        QBIZCamera.setOnPictureTakenHandler( function( result ) {
                             genericTakePicture( result[0] );
                         });
                     }
-                    else cordova.plugins.camerapreview.motionDetectionStop();
+                    else QBIZCamera.motionDetectionStop();
                     break;
                 case "default":
                     if($scope.cameraPaused) $scope.cameraPaused = false;
@@ -272,7 +271,7 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
         }
 
         function timedInit() {
-            cordova.plugins.camerapreview.useTimer();
+            QBIZCamera.useTimer();
             if (pictureLoop.loop === undefined) {
                 pictureLoop.counter = 0;
                 pictureLoop.timerCounter = 0;
@@ -309,8 +308,8 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
          * @param {number} projectId
          */
 		function takePictureUtility() {
-			cordova.plugins.camerapreview.takePicture();
-			cordova.plugins.camerapreview.setOnPictureTakenHandler(function( result ) {
+			QBIZCamera.takePicture();
+			QBIZCamera.setOnPictureTakenHandler(function( result ) {
                 genericTakePicture( result[0] );
                 pictureLoop.timerCounter = 0;
                 if( timedCanTakePicture(pictureLoop.loop, $scope.params.pictures ) )

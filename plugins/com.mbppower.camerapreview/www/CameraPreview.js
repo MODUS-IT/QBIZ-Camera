@@ -5,17 +5,17 @@
     var PLUGIN_NAME = "CameraPreview";
 
     module.exports = {
+
         setOnPictureTakenHandler: function (onPictureTaken) {
             exec(onPictureTaken, onPictureTaken, PLUGIN_NAME, "setOnPictureTakenHandler", []);
         },
-        startCamera: function (rect, defaultCamera, tapEnabled, dragEnabled, toBack, alpha) {
-            if (typeof (alpha) === 'undefined') alpha = 1;
-            exec(null, null, PLUGIN_NAME, "startCamera", [rect.x, rect.y, rect.width, rect.height, defaultCamera, !!tapEnabled, !!dragEnabled, !!toBack, alpha]);
+        startCamera: function (startAsBackground, screen) {
+            exec(null, null, PLUGIN_NAME, "startCamera", [startAsBackground, screen.w, screen.h]);
         },
         stopCamera: function () {
             exec(null, null, PLUGIN_NAME, "stopCamera", []);
         },
-        takePicture: function (size) {
+        takePicture: function () {
             var params = [0, 0];
             if (size) {
                 params = [size.maxWidth, size.maxHeight];
@@ -33,10 +33,9 @@
         },
         logCamera: function () {
             exec(null, null, PLUGIN_NAME, "logCamera", []);
-            console.log('hello');
         },
         fullRes: function () {
-            exec(null, null, PLUGIN_NAME, "doSth", []);
+            exec(null, null, PLUGIN_NAME, "setupCamera", []);
         },
         useTimer: function useTimer() {
             exec(null, null, PLUGIN_NAME, "useTimer", []);
@@ -50,5 +49,11 @@
         motionDetectionStop: function motionDetectionStop() {
             exec(null, null, PLUGIN_NAME, "motionDetectionStop", []);
         },
+        echo: function (strInput) {
+            function log(param) {
+                console.log(param);
+            }
+            exec(log, log, PLUGIN_NAME, "echo", [strInput]);
+        }
 
     }

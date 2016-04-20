@@ -5,7 +5,7 @@
     <AndroidEmulatorID>363F7AED-462C-46BD-9FEC-F1DD3B79916C;VS Emulator 5" KitKat (4.4) XXHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\LPM\AppData\Local\Temp\5unanefb_QBIZCamera_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\pvisyst3_QBIZCamera_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-ARM'">
     <DebuggerFlavor>PhoneDevice81</DebuggerFlavor>

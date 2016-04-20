@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-file-opener2.fileOpener2Proxy", function(require, exports, module) {
+﻿cordova.define("cordova-plugin-file-opener2.fileOpener2Proxy", function(require, exports, module) {
 
 	var cordova = require('cordova'),
 		fileOpener2 = require('./FileOpener2');
