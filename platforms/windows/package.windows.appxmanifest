@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-    <Identity Name="com.ionicframework.cameraapp997130" Publisher="CN=$username$" Version="0.4.2.0" />
+    <Identity Name="com.ionicframework.cameraapp997130" Publisher="CN=$username$" Version="1.0.0.1" />
     <Properties>
         <DisplayName>QBIZ Camera360</DisplayName>
         <PublisherDisplayName>Grzegorz Mrózek</PublisherDisplayName>
@@ -32,5 +32,13 @@
     </Applications>
     <Capabilities>
         <Capability Name="internetClient" />
+        <uap:Capability Name="picturesLibrary" />
+        <uap:Capability Name="musicLibrary" />
+        <uap:Capability Name="sharedUserCertificates" />
+        <uap:Capability Name="videosLibrary" />
+        <uap:Capability Name="removableStorage" />
+        <DeviceCapability Name="webcam" />
+        <DeviceCapability Name="location" />
+        <DeviceCapability Name="microphone" />
     </Capabilities>
 </Package>

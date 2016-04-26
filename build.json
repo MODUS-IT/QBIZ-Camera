@@ -1,0 +1,7 @@
+{
+  "windows": {
+    "release": {
+      "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx"
+    }
+  }
+}

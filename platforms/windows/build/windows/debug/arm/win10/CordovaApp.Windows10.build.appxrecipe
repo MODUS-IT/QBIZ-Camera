@@ -6,13 +6,13 @@
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
-    <SolutionConfiguration>debug|x86</SolutionConfiguration>
-    <PackageArchitecture>x86</PackageArchitecture>
+    <SolutionConfiguration>debug|arm</SolutionConfiguration>
+    <PackageArchitecture>arm</PackageArchitecture>
     <PackageIdentityName>e86908c0-0665-11e6-b925-71ede6927624</PackageIdentityName>
     <IntermediateOutputPath>C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\bld\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\x86\win10\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\arm\win10\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
@@ -475,7 +475,7 @@
     <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\config.xml">
       <PackagePath>config.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\x86\win10\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\arm\win10\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

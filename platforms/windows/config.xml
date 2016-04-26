@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget defaultlocale="pl-PL" id="com.ionicframework.cameraapp997130" version="0.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget defaultlocale="pl-PL" id="com.ionicframework.cameraapp997130" version="0.4.2" windows-packageVersion="1.0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>QBIZ Camera360</name>
     <description>QBIZ 360 Camera</description>
     <author email="you@example.com" href="http://example.com.com/">Grzegorz Mrózek   </author>
     <content src="index.html" />
     <access origin="*" />
+    <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+        <vs:platformSpecificWidget platformName="windows">
+            <vs:appxPackageIsForStore>False</vs:appxPackageIsForStore>
+            <vs:packageOutputPath>C:\Users\Grzegorz\Desktop\</vs:packageOutputPath>
+        </vs:platformSpecificWidget>
+    </vs:platformSpecificValues>
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

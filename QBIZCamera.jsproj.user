@@ -6,6 +6,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\pvisyst3_QBIZCamera_refcache</ReferenceCachePath>
+    <AppxPackageIsForStore>False</AppxPackageIsForStore>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>arm</AppxBuildConfigurationSelection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-ARM'">
     <DebuggerFlavor>PhoneDevice81</DebuggerFlavor>

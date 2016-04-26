@@ -1,5 +1,5 @@
 [Files]
-"C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\x86\win10\AppxManifest.xml" "AppxManifest.xml"
+"C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\arm\win10\AppxManifest.xml" "AppxManifest.xml"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\SplashScreen.scale-100.png" "images\SplashScreen.scale-100.png"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square150x150Logo.scale-100.png" "images\Square150x150Logo.scale-100.png"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square30x30Logo.scale-100.png" "images\Square30x30Logo.scale-100.png"
@@ -150,4 +150,4 @@
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_variables.scss" "www\lib\ionic\scss\_variables.scss"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\version.json" "www\lib\ionic\version.json"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\config.xml" "config.xml"
-"C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\x86\win10\resources.pri" "resources.pri"
+"C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\arm\win10\resources.pri" "resources.pri"
