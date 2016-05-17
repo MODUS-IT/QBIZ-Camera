@@ -82,11 +82,9 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
         }
 		fragment = new CameraActivity();
 		fragment.setEventListener(this);
-
 		cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
 				try {
 					DisplayMetrics metrics = cordova.getActivity().getResources().getDisplayMetrics();
 					int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, args.getInt(1), metrics);
@@ -121,6 +119,7 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 					FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 					fragmentTransaction.add(containerView.getId(), fragment);
 					fragmentTransaction.commit();
+					fragment.setLargestCameraResolution();
 				}
 				catch(Exception e){
 					e.printStackTrace();

@@ -1,4 +1,4 @@
-﻿cordova.define("cordova-plugin-x-toast.Toast", function(require, exports, module) {
+cordova.define("cordova-plugin-x-toast.Toast", function(require, exports, module) {
 function Toast() {
 }
 

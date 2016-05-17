@@ -1,4 +1,4 @@
-﻿angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
         $scope.swipeRight = viewGoForward;							//App swipe right view
 		$scope.swipeLeft = viewGoBack;								//App swipe left view
@@ -42,9 +42,7 @@
 			updateGallery();
 			initCamera();
 			initModal();
-			
-			$cordovaNativeAudio.preloadSimple('click', 'click.mp3').then(log, log);
-			
+			$cordovaNativeAudio.preloadSimple('click', 'click.mp3');
 		});
 		
 		function initModal() {
@@ -149,53 +147,61 @@
 		}
 
 		function updateGallery() {
-			FileManipulationService.getProjects( dataStorageUri ).then( setConfig, log );
-			function setConfig( config ) {
-				$scope.projects = config;
-			}
+		    FileManipulationService.getProjects(dataStorageUri)
+            .then(function (config) {
+                $scope.projects = config;
+            }, log);
 		}
 		
 		/* camera */
 		function showCamera() {
-			$ionicPlatform.ready(function(){ 
-				QBIZCamera.show();
-			});
+			$ionicPlatform.ready(QBIZCamera.show);
 		}
 
 		function hideCamera() {
-			$ionicPlatform.ready(function() {
-				QBIZCamera.hide();
-			});
+			$ionicPlatform.ready(QBIZCamera.hide);
 		}
 		
 		function initCamera() {
-			if(cameraInitialized) return;
-			cameraInitialized = true;
-			var screen = { w: window.innerWidth, h: window.innerHeight };
-			QBIZCamera.startCamera(true, screen);
-			setTimeout( function() { QBIZCamera.fullRes(); }, 1000);
+		    cameraInitialized = true;
+			QBIZCamera.startCamera(true, { w: window.innerWidth, h: window.innerHeight }); //Param ekranu potrzebny tylko na adroidzie
 		}
 
 		function takePicture() {
-            if( $scope.isTakingPictures && ($scope.params.shutterActivation == "motion")) {
-                finishMotionCapture();
-                return;
-            }
-            if( $scope.isTakingPictures ) return;
-			$cordovaDialogs.prompt("Wprowadź nazwę projektu", "Projekt", ["Start", "Anuluj"], "").then( startOrDecline );
-			function startOrDecline( projectPrompt ) {
-				//Clicked cancel
-				if( projectPrompt.buttonIndex != 1 ) return;
-				//Carry on going
+		    if ($scope.isTakingPictures && ($scope.params.shutterActivation == "motion")) {
+		        finishMotionCapture();
+		        return;
+		    }
+		    else if ($scope.isTakingPictures) return;
+		    $cordovaDialogs.prompt("Wprowadź nazwę projektu", "Projekt", ["Start", "Anuluj"], "")
+            .then(function startOrDecline( projectPrompt ) {
+                if (projectPrompt.buttonIndex != 1) return; //Kliknięte anuluj
+
+                /* 
+                    -Zamknij menu
+                    -Aktywny projekt okna = nowy projekt
+                    -Dodaj go do tablicy projektów
+                    -Jeśli Motion Detection
+                        -Uruchom korzystanie z Motion Detection
+                        -Uruchom Motion Detection
+                        -Ustaw handler do robienia zdjęcia
+                        -Ustaw, że robimy zdjęcia
+                    -Jeśli samowyzwalacz
+                        -Uruchom pętle
+                    -Jeśli nie podano nic
+                        -Użyj ustawień samowyzwalacza
+                    -END
+                */
+
                 closeMenus();
-				window.project = new Project( $scope.projects.length + 1, projectPrompt.input1 );
-				$scope.projects.push( window.project );
-				//Init
-                switch( $scope.params.shutterActivation ) {
+                window.project = new Project($scope.projects.length + 1, projectPrompt.input1);
+                $scope.projects.push( window.project );
+                //Init
+                switch ($scope.params.shutterActivation) {
                     case "motion":
                         QBIZCamera.useMotionDetection();
                         QBIZCamera.motionDetectionStart();
-                        QBIZCamera.setOnPictureTakenHandler( function( result ) {
+                        QBIZCamera.setOnPictureTakenHandler(function (result) {
                             genericTakePicture( result[0] );
                         });
                         $scope.isTakingPictures = true;
@@ -205,7 +211,7 @@
                         timedInit();
                         break;
                 }
-			}
+            });
 		}
         
         function closeMenus() {
@@ -240,32 +246,33 @@
         }
         
         function abortCamera() {
-            $cordovaDialogs.confirm( "Czy na pewno chcesz usunać obecny projekt?", "Projekt", ["Tak", "Nie"] ).then( goOn );
-            function goOn( btn ) {
-                if(btn != 1) return;
-                switch( $scope.params.shutterActivation ) {
+            $cordovaDialogs.confirm("Czy na pewno chcesz usunać obecny projekt?", "Projekt", ["Tak", "Nie"])
+            .then(function (button) {
+                if (button != 1) return; //Kliknąłeś NIE
+                switch ($scope.params.shutterActivation) {
                     case "motion":
                         finishMotionCapture();
-                        deleteProject( window.project.id );
+                        deleteProject(window.project.id);
                         break;
                     default:
                     case "timer":
                         cleanLoopVariables();
                         break;
                 }
-                deleteProject( window.project.id );
-            }
+                deleteProject(window.project.id);
+            });
         }
         
         function deleteProject( projectID ) {
             for( var i = 0; i < $scope.projects.length; i++ ) {
                 if( $scope.projects[i].id == projectID ) {
                     $scope.projects.splice(i - 1, 1);
-                    //TODO Add imgs remove
-                    FileManipulationService.saveProjects( dataStorageUri, $scope.projects ).then( showSuccess );
-                    function showSuccess() {
+                    //TODO
+                    //Delete images
+                    FileManipulationService.saveProjects(dataStorageUri, $scope.projects)
+                    .then(function () {
                         $cordovaToast.showShortCenter('Usunięto!');
-                    }
+                    });
                 }
             }
         }
@@ -312,8 +319,13 @@
 			QBIZCamera.setOnPictureTakenHandler(function( result ) {
                 genericTakePicture( result[0] );
                 pictureLoop.timerCounter = 0;
-                if( timedCanTakePicture(pictureLoop.loop, $scope.params.pictures ) )
-                    pictureLoop.loop = $interval( takePictureUsingTimer, 1000 );
+                if (timedCanTakePicture(pictureLoop.loop, $scope.params.pictures))
+                {
+                    pictureLoop.loop = $interval(takePictureUsingTimer, 1000);
+                }
+                else {
+                    cleanLoopVariables();
+                }
             });
         }
         
@@ -321,10 +333,10 @@
             for( var i = 0; i < $scope.projects.length; i++ ) {
                 if( $scope.projects[i].id == window.project.id ) {
                     $scope.projects[i].images.push( path );
-                    FileManipulationService.saveProjects( dataStorageUri, $scope.projects ).then( showSuccess );
-                    function showSuccess() {
+                    FileManipulationService.saveProjects(dataStorageUri, $scope.projects)
+                    .then(function () {
                         $cordovaToast.showShortCenter('Zapisano zdjęcie!');
-                    }
+                    });
                 }
             }
             $cordovaNativeAudio.play('click');

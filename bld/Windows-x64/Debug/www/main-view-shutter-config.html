@@ -1,0 +1,8 @@
+﻿<div class="settingsMenu" ng-hide="isTakingPictures">
+    <div ng-show="shutterSettings" style="width: 100%">
+        <ion-list class="shutterSettings">
+            <ion-radio ng-model="params.shutterActivation" ng-value="'timer'">Samowyzwalacz</ion-radio>
+            <ion-radio ng-model="params.shutterActivation" ng-value="'motion'">Wykrywanie ruchu</ion-radio>
+        </ion-list>
+    </div>
+</div>

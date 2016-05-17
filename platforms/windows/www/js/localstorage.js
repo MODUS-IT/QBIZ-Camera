@@ -1,4 +1,4 @@
-﻿angular.module('cameraApp.localStorage', [])
+angular.module('cameraApp.localStorage', [])
     .service('localStorage', [function() {
 		this.getConfigurationData = function() {
 			var configurationData = window.localStorage['FTPconfig'];

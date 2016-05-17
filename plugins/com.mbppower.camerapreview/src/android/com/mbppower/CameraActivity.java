@@ -203,6 +203,10 @@ public class CameraActivity extends Fragment {
 	  return mCamera;
 	}
 	
+	public void setupCamera() {
+		setLargestCameraResolution();
+	}
+
 	public String logCamera() {
 		mCamera.stopPreview();
 		
@@ -253,10 +257,6 @@ public class CameraActivity extends Fragment {
     public void useTimer() {
         isUsingMotionDetection = false;
         Log.d(TAG, "Hello. I'm using timer");
-    }
-    
-    public void setupCamera() {
-        setLargestCameraResolution();
     }
 	
 	public void switchCamera() {
@@ -383,7 +383,7 @@ public class CameraActivity extends Fragment {
 		});
 	}
     
-	private void setLargestCameraResolution() {
+	public void setLargestCameraResolution() {
 		//Okej... Test
 		mCamera.stopPreview(); 
         Log.d(TAG, "--- setLargestCameraResolution ---");

@@ -6,7 +6,6 @@
     var PLUGIN_NAME = "CameraPreview";
 
     module.exports = {
-
         setOnPictureTakenHandler: function (onPictureTaken) {
             exec(onPictureTaken, onPictureTaken, PLUGIN_NAME, "setOnPictureTakenHandler", []);
         },
@@ -17,26 +16,22 @@
             exec(null, null, PLUGIN_NAME, "stopCamera", []);
         },
         takePicture: function () {
-            var params = [0, 0];
-            if (size) {
-                params = [size.maxWidth, size.maxHeight];
-            }
-            exec(null, null, PLUGIN_NAME, "takePicture", params);
+            exec(null, null, PLUGIN_NAME, "takePicture", []);
         },
         switchCamera: function () {
             exec(null, null, PLUGIN_NAME, "switchCamera", []);
         },
-        hideCamera: function () {
-            exec(null, null, PLUGIN_NAME, "hideCamera", []);
+        hide: function () {
+            exec(null, null, PLUGIN_NAME, "hide", []);
         },
         show: function () {
-            exec(null, null, PLUGIN_NAME, "showCamera", []);
+            exec(null, null, PLUGIN_NAME, "show", []);
         },
         logCamera: function () {
-            exec(null, null, PLUGIN_NAME, "logCamera", []);
-        },
-        fullRes: function () {
-            exec(null, null, PLUGIN_NAME, "setupCamera", []);
+            exec(function (camera) {
+                console.log('Camera Resolution: ' + camera.resolution);
+                console.log('Camera Preview Resolution: ' + camera.previewResolution);
+            }, null, PLUGIN_NAME, "logCamera", []);
         },
         useTimer: function useTimer() {
             exec(null, null, PLUGIN_NAME, "useTimer", []);
@@ -49,14 +44,7 @@
         },
         motionDetectionStop: function motionDetectionStop() {
             exec(null, null, PLUGIN_NAME, "motionDetectionStop", []);
-        },
-        echo: function (strInput) {
-            function log(param) {
-                console.log(param);
-            }
-            exec(log, log, PLUGIN_NAME, "echo", [strInput]);
         }
-
     }
 
 });

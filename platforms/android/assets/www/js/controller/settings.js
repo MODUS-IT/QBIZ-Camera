@@ -44,8 +44,41 @@ angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function
 		}
 		
 		function uploadAllProjects() {
-			var UID = PHPUploadService.beginTransaction();
-			if( UID ) {
+		    var UID = PHPUploadService.beginTransaction();
+		    if (UID) {
+		        PHPUploadService.uploadInitialData(UID, $scope.ftp)
+                .then(function ( promise ) {
+                    if (promise.bool) return FileManipulationService.getProjects(dataStorageUri);
+                    else rejectError(promise);
+                })
+                .then(function ( config ) {
+                    $scope.config = config;
+                    return PHPUploadService.uploadConfig(UID, config);
+                })
+		        .then(function ( callback ) {
+		            if (callback.data.bool) {
+		                for (var i = 0; i < $scope.config.length; i++) {
+		                    var uploads = [];
+		                    for (var img = 0; img < $scope.config[i].images.length; img++) {
+		                        uploads.push(PHPUploadService.uploadPhoto(UID, $scope.config[i].images[img]));
+		                    }
+		                    return Promise.all(uploads);
+		                }
+		            }
+		        }, rejectError)
+                .then(function () {
+                    return PHPUploadService.cleanUp(UID);
+                })
+		        .then(function ( callback ) {
+		            if (callback) {
+		                return PHPUploadService.uploadToHost(UID);
+		            }
+		        })
+		        .then(informGood)
+                .catch(rejectError);
+		    }
+
+			/*if( UID ) {
 				PHPUploadService.uploadInitialData( UID, $scope.ftp ).then( canProceed, canProceed );
 				function canProceed( promise ) {
 					if( promise.bool ) FileManipulationService.getProjects( dataStorageUri ).then( uploadConfig, rejectError );
@@ -79,6 +112,6 @@ angular.module('cameraApp.settingsCtrl', []).controller('settingsCtrl', function
 						}
 					}
 				}
-			}
-		}
+			}*/
+		} 
 	})

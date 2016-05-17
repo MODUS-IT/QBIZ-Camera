@@ -1,0 +1,268 @@
+﻿/* Empty. Add your own CSS if you like */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+.transparent, ion-nav-view[name="mainView"] ion-content.pane.mV, .view-container, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio div.radio-content div.item-content, .settingsMenu div ion-list.shutterSettings .list label.item.item-radio div.radio-content {
+    background: transparent !important;
+}
+
+.toggleContainer {
+    margin: 10px 0 0;
+    margin-top: 0;
+    padding: 0 !important;
+    border-radius: 0;
+}
+
+.gridContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.gridContainer .grid {
+    width: 100%;
+    height: 100%;
+}
+
+.gridContainer .grid .gridCol {
+    height: calc(100% / 3);
+    display: flex;
+}
+
+.gridContainer .grid .gridCol .gridRow {
+    border: 1px solid rgba(255,255,255, .6);
+    flex: 1;
+}
+
+.gridContainer .grid .gridCol:first-child .gridRow {
+    border-top: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:first-child {
+    border-left: 0;
+}
+
+.gridContainer .grid .gridCol .gridRow:last-child {
+    border-right: 0;
+}
+
+.gridContainer .grid .gridCol:last-child .gridRow {
+    border-bottom: 0;
+}
+
+.toggleMenu {
+    background: rgba(255, 255, 255, .9) !important;
+    border-radius: 0;
+    font-size: 24px;
+}
+
+.imagePrv {
+    width: 50%;
+    height: auto;
+    flex: 1;
+    display: inline-block;
+}
+
+.button-bar {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.scroll .button {
+    margin-top: 5px;
+    margin-bottom: 0 !important;
+}
+
+.button.button-balanced {
+    background-color: #49A71A !important;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.button.button-positive.button-clear {
+    background-color: none !important;
+}
+
+.button.button-positive {
+    background-color: #2F62A5;
+}
+
+
+/* TOP MENU */
+
+.tab-nav.tabs {
+    top: 0 !important;
+    background-color: rgba( 0,145,234, .75 ) !important;
+}
+
+a.tab-item {
+    border-color: #fff;
+    color: #fff !important;
+}
+
+.tabs-light > .tabs, .tabs-striped.tabs-light .tab-item.tab-item-active {
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+a.tabs-striped.tabs-light .tab-item.tab-item-active {
+    color: #fff !important;
+    border-color: #fff;
+}
+
+/* EO TOP MENU */
+
+.button.button-assertive {
+    background-color: #D50000 !important;
+}
+
+ion-list .list {
+    overflow: hidden;
+    margin: 57px 10px 10px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.button-bar > .button {
+    padding-top: 4px !important;
+}
+
+
+/* CAMERA MENU */
+
+camera {
+    display:block;
+    height: 100vh;
+}
+
+.settingsMenu div {
+    border-radius: 20px;
+    background: rgba(255,255,255,.8);
+}
+
+.shutterSettings div.list {
+    margin: 0;
+}
+
+.bg-alpha {
+    background: rgba(255,255,255, .85);
+    color: #000;
+}
+
+.settingsMenu {
+    width: 90%;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: 100% auto 0;
+    border: 5px solid rgba(0, 0, 0, 0);
+}
+
+.settingsMenu > div > :first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.settingsMenu > div > :last-child, .settingsMenu > div > .last {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.handle {
+    border-radius: 27px !important;
+}
+
+/* NEW BUTTONS CAMERA */
+div.newWorld {
+    position: absolute;
+    width: 90%;
+    height: 15%;
+    top: 80%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: rgba( 0, 145, 234, .4);
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 45px;
+}
+
+div.newWorld button.smallBtn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    border: none;
+    background: transparent;
+    color: #fff;
+}
+
+div.newWorld button.smallBtn::before {
+    font-size: 36px;
+}
+
+div.newWorld button.rightBtn {
+    left: 50%;
+    right: 0;
+    padding-left: 17%;
+}
+
+div.newWorld button.leftBtn {
+    left: 0;
+    right: 50%;
+    padding-right: 17%;
+}
+
+button.cameraBtn i::before {
+    font-size: 3.5em !important;
+}
+
+button.cameraBtn span {
+    font-size: 3em;
+    display:block;
+}
+
+button.cameraBtn {
+    position: absolute;
+    top: 80%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #fff;
+    background: rgb(52, 136, 195);
+    border: 2px solid #fff;
+    border-radius: 100%;
+    width: 32%;
+    height: 18%;
+    max-width: 240px;
+    max-height: 240px;
+}
+
+button.cameraBtn:hover {
+    color: #fff;
+    background: rgb(32, 116, 175);
+}
+
+/* PROJECTS */
+.largeNotice, .smallNotice {
+    color: #ccc;
+}
+.largeNotice {
+    text-align: center;
+    margin-top: 79px;
+    font-size: 36px;
+}
+.smallNotice {
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 10px;
+    font-size: 18px;
+}

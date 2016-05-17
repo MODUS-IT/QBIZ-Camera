@@ -1,4 +1,4 @@
-﻿cordova.define("cordova-plugin-screen-orientation.screenorientation", function(require, exports, module) {
+cordova.define("cordova-plugin-screen-orientation.screenorientation", function(require, exports, module) {
 /*
 The MIT License (MIT)
 

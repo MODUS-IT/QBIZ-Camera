@@ -1,4 +1,4 @@
-﻿cordova.define("ionic-plugin-keyboard.KeyboardProxy", function(require, exports, module) {
+cordova.define("ionic-plugin-keyboard.KeyboardProxy", function(require, exports, module) {
 
 /*global Windows, WinJS, cordova, module, require*/
 

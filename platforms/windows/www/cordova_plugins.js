@@ -1,4 +1,4 @@
-﻿cordova.define('cordova/plugin_list', function(require, exports, module) {
+cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
         "file": "plugins/cordova-plugin-console/www/logger.js",
@@ -398,7 +398,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-toast": "2.4.2",
     "ionic-plugin-keyboard": "1.0.8",
-    "com.mbppower.camerapreview": "0.1.0"
+    "com.mbppower.camerapreview": "0.1.2"
 };
 // BOTTOM OF METADATA
 });

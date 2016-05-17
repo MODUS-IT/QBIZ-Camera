@@ -398,7 +398,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-toast": "2.4.2",
     "ionic-plugin-keyboard": "1.0.8",
-    "com.mbppower.camerapreview": "0.1.0"
+    "com.mbppower.camerapreview": "0.1.2"
 };
 // BOTTOM OF METADATA
 });

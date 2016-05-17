@@ -14,6 +14,7 @@
     <DebuggerFlavor>PhoneDevice81</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-AnyCPU'">
-    <DebuggerFlavor>WindowsLocal</DebuggerFlavor>
+    <DebuggerFlavor>WindowsMobileEmulator</DebuggerFlavor>
+    <WindowsMobileEmulatorID>F554226E-1E47-460D-B76A-338418AD356B;Mobile Emulator 10.0.10586.0 720p 5 inch 1GB</WindowsMobileEmulatorID>
   </PropertyGroup>
 </Project>

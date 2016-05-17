@@ -51,11 +51,11 @@
   <plugin name="cordova-plugin-device-orientation" version="1.0.2" />
   <plugin name="cordova-plugin-x-toast" version="2.5.0" src="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
   <preference name="windows-target-version" value="10.0" />
-  <plugin name="com.mbppower.camerapreview" version="0.1.0" src="C:\Users\Grzegorz\Documents\GitHub\CordovaCameraPreview" />
   <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <vs:platformSpecificWidget platformName="windows">
       <vs:appxPackageIsForStore>False</vs:appxPackageIsForStore>
       <vs:packageOutputPath>C:\Users\Grzegorz\Desktop\</vs:packageOutputPath>
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
+  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\Grzegorz\Documents\GitHub\CordovaCameraPreview" />
 </widget>
