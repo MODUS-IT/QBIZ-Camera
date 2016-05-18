@@ -54,8 +54,8 @@
   <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <vs:platformSpecificWidget platformName="windows">
       <vs:appxPackageIsForStore>False</vs:appxPackageIsForStore>
-      <vs:packageOutputPath>C:\Users\Grzegorz\Desktop\</vs:packageOutputPath>
+      <vs:packageOutputPath>C:\Users\LPM\Desktop\</vs:packageOutputPath>
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
-  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\Grzegorz\Documents\GitHub\CordovaCameraPreview" />
+  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\LPM\Documents\GitHub\CordovaCameraPreview" />
 </widget>

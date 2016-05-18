@@ -1,4 +1,4 @@
-angular.module('cameraApp.FileManipulation', [])
+﻿angular.module('cameraApp.FileManipulation', [])
     .service('FileManipulationService', ['$q', function($q) {
 		/**
 		 * Zwraca w resolve zawartość katalogu w tablicy.

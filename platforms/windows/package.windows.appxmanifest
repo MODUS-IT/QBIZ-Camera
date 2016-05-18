@@ -32,13 +32,5 @@
     </Applications>
     <Capabilities>
         <Capability Name="internetClient" />
-        <uap:Capability Name="picturesLibrary" />
-        <uap:Capability Name="musicLibrary" />
-        <uap:Capability Name="sharedUserCertificates" />
-        <uap:Capability Name="videosLibrary" />
-        <uap:Capability Name="removableStorage" />
-        <DeviceCapability Name="webcam" />
-        <DeviceCapability Name="location" />
-        <DeviceCapability Name="microphone" />
     </Capabilities>
 </Package>

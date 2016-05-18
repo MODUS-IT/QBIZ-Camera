@@ -8,7 +8,7 @@
     <AppxManifestMetaData Include="VisualStudioEdition">
       <Value>Microsoft Visual Studio Community 2015</Value>
     </AppxManifestMetaData>
-    <AppxManifestMetaData Include="C:\WINDOWS\system32\cmd.exe">
+    <AppxManifestMetaData Include="C:\Windows\system32\cmd.exe">
       <Name>OperatingSystem</Name>
     </AppxManifestMetaData>
     <AppxManifestMetaData Include="ProjectGUID">

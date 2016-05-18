@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-screen-orientation.screenorientation.windows", function(require, exports, module) {
+﻿cordova.define("cordova-plugin-screen-orientation.screenorientation.windows", function(require, exports, module) {
 var screenOrientation = {};
 
 screenOrientation.setOrientation = function (orientation) {

@@ -1,4 +1,4 @@
-angular.module('cameraApp.directives', [])
+﻿angular.module('cameraApp.directives', [])
     .directive('grid', function() {
 		return {
 			templateUrl: 'grid.html'

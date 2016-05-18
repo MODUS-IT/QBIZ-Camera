@@ -61,7 +61,7 @@
     "com.mbppower.camerapreview": {
         "source": {
             "type": "local",
-            "path": "C:\\Users\\Grzegorz\\Documents\\GitHub\\CordovaCameraPreview"
+            "path": "C:\\Users\\LPM\\Documents\\GitHub\\CordovaCameraPreview"
         },
         "is_top_level": true,
         "variables": {}

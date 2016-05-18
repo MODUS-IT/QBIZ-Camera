@@ -129,15 +129,20 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 		return true;
 	}
 	private boolean takePicture(final JSONArray args, CallbackContext callbackContext) {
+	Log.d(TAG, "boolean TakePicture CameraPreview");
 		if(fragment == null){
 			return false;
 		}
 		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+		Log.d(TAG, "pluginResult CameraPreview");
 		pluginResult.setKeepCallback(true);
+		Log.d(TAG, "setKeepCallback CameraPreview");
 		callbackContext.sendPluginResult(pluginResult);
+		Log.d(TAG, "sendPluginResult CameraPreview");
 		try {
-			double maxWidth = args.getDouble(0);
-			double maxHeight = args.getDouble(1);
+			double maxWidth = 0;
+			double maxHeight = 0;
+			Log.d(TAG, "b4 fragment.takePicture");
 			fragment.takePicture(maxWidth, maxHeight);
 		}
 		catch(Exception e){

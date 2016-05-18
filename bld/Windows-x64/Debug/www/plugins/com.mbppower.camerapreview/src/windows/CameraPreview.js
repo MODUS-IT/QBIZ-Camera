@@ -4,23 +4,45 @@ var cordova = require('cordova'), QBIZCamera = require('./CameraPreview');
 module.exports = {
     startCamera: function ( ...noParam ) {
         function styleBody() {
-            var body = document.getElementById('body');
-            body.setAttribute('class', '');
-            body.style.background = '#000';
+            return new Promise(function (resolve, reject) {
+                var body = document.body;
+                body.setAttribute('class', '');
+                body.style.background = '#000';
+
+                var video = document.createElement("video");
+                video.setAttribute("id", "windowsPreview");
+                video.style.width = "100%";
+                video.style.height = "100%";
+                video.style.display = "block";
+                video.style.position = "fixed";
+                video.style.top = "0";
+                video.style.bottom = "0";
+                video.style.left = "0";
+                video.style.right = "0";
+                body.insertBefore(video, body.firstChild);
+                if (!document.getElementById('windowsPreview')) reject();
+                resolve();
+            });
         }
 
         function enterFullscreen() {
-            var view = Windows.UI.ViewManagement.ApplicationView.getForCurrentView();
-            view.tryEnterFullScreenMode();
+            return new Promise(function (resolve, reject) {
+                var view = Windows.UI.ViewManagement.ApplicationView.getForCurrentView();
+                view.tryEnterFullScreenMode();
+                resolve();
+            });
         }
 
         function enumerateCameras() {
-            var deviceInfo = Windows.Devices.Enumeration.DeviceInformation;
-            deviceInfo.findAllAsync(Windows.Devices.Enumeration.DeviceClass.videoCapture).then(function (devices) {
-                console.log(devices);
-                settings.videoDeviceId = devices[0];
-            }, function (err) {
-                throw new Error('No devices available');
+            return new Promise(function (resolve, reject) {
+                var deviceInfo = Windows.Devices.Enumeration.DeviceInformation;
+                deviceInfo.findAllAsync(Windows.Devices.Enumeration.DeviceClass.videoCapture)
+                .then(function (devices) {
+                    settings.videoDeviceId = devices[0]; //Use first device
+                    resolve();
+                }, function (err) {
+                    throw new Error('No devices available');
+                });
             });
         }
 
@@ -34,11 +56,17 @@ module.exports = {
         var settings = new Windows.Media.Capture.MediaCaptureInitializationSettings();
         var RotationKey = "C380465D-2271-428C-9B83-ECEA3B4A85C1";
 
-        styleBody();
-        enterFullscreen();
-        enumerateCameras();
-        
-        mediaCapture.initializeAsync().then(function () {
+        styleBody()
+        .then(function () {
+            return enterFullscreen();
+        })
+        .then(function () {
+            return enumerateCameras();
+        })
+       .then(function () {
+            return mediaCapture.initializeAsync();
+        })
+       .then(function () {
             var preview = document.getElementById("windowsPreview");
             preview.src = URL.createObjectURL(mediaCapture);
             preview.play();
@@ -96,7 +124,7 @@ module.exports = {
         }
 
         // Take the picture
-        return window.mediaCapture.capturePhotoToStreamAsync(Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(), inputStream)
+        return QBIZCamera.mediaCapture.capturePhotoToStreamAsync(Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(), inputStream)
         .then(function () {
             console.log("Photo taken");
             return reencodeAndSavePhotoAsync(inputStream, 0);

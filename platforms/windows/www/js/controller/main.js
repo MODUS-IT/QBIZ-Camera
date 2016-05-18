@@ -1,4 +1,4 @@
-angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
+﻿angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
 		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
         $scope.swipeRight = viewGoForward;							//App swipe right view
 		$scope.swipeLeft = viewGoBack;								//App swipe left view
@@ -280,23 +280,33 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
         function timedInit() {
             QBIZCamera.useTimer();
             if (pictureLoop.loop === undefined) {
-                pictureLoop.counter = 0;
-                pictureLoop.timerCounter = 0;
                 $scope.isTakingPictures = true;
+                pictureLoop.picturesTaken = 0;
+                pictureLoop.currentTime = 0;
                 pictureLoop.loop = $interval( takePictureUsingTimer, 1000 );
             }
         }
 
-		function takePictureUsingTimer() {
-			if( timedIsTimeForPicture(pictureLoop.timerCounter, $scope.params.pictureInterval) ) {
-				if( timedCanTakePicture( pictureLoop.counter, $scope.params.pictures ) ) {
-					pictureLoop.counter += 1;
-					$interval.cancel( pictureLoop.loop );
-					takePictureUtility();
-				} else cleanLoopVariables();
-			}
-			$scope.onScreenTimer = ( $scope.params.pictureInterval - pictureLoop.timerCounter );
-            if( !$scope.cameraPaused ) pictureLoop.timerCounter += 1;
+        /*
+        var pictureLoop = { 
+			loop: undefined, 										//main 1s loop
+			counter: undefined, 									//number of pictures taken
+			timer: undefined, 										//image take interval
+			timerCounter: undefined 								//counter for timer interval
+		};
+        */
+
+        function takePictureUsingTimer() {
+            if ( areAnyPicturesLeft( pictureLoop.picturesTaken, $scope.params.pictures ) ) {
+                if (inTimeForPicture(pictureLoop.currentTime, $scope.params.pictureInterval)) {
+                    console.log('In Time for picture');
+                    pictureLoop.picturesTaken += 1;
+                    $interval.cancel(pictureLoop.loop);
+                    takePictureUtility();
+                }
+                else if ( !$scope.cameraPaused ) pictureLoop.currentTime += 1;
+                $scope.onScreenTimer = ($scope.params.pictureInterval - pictureLoop.currentTime);
+            } else cleanLoopVariables();
 		}
         
         /**
@@ -304,28 +314,24 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
          * @param {number} currentTime;
          * @param {number} shutterInterval;
          */
-        function timedIsTimeForPicture( currentTime, shutterInterval ) {
+        function inTimeForPicture( currentTime, shutterInterval ) {
             return currentTime >= shutterInterval;
         }
         
-        function timedCanTakePicture( currentPic, noOfPicture ) {
+        function areAnyPicturesLeft( currentPic, noOfPicture ) {
             return currentPic < noOfPicture;
         }
         /**
          * @param {number} projectId
          */
-		function takePictureUtility() {
+        function takePictureUtility() {
+            console.log('TakePictureUtility');
 			QBIZCamera.takePicture();
-			QBIZCamera.setOnPictureTakenHandler(function( result ) {
+			QBIZCamera.setOnPictureTakenHandler(function (result) {
+			    console.log('Handler');
                 genericTakePicture( result[0] );
-                pictureLoop.timerCounter = 0;
-                if (timedCanTakePicture(pictureLoop.loop, $scope.params.pictures))
-                {
-                    pictureLoop.loop = $interval(takePictureUsingTimer, 1000);
-                }
-                else {
-                    cleanLoopVariables();
-                }
+                pictureLoop.currentTime = 0;
+                pictureLoop.loop = $interval(takePictureUsingTimer, 1000);
             });
         }
         
@@ -345,7 +351,7 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
 		function cleanLoopVariables() {
 			$interval.cancel( pictureLoop.loop );
 			pictureLoop.loop = undefined;
-			pictureLoop.counter = undefined;
+			pictureLoop.picturesTaken = undefined;
 			pictureLoop.timer = undefined;
 			$scope.isTakingPictures = false;
 		}
