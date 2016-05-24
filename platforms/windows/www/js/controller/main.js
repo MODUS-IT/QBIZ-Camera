@@ -299,7 +299,6 @@
         function takePictureUsingTimer() {
             if ( areAnyPicturesLeft( pictureLoop.picturesTaken, $scope.params.pictures ) ) {
                 if (inTimeForPicture(pictureLoop.currentTime, $scope.params.pictureInterval)) {
-                    console.log('In Time for picture');
                     pictureLoop.picturesTaken += 1;
                     $interval.cancel(pictureLoop.loop);
                     takePictureUtility();
@@ -325,10 +324,8 @@
          * @param {number} projectId
          */
         function takePictureUtility() {
-            console.log('TakePictureUtility');
 			QBIZCamera.takePicture();
 			QBIZCamera.setOnPictureTakenHandler(function (result) {
-			    console.log('Handler');
                 genericTakePicture( result[0] );
                 pictureLoop.currentTime = 0;
                 pictureLoop.loop = $interval(takePictureUsingTimer, 1000);

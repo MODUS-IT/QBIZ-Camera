@@ -77,46 +77,53 @@ module.exports = {
     stopCamera: function( callback, error, noParam ) {
         return callback(true);
     },
-    takePicture: function (successCallback, errorCallback, maxImgResolution) {
+    takePicture: function (successCallback, errorCallback, ...noParam) {
         var Streams = Windows.Storage.Streams;
         var inputStream = new Streams.InMemoryRandomAccessStream();
+
+        function getCurrentDateTime() {
+            var d = new Date();
+            var datetime = "";
+            datetime += d.getFullYear();
+            datetime += d.getMonth();
+            datetime += d.getDate();
+            datetime += d.getHours();
+            datetime += d.getMinutes();
+            datetime += d.getSeconds();
+            return datetime;
+        }
 
         function reencodeAndSavePhotoAsync(inputStream, orientation) {
             var Imaging = Windows.Graphics.Imaging;
             var bitmapDecoder = null,
                 bitmapEncoder = null,
-                outputStream = null;
-            var filename = null;
-            console.log(orientation);
+                outputStream = null,
+                filename = null;
             return Imaging.BitmapDecoder.createAsync(inputStream)
             .then(function (decoder) {
+                console.log('BitmapDecoder');
                 bitmapDecoder = decoder;
-                var d = new Date();
-                var dStr = "";
-                    dStr += d.getFullYear();
-                    dStr += d.getMonth();
-                    dStr += d.getDate();
-                    dStr += d.getHours();
-                    dStr += d.getMinutes();
-                    dStr += d.getSeconds();
-                    //return Windows.Storage.ApplicationData.current.localFolder.createFileAsync("QBIZCamera" + dStr + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
-                    return Windows.Storage.KnownFolders.PicturesLibrary.createFileAsync("QBIZCamera" + dStr + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
-            }).then(function (file) {
+        return Windows.Storage.ApplicationData.current.localFolder.createFileAsync("QBIZCamera" + getCurrentDateTime() + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
+                    //return Windows.Storage.KnownFolders.PicturesLibrary.createFileAsync("QBIZCamera" + getCurrentDateTime() + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
+    }).then(function (file) {
+                console.log('Open File');
                 filename = file.name;
                 return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
-            }).then(function (outStream) {
+    }).then(function (outStream) {
+        console.log('createForTranscodingAsync');
                 outputStream = outStream;
                 return Imaging.BitmapEncoder.createForTranscodingAsync(outputStream, bitmapDecoder);
             }).then(function (encoder) {
                 bitmapEncoder = encoder;
+        console.log('setRotation');
                 var properties = new Imaging.BitmapPropertySet();
-                properties.insert("System.Photo.Orientation", new Imaging.BitmapTypedValue(Windows.Storage.FileProperties.PhotoOrientation.Normal, Windows.Foundation.PropertyType.uint16));
+                properties.insert("System.Photo.Orientation", new Imaging.BitmapTypedValue(Windows.Storage.FileProperties.PhotoOrientation.Rotate90, Windows.Foundation.PropertyType.uint16));
                 return bitmapEncoder.bitmapProperties.setPropertiesAsync(properties)
-            }).then(function () {
+    }).then(function () {
+        console.log('flush');
                 return bitmapEncoder.flushAsync();
-            }).then(function () {
-                console.log(inputStream);
-                console.log(outputStream);
+    }).then(function () {
+        console.log('close');
                 inputStream.close();
                 outputStream.close();
                 window.onPictureTaken(["ms-appdata:///local/" + filename]);

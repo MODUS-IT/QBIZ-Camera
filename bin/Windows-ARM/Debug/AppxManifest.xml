@@ -8,14 +8,14 @@
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
   <Identity Name="com.ionicframework.cameraapp997130" Publisher="CN=Apache Cordova Team" Version="1.0.0.1" ProcessorArchitecture="arm" />
-  <mp:PhoneIdentity PhoneProductId="e86908c0-0665-11e6-b925-71ede6927624" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <mp:PhoneIdentity PhoneProductId="ab320890-1cda-11e6-ab18-89d4be74fa97" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>QBIZ Camera360</DisplayName>
     <PublisherDisplayName>Grzegorz Mrózek</PublisherDisplayName>
     <Logo>images\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily MaxVersionTested="10.0.10586.0" MinVersion="10.0.10240.0" Name="Windows.Universal" />
+    <TargetDeviceFamily MaxVersionTested="10.0.10586.0" MinVersion="10.0.10586.0" Name="Windows.Universal" />
   </Dependencies>
   <Resources>
     <Resource Language="PL-PL" />
@@ -24,7 +24,7 @@
     <Application Id="com.ionicframework.cameraapp997130" StartPage="ms-appx-web://com.ionicframework.cameraapp997130/www/index.html">
       <uap:VisualElements BackgroundColor="#464646" Description="CordovaApp" DisplayName="QBIZ Camera360" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
         <uap:SplashScreen Image="images\splashscreen.png" />
-        <uap:DefaultTile ShortName="QBIZ Camera360" Square310x310Logo="images\Square310x310Logo.png" Square71x71Logo="images\Square71x71Logo.png" Wide310x150Logo="images\Wide310x150Logo.png" />
+        <uap:DefaultTile ShortName="QBIZ Camera360" Square310x310Logo="images\Square310x310Logo.png" Square71x71Logo="images\Square71x71Logo.png" Wide310x150Logo="images\Wide310x150Logo.png"></uap:DefaultTile>
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="portrait" />
         </uap:InitialRotationPreference>
@@ -37,12 +37,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="picturesLibrary" />
-    <uap:Capability Name="musicLibrary" />
-    <uap:Capability Name="sharedUserCertificates" />
-    <uap:Capability Name="videosLibrary" />
-    <uap:Capability Name="removableStorage" />
     <DeviceCapability Name="webcam" />
-    <DeviceCapability Name="location" />
     <DeviceCapability Name="microphone" />
   </Capabilities>
   <build:Metadata>
