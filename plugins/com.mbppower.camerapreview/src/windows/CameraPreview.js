@@ -77,66 +77,78 @@ module.exports = {
         return callback(true);
     },
     takePicture: function (successCallback, errorCallback, ...noParam) {
-        var Streams = Windows.Storage.Streams;
-        var inputStream = new Streams.InMemoryRandomAccessStream();
+
+        var Imaging = Windows.Graphics.Imaging;
+        var format = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(),
+            imageStream = new Windows.Storage.Streams.InMemoryRandomAccessStream(),
+        //folder = Windows.Storage.ApplicationData.current.localFolder,
+            folder = Windows.Storage.KnownFolders.picturesLibrary;
+            bitmapDecoder = null,
+            bitmapEncoder = null,
+            fileName = null,
+            outputStream = null;
 
         function getCurrentDateTime() {
             var d = new Date();
-            var datetime = "";
-            datetime += d.getFullYear();
-            datetime += d.getMonth();
-            datetime += d.getDate();
-            datetime += d.getHours();
-            datetime += d.getMinutes();
-            datetime += d.getSeconds();
+            var datetime = d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds();
             return datetime;
         }
 
-        function reencodeAndSavePhotoAsync(inputStream, orientation) {
-            var Imaging = Windows.Graphics.Imaging;
-            var bitmapDecoder = null,
-                bitmapEncoder = null,
-                outputStream = null,
-                filename = null;
-            return Imaging.BitmapDecoder.createAsync(inputStream)
-            .then(function (decoder) {
-                console.log('BitmapDecoder');
-                bitmapDecoder = decoder;
-        return Windows.Storage.ApplicationData.current.localFolder.createFileAsync("QBIZCamera" + getCurrentDateTime() + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
-                    //return Windows.Storage.KnownFolders.PicturesLibrary.createFileAsync("QBIZCamera" + getCurrentDateTime() + ".jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
-    }).then(function (file) {
-                console.log('Open File');
-                filename = file.name;
-                return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
-    }).then(function (outStream) {
-        console.log('createForTranscodingAsync');
-                outputStream = outStream;
-                return Imaging.BitmapEncoder.createForTranscodingAsync(outputStream, bitmapDecoder);
-            }).then(function (encoder) {
-                bitmapEncoder = encoder;
-        console.log('setRotation');
-                var properties = new Imaging.BitmapPropertySet();
-                properties.insert("System.Photo.Orientation", new Imaging.BitmapTypedValue(Windows.Storage.FileProperties.PhotoOrientation.Rotate90, Windows.Foundation.PropertyType.uint16));
-                return bitmapEncoder.bitmapProperties.setPropertiesAsync(properties)
-    }).then(function () {
-        console.log('flush');
-                return bitmapEncoder.flushAsync();
-    }).then(function () {
-        console.log('close');
-                inputStream.close();
-                outputStream.close();
-                window.onPictureTaken(["ms-appdata:///local/" + filename]);
-            });
-        }
-
-        // Take the picture
-        return QBIZCamera.mediaCapture.capturePhotoToStreamAsync(Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(), inputStream)
+        // Capture to stream
+        return QBIZCamera.mediaCapture.capturePhotoToStreamAsync(format, imageStream)
         .then(function () {
-            console.log("Photo taken");
-            return reencodeAndSavePhotoAsync(inputStream, 0);
-        }, function (error) {
-            console.log(error.message);
-        }).done();
+            return Imaging.BitmapDecoder.createAsync(imageStream);
+        })
+        .then(function (decoder) {
+            bitmapDecoder = decoder;
+            return Imaging.BitmapEncoder.createForTranscodingAsync(imageStream, bitmapDecoder);
+        })
+        .then(function (encoder) {
+            bitmapEncoder = encoder;
+            bitmapEncoder.bitmapTransform.rotation = Imaging.BitmapRotation.clockwise90Degrees;
+            return bitmapEncoder.flushAsync();
+        })
+        .then(function () {
+            fileName = "QBIZCamera" + getCurrentDateTime() + ".jpg";
+            return folder.createFileAsync(fileName, Windows.Storage.CreationCollisionOption.generateUniqueName);
+        })
+        .then(function (file) {
+            fileName = file.name;
+            return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
+        })
+        .then(function (outStream) {
+            outputStream = outStream;
+            return Windows.Storage.Streams.RandomAccessStream.copyAsync(imageStream, outputStream);
+        })
+        .then(function () {
+            outputStream.close();
+            return Imaging.BitmapEncoder.createForTranscodingAsync(imageStream, bitmapDecoder);
+        })
+        .then(function(encoder) {
+            bitmapEncoder = encoder;
+            console.log(bitmapEncoder.bitmapTransform.scaledWidth);
+            console.log(bitmapEncoder.bitmapTransform.scaledHeight);
+            bitmapEncoder.bitmapTransform.scaledWidth /= 6;
+            bitmapEncoder.bitmapTransform.scaledHeight /= 6;
+            bitmapEncoder.bitmapTransform.interpolationMode = Imaging.BitmapInterpolationMode.cubic;
+            return bitmapEncoder.flushAsync();
+        })
+        .then(function () {
+            return folder.createFileAsync(fileName + ".1.jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
+        })
+        .then(function (file) {
+            return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
+        })
+        .then(function (outStream) {
+            outputStream = outStream;
+            return Windows.Storage.Streams.RandomAccessStream.copyAsync(imageStream, outputStream);
+        })
+        .then(function (file) {
+            outputStream.close();
+            imageStream.close();
+            window.onPictureTaken(["ms-appdata:///local/" + fileName]);
+        })
+        .done();
     },
     setOnPictureTakenHandler: function (onTaken) {
         window.onPictureTaken = onTaken;

@@ -222,31 +222,29 @@
 		 * Usuwa całą konfigurację i dane aplikacji
 		 * @param {string} dataURI
 		 */
-		function purgeProjects( dataURI ) {
-			var deferred = $q.defer();
-			var counted = 0;
-			listDirectory( dataURI ).then( function( entries ) {
-				for( var i = 0; i < entries.length; i++ ) {
-					log(entries[i], "entry");
-					if( !isDir( entries[i] ) ) {
-						entries[i].remove( function( callback ) {
-							counted++;
-						}, log );
-					} else {
-						entries[i].removeRecursively( function() {
-							counted++;
-						}, log );
-					}
-			
-				saveProjects( dataURI, [] ).then( function( scc ) {
-					deferred.resolve( { success: true } );
-				}, function( err ) {
-					deferred.reject( { success: false });
-				});
-					
-				}
-			}, log );
-			return deferred.promise;
+		function purgeProjects(dataURI) {
+		    return new Promise(function (resolve, reject) {
+		        listDirectory(dataURI)
+                .then(function (entries) {
+		            for (var i = 0; i < entries.length; i++) {
+		                if (!isDir(entries[i])) {
+		                    entries[i].remove();
+		                } else {
+		                    entries[i].removeRecursively();
+		                }
+		            }
+		            saveProjects(dataURI, [])
+                    .then(function (scc) {
+                        resolve({ success: true });
+                    })
+                    .catch(function () {
+                        reject();
+                    });
+                })
+		        .catch(function () {
+		            reject();
+		        });
+		    });
 		}
 		/* --- NOWE FUNCKJE ---  */
 		/**

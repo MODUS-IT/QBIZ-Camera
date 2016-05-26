@@ -83,7 +83,6 @@
     <preference name="windows-target-version" value="10.0" />
     <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
         <vs:platformSpecificWidget platformName="windows">
-            <vs:packageOutputPath>C:\Users\Grzegorz\Desktop\</vs:packageOutputPath>
             <vs:appxPackageIsForStore>False</vs:appxPackageIsForStore>
             <vs:packageOutputPath>C:\Users\LPM\Desktop\</vs:packageOutputPath>
         </vs:platformSpecificWidget>

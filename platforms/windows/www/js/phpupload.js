@@ -17,27 +17,34 @@
 		 * Zwraca UID
 		 */
 		function beginTransaction() {
-			var UID = localStorage.getUID();
-			if( UID ) return UID;
-			else return generateUID();
+		    return new Promise(function (resolve, reject) {
+		        var UID = localStorage.getUID();
+		        if (UID) {
+		            resolve(UID);
+		        }
+		        else {
+		            generateUID()
+                    .then(function (PHPCallback) {
+                        if (Object.prototype.toString.call(PHPCallback) == "[object Object]" && PHPCallback.data.created) {
+                            localStorage.saveUID( PHPCallback.data.uid );
+                            resolve(PHPCallback.data.uid);
+                        }
+                        else {
+                            reject();
+                        }
+                    })
+		            .catch(function () {
+		                reject();
+		            });
+		        }
+		    });
 		}
 		
 		/**
 		 * Wysyła żądanie do serwera o UID
 		 */
 		function generateUID() {
-			function saveGeneratedUID( PHPCallback ) {
-				if( Object.prototype.toString.call( PHPCallback ) == "[object Object]" ) {
-					log(PHPCallback, "PHPCall");
-					if( PHPCallback.data.created ) {
-						localStorage.saveUID( PHPCallback.data.uid );
-						return PHPCallback.data.uid;
-					}
-				}
-			}
-			
-			var config = { generateUID: true }
-			$http.post( uniqueIDserverURL, config ).then( saveGeneratedUID, log );
+			return $http.post( uniqueIDserverURL, { generateUID: true } );
 		}
 		
 		/* STEP 2 */
@@ -49,46 +56,42 @@
 		 * @param {string} UID
 		 * @param {Object} ftpConfig
 		 */
-		function uploadInitialData( UID, ftpConfig ) {
-			var deferred = $q.defer();
-			var mixedData = {
-				uid: UID,
-				ftpConfig: ftpConfig
-			}
-			$http.post( handshakeURL, mixedData ).then( checkCallback, log );
-			
-			function checkCallback( callback ) {
-                log(callback, "Handshake");
-				if( callback.data.bool ) deferred.resolve( callback.data );
-				else deferred.reject( callback.data );
-				
-			}
-			return deferred.promise;
+		function uploadInitialData(UID, ftpConfig) {
+		    return new Promise(function (resolve, reject) {
+		        var mixedData = {
+		            uid: UID,
+		            ftpConfig: ftpConfig
+		        }
+
+		        $http.post(handshakeURL, mixedData)
+                .then(function ( PHPcallback ) {
+                    if (PHPcallback.data.bool) {
+                        resolve();
+                    }
+                    else {
+                        reject(PHPcallback.data);
+                    }
+                }, log);
+		    });
 		}
 		
 		/**
 		 * Wrzuca config projetków na serwer
 		 */
-		function uploadConfig( UID, config ) {
-			var deferred = $q.defer();
-			log(config, "conf");
-			var mixedData = {
-				uid: UID,
-				config: config
-			}
-			$http.post( mainJSONURL, mixedData ).then( PHPCallback, AJAXError );
-
-			function PHPCallback( callback ) {
-				//ToDO
-				log(callback, "call");
-				deferred.resolve(callback);
-			}
-
-			function AJAXError( error ) {
-				log(error, "error");
-				deferred.reject(error);
-			}
-			return deferred.promise;
+		function uploadConfig(UID, config) {
+		    return new Promise(function (resolve, reject) {
+		        var mixedData = {
+		            uid: UID,
+		            config: config
+		        };
+		        $http.post(mainJSONURL, mixedData)
+                .then(function (isOk) {
+                    if (isOk.data.bool) {
+                        resolve();
+                    }
+                    else reject();
+                });
+		    });
 		}
 		
 		/* STEP 3 */
@@ -108,7 +111,6 @@
 			
 			$cordovaFileTransfer.upload( serverURL, photoURL, uploadConfig ).then( uploadCompleted, uploadError );
 			function uploadCompleted( response ) {
-				log( response, "completed");
 				deferred.resolve("ok");
 			}
 			
@@ -125,22 +127,21 @@
 		/**
 		 * Wysyła zapytanie do serwera o uporzadkowanie struktury plików dla UID
 		 */
-		function cleanUp( UID ) {
-			var deferred = $q.defer();
-			$http.post( cleanupURL, UID ).then( allOk, AJAXError );
-			function allOk( callback ) {
-				if( callback.data.ok ) {
-					deferred.resolve( callback.data.ok );
-				} 
-				else {
-					deferred.reject( callback.data.ok );    
-				}
-			}
-			
-			function AJAXError( err ) {
-				deferred.reject( false );
-			}
-			return deferred.promise;
+		function cleanUp(UID) {
+		    return new Promise(function (resolve, reject) {
+		        $http.post(cleanupURL, UID)
+                .then(function (isOk) {
+                    if (isOk.data.ok) {
+                        resolve();
+                    }
+                    else {
+                        reject();
+                    }
+                })
+                .catch(function () {
+                    reject();
+                });
+		    })
 		}
 		
 		

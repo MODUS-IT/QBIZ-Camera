@@ -50,7 +50,8 @@ angular.module('cameraApp', ['ionic', 'ngCordova', 'cameraApp.PHPUpload', 'camer
 			}
 		});
 	})
-	.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+	.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
+	    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|ms-appdata):/);
 		$stateProvider
 			.state('mainView', {
 				url: '/mainView',

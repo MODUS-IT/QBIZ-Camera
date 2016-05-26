@@ -87,7 +87,7 @@
   <PropertyGroup>
     <TargetPlatformIdentifier>MDD</TargetPlatformIdentifier>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Users\Grzegorz\Desktop\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\LPM\Desktop\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>

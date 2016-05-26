@@ -14,6 +14,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class CameraPreview extends CordovaPlugin implements CameraActivity.CameraPreviewListener {
 
@@ -119,7 +121,13 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 					FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 					fragmentTransaction.add(containerView.getId(), fragment);
 					fragmentTransaction.commit();
-					fragment.setLargestCameraResolution();
+					new Timer().schedule(new TimerTask() {          
+						@Override
+						public void run() {
+							Log.d(TAG, "timer cameraRes");
+                            fragment.setLargestCameraResolution();    
+						}
+					}, 2000);
 				}
 				catch(Exception e){
 					e.printStackTrace();
