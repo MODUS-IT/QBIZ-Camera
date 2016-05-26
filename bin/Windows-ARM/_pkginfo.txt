@@ -1,1 +1,1 @@
-C:\Users\LPM\Desktop\CordovaApp.Windows10_1.0.0.1_arm_debug_Test\CordovaApp.Windows10_1.0.0.1_arm_debug.appx
+C:\CordovaApp.Windows10_1.0.0.1_arm_debug_Test\CordovaApp.Windows10_1.0.0.1_arm_debug.appx

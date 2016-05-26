@@ -5,7 +5,7 @@
     <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\LPM\AppData\Local\Temp\fnvajwic_QBIZCamera_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\nxb1vwoh_QBIZCamera_refcache</ReferenceCachePath>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>arm</AppxBuildConfigurationSelection>
@@ -15,6 +15,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-AnyCPU'">
     <DebuggerFlavor>WindowsMobileEmulator</DebuggerFlavor>
-    <WindowsMobileEmulatorID>F554226E-1E47-460D-B76A-338418AD356B;Mobile Emulator 10.0.10586.0 720p 5 inch 1GB</WindowsMobileEmulatorID>
+    <WindowsMobileEmulatorID>602A95E3-B42A-4AE5-BA1C-9C4E38854668;Mobile Emulator 10.0.10240.0 1080p 6 inch 2GB</WindowsMobileEmulatorID>
   </PropertyGroup>
 </Project>
