@@ -9,6 +9,9 @@ cordova.define("com.mbppower.camerapreview.CameraPreview", function(require, exp
         setOnPictureTakenHandler: function (onPictureTaken) {
             exec(onPictureTaken, onPictureTaken, PLUGIN_NAME, "setOnPictureTakenHandler", []);
         },
+        setOnMotionUpdate: function(onMotionUpdate) {
+            exec(onMotionUpdate, onMotionUpdate, PLUGIN_NAME, "setOnMotionUpdate", []);
+        },
         startCamera: function (startAsBackground, screen) {
             exec(null, null, PLUGIN_NAME, "startCamera", [startAsBackground, screen.w, screen.h]);
         },

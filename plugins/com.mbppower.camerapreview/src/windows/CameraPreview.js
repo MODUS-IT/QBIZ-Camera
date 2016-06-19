@@ -1,7 +1,7 @@
 ﻿var cordova = require('cordova'), QBIZCamera = require('./CameraPreview');
 
-module.exports = {
-    startCamera: function ( ...noParam ) {
+var exports = {
+    startCamera: function (...noParam) {
         function styleBody() {
             return new Promise(function (resolve, reject) {
                 var body = document.body;
@@ -62,10 +62,10 @@ module.exports = {
         .then(function () {
             return enumerateCameras();
         })
-       .then(function () {
+        .then(function () {
             return mediaCapture.initializeAsync();
         })
-       .then(function () {
+        .then(function () {
             var preview = document.getElementById("windowsPreview");
             preview.src = URL.createObjectURL(mediaCapture);
             preview.play();
@@ -73,16 +73,17 @@ module.exports = {
             QBIZCamera.mediaCapture = mediaCapture;
         });
     },
-    stopCamera: function( callback, error, noParam ) {
+    stopCamera: function (callback, error, noParam) {
+        QBIZCamera.mediaCapture.close();
         return callback(true);
     },
     takePicture: function (successCallback, errorCallback, ...noParam) {
-
         var Imaging = Windows.Graphics.Imaging;
         var format = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(),
             imageStream = new Windows.Storage.Streams.InMemoryRandomAccessStream(),
-        //folder = Windows.Storage.ApplicationData.current.localFolder,
-            folder = Windows.Storage.KnownFolders.picturesLibrary;
+            thumbnailStream = new Windows.Storage.Streams.InMemoryRandomAccessStream(),
+            folder = Windows.Storage.ApplicationData.current.localFolder,
+            //folder = Windows.Storage.KnownFolders.picturesLibrary;
             bitmapDecoder = null,
             bitmapEncoder = null,
             fileName = null,
@@ -90,7 +91,7 @@ module.exports = {
 
         function getCurrentDateTime() {
             var d = new Date();
-            var datetime = d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds();
+            var datetime = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds();
             return datetime;
         }
 
@@ -122,31 +123,54 @@ module.exports = {
         })
         .then(function () {
             outputStream.close();
-            return Imaging.BitmapEncoder.createForTranscodingAsync(imageStream, bitmapDecoder);
+            imageStream.close();
+            return folder.getFileAsync(fileName);
         })
-        .then(function(encoder) {
+        .then(function (image) {
+            console.warn("got file");
+            return image.openAsync(Windows.Storage.FileAccessMode.readWrite);
+        })
+        .then(function (imageBlob) {
+            console.warn("got blob");
+            return Windows.Storage.Streams.RandomAccessStream.copyAsync(imageBlob, thumbnailStream);
+        })
+        .then(function () {
+            console.warn("created");
+            return Imaging.BitmapDecoder.createAsync(thumbnailStream);
+        })
+        .then(function (decoder) {
+            console.warn("got decoder");
+            bitmapDecoder = null;
+            bitmapDecoder = decoder;
+            return Imaging.BitmapEncoder.createForTranscodingAsync(thumbnailStream, bitmapDecoder);
+        })
+        .then(function (encoder) {
+            console.warn("got encoder");
             bitmapEncoder = encoder;
-            console.log(bitmapEncoder.bitmapTransform.scaledWidth);
-            console.log(bitmapEncoder.bitmapTransform.scaledHeight);
-            bitmapEncoder.bitmapTransform.scaledWidth /= 6;
-            bitmapEncoder.bitmapTransform.scaledHeight /= 6;
-            bitmapEncoder.bitmapTransform.interpolationMode = Imaging.BitmapInterpolationMode.cubic;
+            bitmapEncoder.bitmapTransform.scaledWidth = 241;
+            bitmapEncoder.bitmapTransform.scaledHeight = 321;
+            bitmapEncoder.bitmapTransform.bounds = {
+                height: 320,
+                width: 240,
+                x: 1,
+                y: 1
+            };
             return bitmapEncoder.flushAsync();
         })
         .then(function () {
-            return folder.createFileAsync(fileName + ".1.jpg", Windows.Storage.CreationCollisionOption.generateUniqueName);
+            return folder.createFileAsync(fileName + ".thumb", Windows.Storage.CreationCollisionOption.generateUniqueName);
         })
         .then(function (file) {
             return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
         })
         .then(function (outStream) {
             outputStream = outStream;
-            return Windows.Storage.Streams.RandomAccessStream.copyAsync(imageStream, outputStream);
+            return Windows.Storage.Streams.RandomAccessStream.copyAsync(thumbnailStream, outputStream);
         })
-        .then(function (file) {
+        .then(function () {
+            thumbnailStream.close();
             outputStream.close();
-            imageStream.close();
-            window.onPictureTaken(["ms-appdata:///local/" + fileName]);
+            window.onPictureTaken( ["ms-appdata:///local/" + fileName] );
         })
         .done();
     },
@@ -161,7 +185,7 @@ module.exports = {
         var preview = document.getElementById('windowsPreview');
         preview.pause();
     },
-    switchCamera: function(...noParam) {
+    switchCamera: function (...noParam) {
 
     },
     logCamera: function (callback, error, noParam) {
@@ -176,7 +200,7 @@ module.exports = {
     useTimer: function (...noParam) { },
     useMotionDetection: function (...noParam) { },
     motionDetectionStart: function (...noParam) { },
-    motionDetectionStop: function(...noParam) {}
+    motionDetectionStop: function (...noParam) { }
 };
 
-require("cordova/exec/proxy").add("CameraPreview", module.exports);
+require("cordova/exec/proxy").add("CameraPreview", exports);

@@ -54,7 +54,9 @@ public class CameraActivity extends Fragment {
 
 	public interface CameraPreviewListener {
 		public void onPictureTaken(String originalPicturePath);
+		public void onMotionUpdate(String motionStatus);
 	}
+	
 
 	private CameraPreviewListener eventListener;
 	private static final String TAG = "QBIZ CameraActivity";
@@ -235,10 +237,12 @@ public class CameraActivity extends Fragment {
                     boolean detected = detector.detect( hsl, 1920, 1080 );
                     if(!detected) {
                         framesStill++;
+						eventListener.onMotionUpdate( "" + framesStill );
                     }
                     else framesStill = 0;
                     
                     if( framesStill >= 3 ) {
+						eventListener.onMotionUpdate( "" + framesStill );
                         takePicture( 0, 0 );
                         framesStill = 0;
                     }

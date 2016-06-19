@@ -8,14 +8,14 @@
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
   <Identity Name="com.ionicframework.cameraapp997130" Publisher="CN=Apache Cordova Team" Version="1.0.0.1" ProcessorArchitecture="arm" />
-  <mp:PhoneIdentity PhoneProductId="ab320890-1cda-11e6-ab18-89d4be74fa97" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <mp:PhoneIdentity PhoneProductId="b0a81af0-32c2-11e6-934c-477bf8771aca" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>QBIZ Camera360</DisplayName>
     <PublisherDisplayName>Grzegorz Mrózek</PublisherDisplayName>
     <Logo>images\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily MaxVersionTested="10.0.10586.0" MinVersion="10.0.10240.0" Name="Windows.Universal" />
+    <TargetDeviceFamily MaxVersionTested="10.0.10586.0" MinVersion="10.0.10586.0" Name="Windows.Universal" />
   </Dependencies>
   <Resources>
     <Resource Language="PL-PL" />
@@ -36,6 +36,7 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap:Capability Name="removableStorage" />
     <uap:Capability Name="picturesLibrary" />
     <DeviceCapability Name="webcam" />
     <DeviceCapability Name="microphone" />

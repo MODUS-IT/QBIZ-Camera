@@ -2,10 +2,10 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
-    <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
+    <AndroidEmulatorID>AndroidEmulator;Google Android Emulator</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\nxb1vwoh_QBIZCamera_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\User\AppData\Local\Temp\QBIZCamera_refcache</ReferenceCachePath>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>arm</AppxBuildConfigurationSelection>
@@ -14,7 +14,7 @@
     <DebuggerFlavor>PhoneDevice81</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-AnyCPU'">
-    <DebuggerFlavor>WindowsMobileEmulator</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocal</DebuggerFlavor>
     <WindowsMobileEmulatorID>602A95E3-B42A-4AE5-BA1C-9C4E38854668;Mobile Emulator 10.0.10240.0 1080p 6 inch 2GB</WindowsMobileEmulatorID>
   </PropertyGroup>
 </Project>

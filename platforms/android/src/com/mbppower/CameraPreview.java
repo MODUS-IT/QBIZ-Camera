@@ -31,6 +31,7 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 
 	private CameraActivity fragment;
 	private CallbackContext takePictureCallbackContext;
+	private CallbackContext motionCallbackContext;
 	private int containerViewId = 1;
 	public CameraPreview(){
 		super();
@@ -39,29 +40,21 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-
-    	if (setOnPictureTakenHandlerAction.equals(action)){
-    		return setOnPictureTakenHandler(args, callbackContext);
-    	}
-        else if (startCameraAction.equals(action)){
-    		return startCamera(args, callbackContext);
-    	}
-	    else if (takePictureAction.equals(action)){
+		if(setOnPictureTakenHandlerAction.equals(action)) {
+			return setOnPictureTakenHandler(args, callbackContext);
+		} else if(startCameraAction.equals(action)) {
+			return startCamera(args, callbackContext);
+		} else if (takePictureAction.equals(action)){
 		    return takePicture(args, callbackContext);
-	    }
-	    else if (stopCameraAction.equals(action)){
+	    } else if (stopCameraAction.equals(action)){
 		    return stopCamera(args, callbackContext);
-	    }
-	    else if (hideCameraAction.equals(action)){
+	    } else if (hideCameraAction.equals(action)){
 		    return hideCamera(args, callbackContext);
-	    }
-	    else if (showCameraAction.equals(action)){
+	    } else if (showCameraAction.equals(action)){
 		    return showCamera(args, callbackContext);
-	    }
-	    else if (switchCameraAction.equals(action)){
+	    } else if (switchCameraAction.equals(action)){
 		    return switchCamera(args, callbackContext);
-	    }
-        else if (action.equals("logCamera")) {
+	    } else if (action.equals("logCamera")) {
             return logCamera(args, callbackContext);
         } else if(action.equals("setupCamera")) {
             return setupCamera(args, callbackContext);
@@ -74,7 +67,6 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
         } else if( action.equals("motionDetectionStop")) {
             return motionDetectionStop(args, callbackContext);
         }
-
     	return false;
     }
 
@@ -147,6 +139,7 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 		Log.d(TAG, "setKeepCallback CameraPreview");
 		callbackContext.sendPluginResult(pluginResult);
 		Log.d(TAG, "sendPluginResult CameraPreview");
+
 		try {
 			double maxWidth = 0;
 			double maxHeight = 0;
@@ -166,6 +159,14 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
 		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, data);
 		pluginResult.setKeepCallback(true);
 		takePictureCallbackContext.sendPluginResult(pluginResult);
+	}
+
+	public void onMotionUpdate(String framesStill) {
+		JSONArray data = new JSONArray();
+		data.put(framesStill);
+		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, data);
+		pluginResult.setKeepCallback(true);
+		
 	}
 
 	private boolean stopCamera(final JSONArray args, CallbackContext callbackContext) {
@@ -224,6 +225,11 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
         fragment.setupCamera();
         return true;
     }
+
+	private boolean setOnMotionUpdate(JSONArray args, CallbackContext callbackContext) {
+		motionCallbackContext = callbackContext;
+		return true;
+	}
     
     private boolean setOnPictureTakenHandler(JSONArray args, CallbackContext callbackContext) {
         Log.d(TAG, "--- setOnPictureTakenHandler ---");

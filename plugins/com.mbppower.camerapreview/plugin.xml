@@ -48,7 +48,7 @@
 
   <!-- windows -->
   <platform name="windows">
-    <js-module src="src/windows/CameraPreview.js" name="CameraPreviewWindows10">
+    <js-module src="src/windows/CameraPreview.js" name="CameraPreviewWin10">
       <merges target="" />
     </js-module>
   </platform>

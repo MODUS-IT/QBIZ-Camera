@@ -5,70 +5,49 @@
 
     var PLUGIN_NAME = "CameraPreview";
 
-    function CameraPreview() {
-        CameraPreview.setOnPictureTakenHandler = function (onPictureTaken) {
+    module.exports = {
+        setOnPictureTakenHandler: function (onPictureTaken) {
             exec(onPictureTaken, onPictureTaken, PLUGIN_NAME, "setOnPictureTakenHandler", []);
-        };
-
-        CameraPreview.startCamera = function (rect, defaultCamera, tapEnabled, dragEnabled, toBack, alpha) {
-            if (typeof (alpha) === 'undefined') alpha = 1;
-            exec(null, null, PLUGIN_NAME, "startCamera", [rect.x, rect.y, rect.width, rect.height, defaultCamera, !!tapEnabled, !!dragEnabled, !!toBack, alpha]);
-        };
-
-        CameraPreview.stopCamera = function () {
+        },
+        setOnMotionUpdate: function(onMotionUpdate) {
+            exec(onMotionUpdate, onMotionUpdate, PLUGIN_NAME, "setOnMotionUpdate", []);
+        },
+        startCamera: function (startAsBackground, screen) {
+            exec(null, null, PLUGIN_NAME, "startCamera", [startAsBackground, screen.w, screen.h]);
+        },
+        stopCamera: function () {
             exec(null, null, PLUGIN_NAME, "stopCamera", []);
-        };
-
-        CameraPreview.takePicture = function (size) {
-            var params = [0, 0];
-            if (size) {
-                params = [size.maxWidth, size.maxHeight];
-            }
-            exec(null, null, PLUGIN_NAME, "takePicture", params);
-        };
-
-        CameraPreview.switchCamera = function () {
+        },
+        takePicture: function () {
+            exec(null, null, PLUGIN_NAME, "takePicture", []);
+        },
+        switchCamera: function () {
             exec(null, null, PLUGIN_NAME, "switchCamera", []);
-        };
-
-        CameraPreview.hide = function () {
-            exec(null, null, PLUGIN_NAME, "hideCamera", []);
-        };
-
-        CameraPreview.show = function () {
-            exec(null, null, PLUGIN_NAME, "showCamera", []);
-        };
-
-        CameraPreview.logCamera = function () {
-            exec(null, null, PLUGIN_NAME, "logCamera", []);
-            console.log('hello');
-        }
-
-        CameraPreview.fullRes = function () {
-            exec(null, null, PLUGIN_NAME, "doSth", []);
-        }
-
-        CameraPreview.useTimer = function useTimer() {
+        },
+        hide: function () {
+            exec(null, null, PLUGIN_NAME, "hide", []);
+        },
+        show: function () {
+            exec(null, null, PLUGIN_NAME, "show", []);
+        },
+        logCamera: function () {
+            exec(function (camera) {
+                console.log('Camera Resolution: ' + camera.resolution);
+                console.log('Camera Preview Resolution: ' + camera.previewResolution);
+            }, null, PLUGIN_NAME, "logCamera", []);
+        },
+        useTimer: function useTimer() {
             exec(null, null, PLUGIN_NAME, "useTimer", []);
-        }
-
-        CameraPreview.useMotionDetection = function useMotionDetection() {
+        },
+        useMotionDetection: function useMotionDetection() {
             exec(null, null, PLUGIN_NAME, "useMotionDetection", []);
-        }
-
-        CameraPreview.motionDetectionStart = function motionDetectionStart() {
+        },
+        motionDetectionStart: function motionDetectionStart() {
             exec(null, null, PLUGIN_NAME, "motionDetectionStart", []);
-        }
-
-        CameraPreview.motionDetectionStop = function motionDetectionStop() {
+        },
+        motionDetectionStop: function motionDetectionStop() {
             exec(null, null, PLUGIN_NAME, "motionDetectionStop", []);
         }
-
-        CameraPreview.echo = function (str, callback) {
-            exec(callback, function (err) { console.log('LOL'); }, PLUGIN_NAME, "echo", [str]);
-        }
-    };
-
-    module.exports = new CameraPreview();
+    }
 
 });

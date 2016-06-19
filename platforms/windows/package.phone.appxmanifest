@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
     <Identity Name="com.ionicframework.cameraapp997130" Publisher="CN=$username$" Version="1.0.0.1" />
-    <mp:PhoneIdentity PhoneProductId="ab320890-1cda-11e6-ab18-89d4be74fa97" PhonePublisherId="db093ed5-53b1-45f7-af72-751e8f36ab80" />
+    <mp:PhoneIdentity PhoneProductId="b0a81af0-32c2-11e6-934c-477bf8771aca" PhonePublisherId="db093ed5-53b1-45f7-af72-751e8f36ab80" />
     <Properties>
         <DisplayName>QBIZ Camera360</DisplayName>
         <PublisherDisplayName>Grzegorz Mrózek</PublisherDisplayName>

@@ -57,5 +57,5 @@
       <vs:packageOutputPath>C:\</vs:packageOutputPath>
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
-  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\LPM\Documents\GitHub\CordovaCameraPreview" />
+  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\User\Source\Repos\CordovaCameraPreview" />
 </widget>

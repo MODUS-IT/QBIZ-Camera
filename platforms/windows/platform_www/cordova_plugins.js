@@ -374,7 +374,7 @@ module.exports = [
     },
     {
         "file": "plugins/com.mbppower.camerapreview/src/windows/CameraPreview.js",
-        "id": "com.mbppower.camerapreview.CameraPreviewWindows10",
+        "id": "com.mbppower.camerapreview.CameraPreviewWin10",
         "pluginId": "com.mbppower.camerapreview",
         "merges": [
             ""

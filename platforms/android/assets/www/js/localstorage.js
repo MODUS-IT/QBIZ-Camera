@@ -21,7 +21,7 @@ angular.module('cameraApp.localStorage', [])
 			if(cameraData) {
 				return angular.fromJson(cameraData);
 			}
-			return { grid: false, pictures: 8, pictureInterval: 30 };
+			return { grid: false, pictures: 8, pictureInterval: 30, shutterActivation: "timer" };
 		}
 		
 		this.getUID = function() {
