@@ -20,6 +20,7 @@ var exports = {
                 video.style.right = "0";
                 body.insertBefore(video, body.firstChild);
                 if (!document.getElementById('windowsPreview')) reject();
+                logger.add("Body styled.");
                 resolve();
             });
         }
@@ -28,6 +29,7 @@ var exports = {
             return new Promise(function (resolve, reject) {
                 var view = Windows.UI.ViewManagement.ApplicationView.getForCurrentView();
                 view.tryEnterFullScreenMode();
+                logger.add("Entering full screen");
                 resolve();
             });
         }
@@ -38,9 +40,11 @@ var exports = {
                 deviceInfo.findAllAsync(Windows.Devices.Enumeration.DeviceClass.videoCapture)
                 .then(function (devices) {
                     settings.videoDeviceId = devices[0]; //Use first device
+                    logger.add("Using first device");
                     resolve();
                 }, function (err) {
-                    throw new Error('No devices available');
+                    logger.add("No devices found");
+                    reject(err);
                 });
             });
         }
@@ -49,6 +53,7 @@ var exports = {
             var props = mediaCapture.videoDeviceController.getMediaStreamProperties(Windows.Media.Capture.MediaStreamType.videoPreview);
             props.properties.insert(RotationKey, 90);
             mediaCapture.setEncodingPropertiesAsync(Windows.Media.Capture.MediaStreamType.videoPreview, props, null);
+            logger.add("Rotating preview");
         }
 
         var mediaCapture = new Windows.Media.Capture.MediaCapture();
@@ -71,7 +76,8 @@ var exports = {
             preview.play();
             preview.addEventListener("playing", rotateCamera);
             QBIZCamera.mediaCapture = mediaCapture;
-        });
+        })
+        .done();
     },
     stopCamera: function (callback, error, noParam) {
         QBIZCamera.mediaCapture.close();
@@ -147,11 +153,11 @@ var exports = {
         .then(function (encoder) {
             console.warn("got encoder");
             bitmapEncoder = encoder;
-            bitmapEncoder.bitmapTransform.scaledWidth = 241;
-            bitmapEncoder.bitmapTransform.scaledHeight = 321;
+            bitmapEncoder.bitmapTransform.scaledWidth = screen.width + 1;
+            bitmapEncoder.bitmapTransform.scaledHeight = screen.height + 1;
             bitmapEncoder.bitmapTransform.bounds = {
-                height: 320,
-                width: 240,
+                height: screen.height,
+                width: screen.width,
                 x: 1,
                 y: 1
             };
@@ -170,12 +176,15 @@ var exports = {
         .then(function () {
             thumbnailStream.close();
             outputStream.close();
-            window.onPictureTaken( ["ms-appdata:///local/" + fileName] );
+            QBIZCamera.onPictureTaken( ["ms-appdata:///local/" + fileName] );
         })
         .done();
     },
     setOnPictureTakenHandler: function (onTaken) {
-        window.onPictureTaken = onTaken;
+        QBIZCamera.onPictureTaken = onTaken;
+    },
+    setOnMotionUpdate: function(onMotionUpdate) {
+        QBIZCamera.onMotionUpdate = onMotionUpdate;
     },
     show: function (...noParam) {
         var preview = document.getElementById('windowsPreview');
@@ -197,10 +206,20 @@ var exports = {
             previewResolution: { width: 1337, height: 16 }
         });
     },
-    useTimer: function (...noParam) { },
-    useMotionDetection: function (...noParam) { },
-    motionDetectionStart: function (...noParam) { },
-    motionDetectionStop: function (...noParam) { }
+    useTimer: function (...noParam) {
+        logger.add("Using Timer");
+    },
+    useMotionDetection: function (...noParam) {
+        logger.add("Using Motion Detection");
+    },
+    motionDetectionStart: function (...noParam) {
+        QBIZCamera.motionDetectionLoop = setInterval(function () {
+            logger.add("motionLoop");
+        }, 1000);
+    },
+    motionDetectionStop: function (...noParam) {
+        clearInterval(QBIZCamera.motionDetectionLoop);
+    }
 };
 
 require("cordova/exec/proxy").add("CameraPreview", exports);

@@ -15,6 +15,17 @@ var Project = function Project (projectId, projectName) {
     this.images = [];
 }
 
+var Logger = function Logger() {
+    this.log = [];
+    this.add = function(str) {
+        this.log.push(str);
+    }
+    this.show = function () {
+        console.log(this.log);
+    }
+}
+
+window.logger = new Logger();
 
 function closeApp( index ) {
     if (index != 1) return;

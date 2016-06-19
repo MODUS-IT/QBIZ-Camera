@@ -1,1 +1,1 @@
-C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\CordovaApp.Windows10.jsproj;neutral
+C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\CordovaApp.Windows10.jsproj;neutral
