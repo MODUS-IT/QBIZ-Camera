@@ -5,7 +5,7 @@
     <AndroidEmulatorID>363F7AED-462C-46BD-9FEC-F1DD3B79916C;VS Emulator 5" KitKat (4.4) XXHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferenceCachePath>C:\Users\Grzegorz\AppData\Local\Temp\sirpmt34_QBIZCamera_refcache</ReferenceCachePath>
+    <ReferenceCachePath>C:\Users\User\AppData\Local\Temp\vnylgrhi_QBIZCamera_refcache</ReferenceCachePath>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>arm</AppxBuildConfigurationSelection>
