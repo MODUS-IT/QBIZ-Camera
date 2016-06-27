@@ -133,6 +133,9 @@
     <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova.js">
       <PackagePath>www\lib\cordova\ng-cordova.js</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\IM.min.js">
+      <PackagePath>www\lib\IM.min.js</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.js">
       <PackagePath>www\lib\ionic\js\angular-ui\angular-ui-router.js</PackagePath>
     </AppxPackagedFile>

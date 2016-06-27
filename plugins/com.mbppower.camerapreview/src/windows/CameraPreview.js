@@ -1,4 +1,6 @@
-﻿var cordova = require('cordova'), QBIZCamera = require('./CameraPreview');
+﻿"use strict";
+
+var cordova = require('cordova'), QBIZCamera = require('./CameraPreview');
 
 var exports = {
     startCamera: function (...noParam) {
@@ -76,8 +78,7 @@ var exports = {
             preview.play();
             preview.addEventListener("playing", rotateCamera);
             QBIZCamera.mediaCapture = mediaCapture;
-        })
-        .done();
+        });
     },
     stopCamera: function (callback, error, noParam) {
         QBIZCamera.mediaCapture.close();
@@ -178,7 +179,6 @@ var exports = {
             outputStream.close();
             QBIZCamera.onPictureTaken( ["ms-appdata:///local/" + fileName] );
         })
-        .done();
     },
     setOnPictureTakenHandler: function (onTaken) {
         QBIZCamera.onPictureTaken = onTaken;
@@ -213,13 +213,62 @@ var exports = {
         logger.add("Using Motion Detection");
     },
     motionDetectionStart: function (...noParam) {
+        QBIZCamera.motionDetection = new MotionDetection();
+        
         QBIZCamera.motionDetectionLoop = setInterval(function () {
-            logger.add("motionLoop");
+            logger.show();
+            var motionDetected = QBIZCamera.motionDetection.detect();
+            logger.add("motionLoop " + motionDetected);
+            logger.show();
         }, 1000);
     },
     motionDetectionStop: function (...noParam) {
         clearInterval(QBIZCamera.motionDetectionLoop);
     }
 };
+
+class MotionDetection {
+    detect() {
+        var original = this.getCurrentFrame();
+        if (!this.previous) {
+            this.previous = original;
+            return false;
+        }
+        var motionDetected = this.isDifferent(original);
+        this.previous = original;
+
+        return motionDetected;
+    }
+
+    getCurrentFrame() {
+        if(!this.video) {
+            this.video = document.getElementById('windowsPreview');
+        }
+        var frame = document.createElement("canvas");
+        frame.width = this.video.width;
+        frame.height = this.video.height;
+        frame.getContext("2d").drawImage(this.video, 0, 0, frame.width, frame.height);
+        return frame;
+    }
+
+    isDifferent(image) {
+        console.log(image);
+        console.log(this.previous);
+        IM.compare(
+	    [
+		    this.previous,
+            image
+	    ],
+	    function success(aCanvas, nElapsedTime, nPercentageMatch) {
+	        // Code on success. All images have the same pixel info.
+	        console.log(nPercentageMatch + "  .");
+	    },
+	    function fail(oCanvas, nElapsedTime, nPercentageMatch) {
+	        console.log(nPercentageMatch + "  ,");
+	        // Code on failing. Any image is different from others
+	    });
+        return true;
+    }
+}
 
 require("cordova/exec/proxy").add("CameraPreview", exports);

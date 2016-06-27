@@ -12,8 +12,8 @@
         <!-- cordova script (this will be a 404 during development) -->
         <script src="cordova.js"></script>
         <script src="lib/cordova/ng-cordova.js"></script>
-        <script src="lib/resemble.js"></script>
-        <!-- Main JS -->
+        <script src="lib/IM.min.js"></script>
+        <!-- Angular JS -->
         <script src="js/localstorage.js"></script>
         <script src="js/filemanipulation.js"></script>
         <script src="js/directives.js"></script>
@@ -22,7 +22,13 @@
         <script src="js/controller/main.js"></script>
         <script src="js/app.js"></script>
     </head>
-    <body id="body" ng-app="cameraApp" class="transparent" on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()" ng-controller="mainCtrl">
+    <body 
+          id="body" 
+          class="transparent" 
+          ng-app="cameraApp"
+          ng-controller="mainCtrl"
+          on-swipe-left="swipeLeft()" 
+          on-swipe-right="swipeRight()">
         <menu-tabs></menu-tabs>
         <ion-nav-view name="mainView"></ion-nav-view>
     </body>

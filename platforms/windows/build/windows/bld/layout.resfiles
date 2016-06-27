@@ -31,6 +31,7 @@ www\js\localstorage.js
 www\js\phpupload.js
 www\lib\cordova\ng-cordova.js
 www\lib\cordova\ng-cordova-mocks.js
+www\lib\IM.min.js
 www\lib\ionic\css\ionic.css
 www\lib\ionic\css\ionic.min.css
 www\lib\ionic\fonts\ionicons.eot

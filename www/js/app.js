@@ -18,7 +18,7 @@ var Project = function Project (projectId, projectName) {
 var Logger = function Logger() {
     this.log = [];
     this.add = function(str) {
-        this.log.push(str);
+        this.log.unshift(str);
     }
     this.show = function () {
         console.log(this.log);

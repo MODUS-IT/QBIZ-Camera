@@ -36,6 +36,7 @@
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\phpupload.js" "www\js\phpupload.js"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova-mocks.js" "www\lib\cordova\ng-cordova-mocks.js"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova.js" "www\lib\cordova\ng-cordova.js"
+"C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\IM.min.js" "www\lib\IM.min.js"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.js" "www\lib\ionic\js\angular-ui\angular-ui-router.js"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.min.js" "www\lib\ionic\js\angular-ui\angular-ui-router.min.js"
 "C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-animate.js" "www\lib\ionic\js\angular\angular-animate.js"
