@@ -1,16 +1,5 @@
 angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope, $ionicPlatform, localStorage, $ionicGesture, $interval, $cordovaNativeAudio, $timeout, $ionicModal, $cordovaToast, $state, $cordovaDialogs, $cordovaFileTransfer, FileManipulationService, PHPUploadService) {
-		/*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
-        $scope.swipeRight = viewGoForward;							//App swipe right view
-		$scope.swipeLeft = viewGoBack;								//App swipe left view
-		$scope.selectProject = selectProject;						//Gallery select project
-		$scope.cameraShow = showCamera;								//Show camera preview
-		$scope.cameraHide = hideCamera;								//Hide camera preview
-		$scope.toggleRightMenu = toggleRightMenu;					//Toggle camera settings on mainView
-        $scope.toggleShutterSettings = toggleShutterSettings;       //Toggle shutter activation settings
-		$scope.takePicture = takePicture;							//Init taking pictures
-		$scope.openPreview = openPreview;							//Open image preview
-        $scope.cameraAbort = abortCamera;                           //TO
-        $scope.cameraTogglePause = togglePauseCamera;               //DO
+		
         /*----------------------------------------VARS----------------------------------------------------------------------------------------------------------------*/
 		$scope.projects = [];										//Projects array
 		$scope.state = $state;										//Connect state to scope
@@ -33,6 +22,20 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
 		};
 		var dataStorageUri;											//shortcut for storage
 		var cameraInitialized = false;								//checked for camera init
+        
+    /*---------------------------------------ACTIONS-------------------------------------------------------------------------------------------------------------*/
+		$scope.swipeRight = viewGoForward;							//App swipe right view
+		$scope.swipeLeft = viewGoBack;								//App swipe left view
+		$scope.selectProject = selectProject;						//Gallery select project
+		$scope.cameraShow = showCamera;								//Show camera preview
+		$scope.cameraHide = hideCamera;								//Hide camera preview
+		$scope.toggleRightMenu = toggleRightMenu;					//Toggle camera settings on mainView
+		$scope.toggleShutterSettings = toggleShutterSettings;       //Toggle shutter activation settings
+		$scope.takePicture = takePicture;							//Init taking pictures
+		$scope.openPreview = openPreview;							//Open image preview
+		$scope.cameraAbort = abortCamera;                           //TO
+		$scope.cameraTogglePause = togglePauseCamera;               //DO
+
         /*----------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------------------------*/
 		$ionicPlatform.ready(function() {
 			dataStorageUri = cordova.file.dataDirectory;
@@ -94,11 +97,11 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
 		}
         
         function toggleShutterSettings() {
-            if( $scope.shutterSettings ) $scope.shutterSettings = false;
+            if ($scope.shutterSettings) {
+                $scope.shutterSettings = false;
+            }
             else {
-                if( $scope.rightMenu ) {
-                    $scope.rightMenu = false;
-                }
+                $scope.rightMenu = false;
                 $scope.shutterSettings = true;
             }
         }
@@ -252,7 +255,6 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
                 switch ($scope.params.shutterActivation) {
                     case "motion":
                         finishMotionCapture();
-                        deleteProject(window.project.id);
                         break;
                     default:
                     case "timer":
@@ -287,15 +289,6 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
             }
         }
 
-        /*
-        var pictureLoop = { 
-			loop: undefined, 										//main 1s loop
-			counter: undefined, 									//number of pictures taken
-			timer: undefined, 										//image take interval
-			timerCounter: undefined 								//counter for timer interval
-		};
-        */
-
         function takePictureUsingTimer() {
             if ( areAnyPicturesLeft( pictureLoop.picturesTaken, $scope.params.pictures ) ) {
                 if (inTimeForPicture(pictureLoop.currentTime, $scope.params.pictureInterval)) {
@@ -320,9 +313,7 @@ angular.module('cameraApp.mainCtrl', []).controller('mainCtrl', function($scope,
         function areAnyPicturesLeft( currentPic, noOfPicture ) {
             return currentPic < noOfPicture;
         }
-        /**
-         * @param {number} projectId
-         */
+        
         function takePictureUtility() {
 			QBIZCamera.takePicture();
 			QBIZCamera.setOnPictureTakenHandler(function (result) {

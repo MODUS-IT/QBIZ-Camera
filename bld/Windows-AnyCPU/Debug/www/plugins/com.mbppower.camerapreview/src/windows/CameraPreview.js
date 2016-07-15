@@ -1,15 +1,25 @@
 ﻿cordova.define("com.mbppower.camerapreview.CameraPreviewWin10", function(require, exports, module) {
+/*
+    CameraPreview.js
+    Created by Grzegorz Mrózek
+    QBIZCamera - 2016
+
+    noParam => useless junk needed by cordova
+*/
+
+"use strict";
+
 var cordova = require('cordova'), QBIZCamera = require('./CameraPreview');
 
 var exports = {
     startCamera: function (...noParam) {
         function styleBody() {
             return new Promise(function (resolve, reject) {
-                var body = document.body;
+                let body = document.body;
                 body.setAttribute('class', '');
                 body.style.background = '#000';
 
-                var video = document.createElement("video");
+                let video = document.createElement("video");
                 video.setAttribute("id", "windowsPreview");
                 video.style.width = "100%";
                 video.style.height = "100%";
@@ -19,15 +29,19 @@ var exports = {
                 video.style.bottom = "0";
                 video.style.left = "0";
                 video.style.right = "0";
+
                 body.insertBefore(video, body.firstChild);
-                if (!document.getElementById('windowsPreview')) reject();
-                resolve();
+                if (!document.getElementById('windowsPreview')) {
+                    return reject();
+                }
+
+                return resolve();
             });
         }
 
         function enterFullscreen() {
             return new Promise(function (resolve, reject) {
-                var view = Windows.UI.ViewManagement.ApplicationView.getForCurrentView();
+                let view = Windows.UI.ViewManagement.ApplicationView.getForCurrentView();
                 view.tryEnterFullScreenMode();
                 resolve();
             });
@@ -41,7 +55,7 @@ var exports = {
                     settings.videoDeviceId = devices[0]; //Use first device
                     resolve();
                 }, function (err) {
-                    throw new Error('No devices available');
+                    reject(err);
                 });
             });
         }
@@ -75,10 +89,13 @@ var exports = {
         });
     },
     stopCamera: function (callback, error, noParam) {
-        QBIZCamera.mediaCapture.close();
-        return callback(true);
+        if (QBIZCamera.mediaCapture) {
+            QBIZCamera.mediaCapture.close();
+            return callback(true);
+        }
+        return callback(false);
     },
-    takePicture: function (successCallback, errorCallback, ...noParam) {
+    takePicture: function (...noParam) {
         var Imaging = Windows.Graphics.Imaging;
         var format = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg(),
             imageStream = new Windows.Storage.Streams.InMemoryRandomAccessStream(),
@@ -90,6 +107,9 @@ var exports = {
             fileName = null,
             outputStream = null;
 
+        /**
+        * Used for timestamping photo name
+        */
         function getCurrentDateTime() {
             var d = new Date();
             var datetime = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds();
@@ -128,38 +148,32 @@ var exports = {
             return folder.getFileAsync(fileName);
         })
         .then(function (image) {
-            console.warn("got file");
             return image.openAsync(Windows.Storage.FileAccessMode.readWrite);
         })
         .then(function (imageBlob) {
-            console.warn("got blob");
             return Windows.Storage.Streams.RandomAccessStream.copyAsync(imageBlob, thumbnailStream);
         })
         .then(function () {
-            console.warn("created");
             return Imaging.BitmapDecoder.createAsync(thumbnailStream);
         })
         .then(function (decoder) {
-            console.warn("got decoder");
-            bitmapDecoder = null;
             bitmapDecoder = decoder;
             return Imaging.BitmapEncoder.createForTranscodingAsync(thumbnailStream, bitmapDecoder);
         })
         .then(function (encoder) {
-            console.warn("got encoder");
             bitmapEncoder = encoder;
-            bitmapEncoder.bitmapTransform.scaledWidth = 241;
-            bitmapEncoder.bitmapTransform.scaledHeight = 321;
+            bitmapEncoder.bitmapTransform.scaledWidth = screen.width + 1;
+            bitmapEncoder.bitmapTransform.scaledHeight = screen.height + 1;
             bitmapEncoder.bitmapTransform.bounds = {
-                height: 320,
-                width: 240,
+                height: screen.height,
+                width: screen.width,
                 x: 1,
                 y: 1
             };
             return bitmapEncoder.flushAsync();
         })
         .then(function () {
-            return folder.createFileAsync(fileName + ".thumb", Windows.Storage.CreationCollisionOption.generateUniqueName);
+            return folder.createFileAsync(fileName + ".thumb", Windows.Storage.CreationCollisionOption.replaceExisting);
         })
         .then(function (file) {
             return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
@@ -171,12 +185,14 @@ var exports = {
         .then(function () {
             thumbnailStream.close();
             outputStream.close();
-            window.onPictureTaken( ["ms-appdata:///local/" + fileName] );
+            QBIZCamera.onPictureTaken( ["ms-appdata:///local/" + fileName] );
         })
-        .done();
     },
     setOnPictureTakenHandler: function (onTaken) {
-        window.onPictureTaken = onTaken;
+        QBIZCamera.onPictureTaken = onTaken;
+    },
+    setOnMotionUpdate: function(onMotionUpdate) {
+        QBIZCamera.onMotionUpdate = onMotionUpdate;
     },
     show: function (...noParam) {
         var preview = document.getElementById('windowsPreview');
@@ -187,7 +203,7 @@ var exports = {
         preview.pause();
     },
     switchCamera: function (...noParam) {
-
+        //Here goes nothing!
     },
     logCamera: function (callback, error, noParam) {
         //ToDo
@@ -198,11 +214,142 @@ var exports = {
             previewResolution: { width: 1337, height: 16 }
         });
     },
-    useTimer: function (...noParam) { },
-    useMotionDetection: function (...noParam) { },
-    motionDetectionStart: function (...noParam) { },
-    motionDetectionStop: function (...noParam) { }
+    useTimer: function (...noParam) {
+        logger.add("Using Timer");
+    },
+    useMotionDetection: function (...noParam) {
+        logger.add("Using Motion Detection");
+        QBIZCamera.motionDetection = new MotionDetection();
+    },
+    motionDetectionStart: function (...noParam) {
+        QBIZCamera.motionDetectionLoop = setInterval(function () {
+            var motionDetected = QBIZCamera.motionDetection.detect();
+            if (!motionDetected) {
+                QBIZCamera.motionDetection.detected++;
+                QBIZCamera.onMotionUpdate("Hello");
+            }
+            else {
+                QBIZCamera.motionDetection.detected = 0;
+                QBIZCamera.onMotionUpdate("SeeYa");
+            }
+            if (QBIZCamera.motionDetection.detected >= 3) {
+                QBIZCamera.onMotionUpdate("NicePicYouHaveHere");
+                QBIZCamera.motionDetection.detected = 0;
+                QBIZCamera.takePicture();
+            }
+        }, 1000);
+    },
+    motionDetectionStop: function (...noParam) {
+        clearInterval(QBIZCamera.motionDetectionLoop);
+    }
 };
+
+/**
+  Class used for comparing windowsPreview on QBIZCamera
+ */
+class MotionDetection {
+    //Can take parameters, doesn't need any to work.
+    /**
+     * @param {number} colorThreshold Percentage threshold of color difference.
+     * @param {number} pixelThreshold Percentage threshold of different pixels on canvas.
+     */
+    constructor(colorThreshold, pixelThreshold) {
+        console.log("MD:I: Creating MotionDetection");
+        this.videoElement = document.getElementById("windowsPreview");
+
+        this.colorThreshold = colorThreshold || 7;
+        this.pixelThreshold = pixelThreshold || 10;
+
+        this.frameWidth = window.innerWidth;
+        this.frameHeight = window.innerHeight;
+        this.previousFrame = undefined;
+
+        this.stillFrames = 0;
+    }
+
+    /**
+     * Wrapper for all functions
+     * returns motionDetected
+     */
+    detect() {
+        let currentFrame = this.getCurrentFrame();
+        if (!this.previousFrame) {
+            this.previousFrame = currentFrame;
+            return false;
+        }
+        let motionDetected = this.isDifferent(currentFrame);
+        this.previousFrame = currentFrame;
+
+        return motionDetected;
+    }
+
+    /**
+     * Returns current video frame from windowsPreview
+     */
+    getCurrentFrame() {
+        console.log("MD:I: Getting current video frame");
+        if (!this.videoElement) {
+            console.error("MD:E: Video element not found. Aborting.");
+            return;
+        }
+
+        let frame = document.createElement("canvas");
+        frame.width = this.frameWidth;
+        frame.height = this.frameHeight;
+        frame.getContext("2d").drawImage(this.videoElement, 0, 0, this.frameWidth, this.frameHeight);
+
+        return frame;
+    }
+
+    /**
+     * Here goes canvas comparison
+     */
+    isDifferent(currentFrame) {
+        var CHANNELS = 4;
+        var pixelCount = this.frameWidth * this.frameHeight;
+
+        if (this.previousFrame.width != currentFrame.width || this.previousFrame.height != currentFrame.height) {
+            return true;
+        }
+        
+        var currentFrameData = currentFrame.getContext("2d").getImageData(0, 0, currentFrame.width, currentFrame.height).data;
+        var previousFrameData = this.previousFrame.getContext("2d").getImageData(0, 0, this.previousFrame.width, this.previousFrame.height).data;
+
+        if (currentFrameData.length != previousFrameData.length) {
+            return true;
+        }
+
+        var differentPixels = 0;
+        var length = pixelCount * CHANNELS;
+        for (var i = 0; i < length; i += 4) {
+            let R = i;
+            let G = i + 1;
+            let B = i + 2;
+
+            var or = currentFrameData[R];
+            var og = currentFrameData[G];
+            var ob = currentFrameData[B];
+
+            var pr = previousFrameData[R];
+            var pg = previousFrameData[G];
+            var pb = previousFrameData[B];
+
+            var colorTh = Math.round(this.colorThreshold * 255 / 100);
+            if (Math.abs(or - pr) > colorTh || Math.abs(og - pg) > colorTh || Math.abs(ob - pb) > colorTh) {
+                differentPixels++;
+            }
+        }
+
+        console.log("MD:I: No of diff pixels:" + differentPixels);
+        console.log("MD:I: " + differentPixels / pixelCount * 100 + "% different");
+
+        if (differentPixels == 0 || (differentPixels / pixelCount * 100) < this.pixelThreshold) {
+            return false;
+        }
+
+        return true;
+    }
+}
 
 require("cordova/exec/proxy").add("CameraPreview", exports);
 });

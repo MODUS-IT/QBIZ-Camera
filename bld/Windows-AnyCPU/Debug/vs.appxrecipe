@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>LPMGAMINGRIG</Machine>
-    <WindowsUser>Grzegorz</WindowsUser>
+    <Machine>DESKTOP-QHS5UBD</Machine>
+    <WindowsUser>User</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>debug|anycpu</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>1a8b8e60-3661-11e6-9eba-a11ba536c874</PackageIdentityName>
-    <IntermediateOutputPath>C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\bld\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>FFB50C7B2081D60288D991EC401751D4295EA2A10126072F4A6A019E714D98D4</RegisteredManifestChecksum>
+    <IntermediateOutputPath>C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\build\windows\bld\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>5F3D1E3CAE3AC2F949D9805ED89807CB1D30F6A486A6CB05584BF334F842DDB3</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>com.ionicframework.cameraapp997130_1.0.0.1_neutral__h35559jr9hy9m</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>com.ionicframework.cameraapp997130_h35559jr9hy9m!com.ionicframework.cameraapp997130</RegisteredUserModeAppID>
     <RegisteredPackageID>com.ionicframework.cameraapp997130</RegisteredPackageID>
@@ -19,623 +19,627 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\anycpu\win10\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\build\windows\debug\anycpu\win10\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:05:00.971</Modified>
+      <Modified>2016-07-03T21:59:42.270</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\SplashScreen.scale-100.png">
       <PackagePath>images\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.796</Modified>
+      <Modified>2016-06-15T06:30:45.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square150x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square150x150Logo.scale-100.png">
       <PackagePath>images\Square150x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.797</Modified>
+      <Modified>2016-06-15T06:30:45.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square30x30Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square30x30Logo.scale-100.png">
       <PackagePath>images\Square30x30Logo.scale-100.png</PackagePath>
-      <Modified>2016-06-19T21:02:16.799</Modified>
+      <Modified>2016-06-15T06:30:45.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square310x310Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square310x310Logo.scale-100.png">
       <PackagePath>images\Square310x310Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.800</Modified>
+      <Modified>2016-06-15T06:30:45.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square44x44Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square44x44Logo.scale-100.png">
       <PackagePath>images\Square44x44Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.801</Modified>
+      <Modified>2016-06-15T06:30:45.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square70x70Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square70x70Logo.scale-100.png">
       <PackagePath>images\Square70x70Logo.scale-100.png</PackagePath>
-      <Modified>2016-06-19T21:02:16.803</Modified>
+      <Modified>2016-06-15T06:30:45.292</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Square71x71Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Square71x71Logo.scale-100.png">
       <PackagePath>images\Square71x71Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.805</Modified>
+      <Modified>2016-06-15T06:30:45.292</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\StoreLogo.scale-100.png">
       <PackagePath>images\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.806</Modified>
+      <Modified>2016-06-15T06:30:45.292</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\images\Wide310x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\images\Wide310x150Logo.scale-100.png">
       <PackagePath>images\Wide310x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-19T21:02:16.808</Modified>
+      <Modified>2016-06-15T06:30:45.292</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\img\ionic.png">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\img\ionic.png">
       <PackagePath>www\img\ionic.png</PackagePath>
-      <Modified>2016-06-19T21:04:57.950</Modified>
+      <Modified>2016-07-03T21:59:35.003</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\browser\browser.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\browser\browser.html">
       <PackagePath>www\browser\browser.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.219</Modified>
+      <Modified>2016-07-03T21:59:38.095</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\browser\images.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\browser\images.html">
       <PackagePath>www\browser\images.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.219</Modified>
+      <Modified>2016-07-03T21:59:38.103</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\browser\projects.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\browser\projects.html">
       <PackagePath>www\browser\projects.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.220</Modified>
+      <Modified>2016-07-03T21:59:38.109</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\camera.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\camera.html">
       <PackagePath>www\camera.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.222</Modified>
+      <Modified>2016-07-03T21:59:38.112</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\grid.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\grid.html">
       <PackagePath>www\grid.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.238</Modified>
+      <Modified>2016-07-03T21:59:38.158</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\image_preview.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\image_preview.html">
       <PackagePath>www\image_preview.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.238</Modified>
+      <Modified>2016-07-03T21:59:38.171</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\index.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\index.html">
       <PackagePath>www\index.html</PackagePath>
-      <Modified>2016-06-19T21:04:59.119</Modified>
+      <Modified>2016-07-03T21:59:35.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\main-view-camera-config.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\main-view-camera-config.html">
       <PackagePath>www\main-view-camera-config.html</PackagePath>
-      <Modified>2016-06-19T21:05:00.319</Modified>
+      <Modified>2016-07-03T21:59:40.600</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\main-view-shutter-config.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\main-view-shutter-config.html">
       <PackagePath>www\main-view-shutter-config.html</PackagePath>
-      <Modified>2016-06-19T21:05:00.322</Modified>
+      <Modified>2016-07-03T21:59:40.606</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\main_view.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\main_view.html">
       <PackagePath>www\main_view.html</PackagePath>
-      <Modified>2016-06-19T21:05:00.322</Modified>
+      <Modified>2016-07-03T21:59:40.613</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\menu-tabs.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\menu-tabs.html">
       <PackagePath>www\menu-tabs.html</PackagePath>
-      <Modified>2016-06-19T21:05:00.323</Modified>
+      <Modified>2016-07-03T21:59:40.614</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\settings.html">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\settings.html">
       <PackagePath>www\settings.html</PackagePath>
-      <Modified>2016-06-19T21:05:00.551</Modified>
+      <Modified>2016-07-03T21:59:41.292</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\click.mp3">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\click.mp3">
       <PackagePath>www\click.mp3</PackagePath>
-      <Modified>2016-06-19T21:04:57.944</Modified>
+      <Modified>2016-07-03T21:59:34.986</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\cordova-js-src\exec.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\cordova-js-src\exec.js">
       <PackagePath>www\cordova-js-src\exec.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.228</Modified>
+      <Modified>2016-07-03T21:59:38.113</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\cordova-js-src\platform.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\cordova-js-src\platform.js">
       <PackagePath>www\cordova-js-src\platform.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.228</Modified>
+      <Modified>2016-07-03T21:59:38.123</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\cordova.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\cordova.js">
       <PackagePath>www\cordova.js</PackagePath>
-      <Modified>2016-06-19T21:04:58.500</Modified>
+      <Modified>2016-07-03T21:59:36.199</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\cordova_plugins.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\cordova_plugins.js">
       <PackagePath>www\cordova_plugins.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.237</Modified>
+      <Modified>2016-07-03T21:59:38.142</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\app.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\app.js">
       <PackagePath>www\js\app.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.239</Modified>
+      <Modified>2016-07-03T21:59:38.173</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\controller\main.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\controller\main.js">
       <PackagePath>www\js\controller\main.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.250</Modified>
+      <Modified>2016-07-03T21:59:38.217</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\controller\settings.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\controller\settings.js">
       <PackagePath>www\js\controller\settings.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.251</Modified>
+      <Modified>2016-07-03T21:59:38.239</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\directives.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\directives.js">
       <PackagePath>www\js\directives.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.254</Modified>
+      <Modified>2016-07-03T21:59:38.253</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\filemanipulation.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\filemanipulation.js">
       <PackagePath>www\js\filemanipulation.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.255</Modified>
+      <Modified>2016-07-03T21:59:38.287</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\localstorage.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\localstorage.js">
       <PackagePath>www\js\localstorage.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.260</Modified>
+      <Modified>2016-07-03T21:59:38.304</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\js\phpupload.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\js\phpupload.js">
       <PackagePath>www\js\phpupload.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.266</Modified>
+      <Modified>2016-07-03T21:59:38.324</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova-mocks.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova-mocks.js">
       <PackagePath>www\lib\cordova\ng-cordova-mocks.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.311</Modified>
+      <Modified>2016-07-03T21:59:38.404</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\cordova\ng-cordova.js">
       <PackagePath>www\lib\cordova\ng-cordova.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.376</Modified>
+      <Modified>2016-07-03T21:59:38.535</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\IM.min.js">
+      <PackagePath>www\lib\IM.min.js</PackagePath>
+      <Modified>2016-07-03T21:59:38.554</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.js">
       <PackagePath>www\lib\ionic\js\angular-ui\angular-ui-router.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.758</Modified>
+      <Modified>2016-07-03T21:59:39.291</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular-ui\angular-ui-router.min.js">
       <PackagePath>www\lib\ionic\js\angular-ui\angular-ui-router.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.795</Modified>
+      <Modified>2016-07-03T21:59:39.350</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-animate.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-animate.js">
       <PackagePath>www\lib\ionic\js\angular\angular-animate.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.421</Modified>
+      <Modified>2016-07-03T21:59:38.673</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-animate.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-animate.min.js">
       <PackagePath>www\lib\ionic\js\angular\angular-animate.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.445</Modified>
+      <Modified>2016-07-03T21:59:38.731</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-resource.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-resource.js">
       <PackagePath>www\lib\ionic\js\angular\angular-resource.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.464</Modified>
+      <Modified>2016-07-03T21:59:38.767</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-resource.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-resource.min.js">
       <PackagePath>www\lib\ionic\js\angular\angular-resource.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.465</Modified>
+      <Modified>2016-07-03T21:59:38.768</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-sanitize.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-sanitize.js">
       <PackagePath>www\lib\ionic\js\angular\angular-sanitize.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.485</Modified>
+      <Modified>2016-07-03T21:59:38.808</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-sanitize.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular-sanitize.min.js">
       <PackagePath>www\lib\ionic\js\angular\angular-sanitize.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.486</Modified>
+      <Modified>2016-07-03T21:59:38.810</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular.js">
       <PackagePath>www\lib\ionic\js\angular\angular.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.677</Modified>
+      <Modified>2016-07-03T21:59:39.131</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\angular\angular.min.js">
       <PackagePath>www\lib\ionic\js\angular\angular.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.725</Modified>
+      <Modified>2016-07-03T21:59:39.225</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic-angular.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic-angular.js">
       <PackagePath>www\lib\ionic\js\ionic-angular.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.879</Modified>
+      <Modified>2016-07-03T21:59:39.513</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic-angular.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic-angular.min.js">
       <PackagePath>www\lib\ionic\js\ionic-angular.min.js</PackagePath>
-      <Modified>2016-06-19T21:04:59.928</Modified>
+      <Modified>2016-07-03T21:59:39.621</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.bundle.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.bundle.js">
       <PackagePath>www\lib\ionic\js\ionic.bundle.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.019</Modified>
+      <Modified>2016-07-03T21:59:39.940</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.bundle.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.bundle.min.js">
       <PackagePath>www\lib\ionic\js\ionic.bundle.min.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.155</Modified>
+      <Modified>2016-07-03T21:59:40.237</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.js">
       <PackagePath>www\lib\ionic\js\ionic.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.254</Modified>
+      <Modified>2016-07-03T21:59:40.464</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.min.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\js\ionic.min.js">
       <PackagePath>www\lib\ionic\js\ionic.min.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.317</Modified>
+      <Modified>2016-07-03T21:59:40.588</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\com.mbppower.camerapreview\src\windows\CameraPreview.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\com.mbppower.camerapreview\src\windows\CameraPreview.js">
       <PackagePath>www\plugins\com.mbppower.camerapreview\src\windows\CameraPreview.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.336</Modified>
+      <Modified>2016-07-03T21:59:40.640</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\com.mbppower.camerapreview\www\CameraPreview.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\com.mbppower.camerapreview\www\CameraPreview.js">
       <PackagePath>www\plugins\com.mbppower.camerapreview\www\CameraPreview.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.341</Modified>
+      <Modified>2016-07-03T21:59:40.650</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-console\www\console-via-logger.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-console\www\console-via-logger.js">
       <PackagePath>www\plugins\cordova-plugin-console\www\console-via-logger.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.342</Modified>
+      <Modified>2016-07-03T21:59:40.661</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-console\www\logger.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-console\www\logger.js">
       <PackagePath>www\plugins\cordova-plugin-console\www\logger.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.352</Modified>
+      <Modified>2016-07-03T21:59:40.681</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\src\windows\CompassProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\src\windows\CompassProxy.js">
       <PackagePath>www\plugins\cordova-plugin-device-orientation\src\windows\CompassProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.354</Modified>
+      <Modified>2016-07-03T21:59:40.713</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\compass.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\compass.js">
       <PackagePath>www\plugins\cordova-plugin-device-orientation\www\compass.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.355</Modified>
+      <Modified>2016-07-03T21:59:40.723</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\CompassError.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\CompassError.js">
       <PackagePath>www\plugins\cordova-plugin-device-orientation\www\CompassError.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.359</Modified>
+      <Modified>2016-07-03T21:59:40.732</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\CompassHeading.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device-orientation\www\CompassHeading.js">
       <PackagePath>www\plugins\cordova-plugin-device-orientation\www\CompassHeading.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.363</Modified>
+      <Modified>2016-07-03T21:59:40.740</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device\src\windows\DeviceProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device\src\windows\DeviceProxy.js">
       <PackagePath>www\plugins\cordova-plugin-device\src\windows\DeviceProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.353</Modified>
+      <Modified>2016-07-03T21:59:40.690</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device\www\device.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-device\www\device.js">
       <PackagePath>www\plugins\cordova-plugin-device\www\device.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.354</Modified>
+      <Modified>2016-07-03T21:59:40.703</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-dialogs\src\windows\NotificationProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-dialogs\src\windows\NotificationProxy.js">
       <PackagePath>www\plugins\cordova-plugin-dialogs\src\windows\NotificationProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.364</Modified>
+      <Modified>2016-07-03T21:59:40.752</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-dialogs\www\notification.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-dialogs\www\notification.js">
       <PackagePath>www\plugins\cordova-plugin-dialogs\www\notification.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.369</Modified>
+      <Modified>2016-07-03T21:59:40.761</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-opener2\src\windows\fileOpener2Proxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-opener2\src\windows\fileOpener2Proxy.js">
       <PackagePath>www\plugins\cordova-plugin-file-opener2\src\windows\fileOpener2Proxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.487</Modified>
+      <Modified>2016-07-03T21:59:41.085</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-opener2\www\plugins.FileOpener2.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-opener2\www\plugins.FileOpener2.js">
       <PackagePath>www\plugins\cordova-plugin-file-opener2\www\plugins.FileOpener2.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.487</Modified>
+      <Modified>2016-07-03T21:59:41.098</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\src\windows\FileTransferProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\src\windows\FileTransferProxy.js">
       <PackagePath>www\plugins\cordova-plugin-file-transfer\src\windows\FileTransferProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.503</Modified>
+      <Modified>2016-07-03T21:59:41.139</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\www\FileTransfer.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\www\FileTransfer.js">
       <PackagePath>www\plugins\cordova-plugin-file-transfer\www\FileTransfer.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.515</Modified>
+      <Modified>2016-07-03T21:59:41.167</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\www\FileTransferError.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file-transfer\www\FileTransferError.js">
       <PackagePath>www\plugins\cordova-plugin-file-transfer\www\FileTransferError.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.520</Modified>
+      <Modified>2016-07-03T21:59:41.168</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\src\windows\FileProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\src\windows\FileProxy.js">
       <PackagePath>www\plugins\cordova-plugin-file\src\windows\FileProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.388</Modified>
+      <Modified>2016-07-03T21:59:40.800</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\browser\isChrome.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\browser\isChrome.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\browser\isChrome.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.393</Modified>
+      <Modified>2016-07-03T21:59:40.812</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\DirectoryEntry.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\DirectoryEntry.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\DirectoryEntry.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.394</Modified>
+      <Modified>2016-07-03T21:59:40.829</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\DirectoryReader.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\DirectoryReader.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\DirectoryReader.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.399</Modified>
+      <Modified>2016-07-03T21:59:40.843</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Entry.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Entry.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\Entry.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.414</Modified>
+      <Modified>2016-07-03T21:59:40.879</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\File.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\File.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\File.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.415</Modified>
+      <Modified>2016-07-03T21:59:40.896</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileEntry.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileEntry.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileEntry.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.415</Modified>
+      <Modified>2016-07-03T21:59:40.908</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileError.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileError.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileError.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.416</Modified>
+      <Modified>2016-07-03T21:59:40.917</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileReader.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileReader.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileReader.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.431</Modified>
+      <Modified>2016-07-03T21:59:40.949</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileSystem.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileSystem.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileSystem.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.437</Modified>
+      <Modified>2016-07-03T21:59:40.961</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\fileSystemPaths.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\fileSystemPaths.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\fileSystemPaths.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.438</Modified>
+      <Modified>2016-07-03T21:59:40.963</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\fileSystems.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\fileSystems.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\fileSystems.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.438</Modified>
+      <Modified>2016-07-03T21:59:40.964</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileUploadOptions.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileUploadOptions.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileUploadOptions.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.443</Modified>
+      <Modified>2016-07-03T21:59:40.972</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileUploadResult.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileUploadResult.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileUploadResult.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.447</Modified>
+      <Modified>2016-07-03T21:59:40.980</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileWriter.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\FileWriter.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\FileWriter.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.465</Modified>
+      <Modified>2016-07-03T21:59:41.013</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Flags.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Flags.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\Flags.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.469</Modified>
+      <Modified>2016-07-03T21:59:41.022</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\LocalFileSystem.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\LocalFileSystem.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\LocalFileSystem.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.470</Modified>
+      <Modified>2016-07-03T21:59:41.039</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Metadata.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\Metadata.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\Metadata.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.471</Modified>
+      <Modified>2016-07-03T21:59:41.040</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\ProgressEvent.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\ProgressEvent.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\ProgressEvent.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.471</Modified>
+      <Modified>2016-07-03T21:59:41.052</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\requestFileSystem.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\requestFileSystem.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\requestFileSystem.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.477</Modified>
+      <Modified>2016-07-03T21:59:41.063</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\resolveLocalFileSystemURI.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-file\www\resolveLocalFileSystemURI.js">
       <PackagePath>www\plugins\cordova-plugin-file\www\resolveLocalFileSystemURI.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.482</Modified>
+      <Modified>2016-07-03T21:59:41.073</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-nativeaudio\www\nativeaudio.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-nativeaudio\www\nativeaudio.js">
       <PackagePath>www\plugins\cordova-plugin-nativeaudio\www\nativeaudio.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.520</Modified>
+      <Modified>2016-07-03T21:59:41.181</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-screen-orientation\www\screenorientation.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-screen-orientation\www\screenorientation.js">
       <PackagePath>www\plugins\cordova-plugin-screen-orientation\www\screenorientation.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.525</Modified>
+      <Modified>2016-07-03T21:59:41.193</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-screen-orientation\www\screenOrientation.windows.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-screen-orientation\www\screenOrientation.windows.js">
       <PackagePath>www\plugins\cordova-plugin-screen-orientation\www\screenOrientation.windows.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.529</Modified>
+      <Modified>2016-07-03T21:59:41.202</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-splashscreen\www\splashscreen.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-splashscreen\www\splashscreen.js">
       <PackagePath>www\plugins\cordova-plugin-splashscreen\www\splashscreen.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.533</Modified>
+      <Modified>2016-07-03T21:59:41.215</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-splashscreen\www\windows\SplashScreenProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-splashscreen\www\windows\SplashScreenProxy.js">
       <PackagePath>www\plugins\cordova-plugin-splashscreen\www\windows\SplashScreenProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.538</Modified>
+      <Modified>2016-07-03T21:59:41.227</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-statusbar\src\windows\StatusBarProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-statusbar\src\windows\StatusBarProxy.js">
       <PackagePath>www\plugins\cordova-plugin-statusbar\src\windows\StatusBarProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.539</Modified>
+      <Modified>2016-07-03T21:59:41.241</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-statusbar\www\statusbar.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-statusbar\www\statusbar.js">
       <PackagePath>www\plugins\cordova-plugin-statusbar\www\statusbar.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.539</Modified>
+      <Modified>2016-07-03T21:59:41.253</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-x-toast\test\tests.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-x-toast\test\tests.js">
       <PackagePath>www\plugins\cordova-plugin-x-toast\test\tests.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.540</Modified>
+      <Modified>2016-07-03T21:59:41.265</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-x-toast\www\Toast.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\cordova-plugin-x-toast\www\Toast.js">
       <PackagePath>www\plugins\cordova-plugin-x-toast\www\Toast.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.546</Modified>
+      <Modified>2016-07-03T21:59:41.277</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\plugins\ionic-plugin-keyboard\src\windows\KeyboardProxy.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\plugins\ionic-plugin-keyboard\src\windows\KeyboardProxy.js">
       <PackagePath>www\plugins\ionic-plugin-keyboard\src\windows\KeyboardProxy.js</PackagePath>
-      <Modified>2016-06-19T21:05:00.550</Modified>
+      <Modified>2016-07-03T21:59:41.286</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\WinJS\js\base.js">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\WinJS\js\base.js">
       <PackagePath>www\WinJS\js\base.js</PackagePath>
-      <Modified>2016-06-19T21:04:58.901</Modified>
+      <Modified>2016-07-03T21:59:37.073</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\css\style.css">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\css\style.css">
       <PackagePath>www\css\style.css</PackagePath>
-      <Modified>2016-06-19T21:04:59.238</Modified>
+      <Modified>2016-07-03T21:59:38.150</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\css\ionic.css">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\css\ionic.css">
       <PackagePath>www\lib\ionic\css\ionic.css</PackagePath>
-      <Modified>2016-06-19T21:04:59.382</Modified>
+      <Modified>2016-07-03T21:59:38.575</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\css\ionic.min.css">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\css\ionic.min.css">
       <PackagePath>www\lib\ionic\css\ionic.min.css</PackagePath>
-      <Modified>2016-06-19T21:04:59.389</Modified>
+      <Modified>2016-07-03T21:59:38.595</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.eot">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.eot">
       <PackagePath>www\lib\ionic\fonts\ionicons.eot</PackagePath>
-      <Modified>2016-06-19T21:04:58.003</Modified>
+      <Modified>2016-07-03T21:59:35.138</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.svg">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.svg">
       <PackagePath>www\lib\ionic\fonts\ionicons.svg</PackagePath>
-      <Modified>2016-06-19T21:04:58.010</Modified>
+      <Modified>2016-07-03T21:59:35.152</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.ttf">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.ttf">
       <PackagePath>www\lib\ionic\fonts\ionicons.ttf</PackagePath>
-      <Modified>2016-06-19T21:04:58.014</Modified>
+      <Modified>2016-07-03T21:59:35.158</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.woff">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\fonts\ionicons.woff">
       <PackagePath>www\lib\ionic\fonts\ionicons.woff</PackagePath>
-      <Modified>2016-06-19T21:04:58.017</Modified>
+      <Modified>2016-07-03T21:59:35.165</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionic.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionic.scss">
       <PackagePath>www\lib\ionic\scss\ionic.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.369</Modified>
+      <Modified>2016-07-03T21:59:35.961</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\ionicons.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\ionicons.scss">
       <PackagePath>www\lib\ionic\scss\ionicons\ionicons.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.370</Modified>
+      <Modified>2016-07-03T21:59:35.965</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-font.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-font.scss">
       <PackagePath>www\lib\ionic\scss\ionicons\_ionicons-font.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.371</Modified>
+      <Modified>2016-07-03T21:59:35.967</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-icons.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-icons.scss">
       <PackagePath>www\lib\ionic\scss\ionicons\_ionicons-icons.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.376</Modified>
+      <Modified>2016-07-03T21:59:35.979</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-variables.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\ionicons\_ionicons-variables.scss">
       <PackagePath>www\lib\ionic\scss\ionicons\_ionicons-variables.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.379</Modified>
+      <Modified>2016-07-03T21:59:35.988</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_action-sheet.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_action-sheet.scss">
       <PackagePath>www\lib\ionic\scss\_action-sheet.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.380</Modified>
+      <Modified>2016-07-03T21:59:35.991</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_animations.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_animations.scss">
       <PackagePath>www\lib\ionic\scss\_animations.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.381</Modified>
+      <Modified>2016-07-03T21:59:35.993</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_backdrop.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_backdrop.scss">
       <PackagePath>www\lib\ionic\scss\_backdrop.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.382</Modified>
+      <Modified>2016-07-03T21:59:35.996</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_badge.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_badge.scss">
       <PackagePath>www\lib\ionic\scss\_badge.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.385</Modified>
+      <Modified>2016-07-03T21:59:35.999</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_bar.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_bar.scss">
       <PackagePath>www\lib\ionic\scss\_bar.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.388</Modified>
+      <Modified>2016-07-03T21:59:36.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_button-bar.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_button-bar.scss">
       <PackagePath>www\lib\ionic\scss\_button-bar.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.389</Modified>
+      <Modified>2016-07-03T21:59:36.009</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_button.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_button.scss">
       <PackagePath>www\lib\ionic\scss\_button.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.392</Modified>
+      <Modified>2016-07-03T21:59:36.014</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_checkbox.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_checkbox.scss">
       <PackagePath>www\lib\ionic\scss\_checkbox.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.395</Modified>
+      <Modified>2016-07-03T21:59:36.016</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_form.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_form.scss">
       <PackagePath>www\lib\ionic\scss\_form.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.398</Modified>
+      <Modified>2016-07-03T21:59:36.017</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_grid.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_grid.scss">
       <PackagePath>www\lib\ionic\scss\_grid.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.400</Modified>
+      <Modified>2016-07-03T21:59:36.019</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_items.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_items.scss">
       <PackagePath>www\lib\ionic\scss\_items.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.404</Modified>
+      <Modified>2016-07-03T21:59:36.027</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_list.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_list.scss">
       <PackagePath>www\lib\ionic\scss\_list.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.405</Modified>
+      <Modified>2016-07-03T21:59:36.031</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_loading.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_loading.scss">
       <PackagePath>www\lib\ionic\scss\_loading.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.408</Modified>
+      <Modified>2016-07-03T21:59:36.033</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_menu.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_menu.scss">
       <PackagePath>www\lib\ionic\scss\_menu.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.411</Modified>
+      <Modified>2016-07-03T21:59:36.035</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_mixins.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_mixins.scss">
       <PackagePath>www\lib\ionic\scss\_mixins.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.415</Modified>
+      <Modified>2016-07-03T21:59:36.046</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_modal.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_modal.scss">
       <PackagePath>www\lib\ionic\scss\_modal.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.417</Modified>
+      <Modified>2016-07-03T21:59:36.049</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_platform.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_platform.scss">
       <PackagePath>www\lib\ionic\scss\_platform.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.419</Modified>
+      <Modified>2016-07-03T21:59:36.051</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_popover.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_popover.scss">
       <PackagePath>www\lib\ionic\scss\_popover.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.421</Modified>
+      <Modified>2016-07-03T21:59:36.054</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_popup.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_popup.scss">
       <PackagePath>www\lib\ionic\scss\_popup.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.423</Modified>
+      <Modified>2016-07-03T21:59:36.056</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_progress.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_progress.scss">
       <PackagePath>www\lib\ionic\scss\_progress.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.425</Modified>
+      <Modified>2016-07-03T21:59:36.058</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_radio.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_radio.scss">
       <PackagePath>www\lib\ionic\scss\_radio.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.428</Modified>
+      <Modified>2016-07-03T21:59:36.061</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_range.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_range.scss">
       <PackagePath>www\lib\ionic\scss\_range.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.429</Modified>
+      <Modified>2016-07-03T21:59:36.063</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_refresher.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_refresher.scss">
       <PackagePath>www\lib\ionic\scss\_refresher.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.431</Modified>
+      <Modified>2016-07-03T21:59:36.065</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_reset.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_reset.scss">
       <PackagePath>www\lib\ionic\scss\_reset.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.434</Modified>
+      <Modified>2016-07-03T21:59:36.067</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_scaffolding.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_scaffolding.scss">
       <PackagePath>www\lib\ionic\scss\_scaffolding.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.435</Modified>
+      <Modified>2016-07-03T21:59:36.069</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_select.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_select.scss">
       <PackagePath>www\lib\ionic\scss\_select.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.438</Modified>
+      <Modified>2016-07-03T21:59:36.071</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_slide-box.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_slide-box.scss">
       <PackagePath>www\lib\ionic\scss\_slide-box.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.439</Modified>
+      <Modified>2016-07-03T21:59:36.078</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_slides.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_slides.scss">
       <PackagePath>www\lib\ionic\scss\_slides.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.442</Modified>
+      <Modified>2016-07-03T21:59:36.086</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_spinner.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_spinner.scss">
       <PackagePath>www\lib\ionic\scss\_spinner.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.443</Modified>
+      <Modified>2016-07-03T21:59:36.089</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_tabs.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_tabs.scss">
       <PackagePath>www\lib\ionic\scss\_tabs.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.446</Modified>
+      <Modified>2016-07-03T21:59:36.097</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_toggle.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_toggle.scss">
       <PackagePath>www\lib\ionic\scss\_toggle.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.447</Modified>
+      <Modified>2016-07-03T21:59:36.099</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_transitions.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_transitions.scss">
       <PackagePath>www\lib\ionic\scss\_transitions.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.451</Modified>
+      <Modified>2016-07-03T21:59:36.102</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_type.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_type.scss">
       <PackagePath>www\lib\ionic\scss\_type.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.454</Modified>
+      <Modified>2016-07-03T21:59:36.104</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_util.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_util.scss">
       <PackagePath>www\lib\ionic\scss\_util.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.458</Modified>
+      <Modified>2016-07-03T21:59:36.106</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_variables.scss">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\scss\_variables.scss">
       <PackagePath>www\lib\ionic\scss\_variables.scss</PackagePath>
-      <Modified>2016-06-19T21:04:58.462</Modified>
+      <Modified>2016-07-03T21:59:36.114</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\www\lib\ionic\version.json">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\www\lib\ionic\version.json">
       <PackagePath>www\lib\ionic\version.json</PackagePath>
-      <Modified>2016-06-19T21:05:00.318</Modified>
+      <Modified>2016-07-03T21:59:40.594</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\config.xml">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\config.xml">
       <PackagePath>config.xml</PackagePath>
-      <Modified>2016-06-19T21:04:57.883</Modified>
+      <Modified>2016-07-03T21:59:34.746</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Grzegorz\Documents\GitHub\QBIZ-Camera\platforms\windows\build\windows\debug\anycpu\win10\resources.pri">
+    <AppxPackagedFile Include="C:\Users\User\Source\Repos\QBIZ-Camera\platforms\windows\build\windows\debug\anycpu\win10\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-19T21:05:00.863</Modified>
+      <Modified>2016-07-03T21:59:41.929</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -1,23 +1,6 @@
 ﻿cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
-        "id": "com.mbppower.camerapreview.CameraPreview",
-        "pluginId": "com.mbppower.camerapreview",
-        "clobbers": [
-            "cordova.plugins.camerapreview",
-            "QBIZCamera"
-        ]
-    },
-    {
-        "file": "plugins/com.mbppower.camerapreview/src/windows/CameraPreview.js",
-        "id": "com.mbppower.camerapreview.CameraPreviewWin10",
-        "pluginId": "com.mbppower.camerapreview",
-        "merges": [
-            ""
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
         "pluginId": "cordova-plugin-console",
@@ -379,12 +362,28 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/com.mbppower.camerapreview/www/CameraPreview.js",
+        "id": "com.mbppower.camerapreview.CameraPreview",
+        "pluginId": "com.mbppower.camerapreview",
+        "clobbers": [
+            "cordova.plugins.camerapreview",
+            "QBIZCamera"
+        ]
+    },
+    {
+        "file": "plugins/com.mbppower.camerapreview/src/windows/CameraPreview.js",
+        "id": "com.mbppower.camerapreview.CameraPreviewWin10",
+        "pluginId": "com.mbppower.camerapreview",
+        "merges": [
+            ""
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.mbppower.camerapreview": "0.1.2",
     "cordova-plugin-console": "1.0.2",
     "cordova-plugin-device": "1.1.1",
     "cordova-plugin-device-orientation": "1.0.2",
@@ -398,7 +397,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.1",
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-toast": "2.4.2",
-    "ionic-plugin-keyboard": "1.0.8"
+    "ionic-plugin-keyboard": "1.0.8",
+    "com.mbppower.camerapreview": "0.1.2"
 };
 // BOTTOM OF METADATA
 });

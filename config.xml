@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.cameraapp997130" version="0.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultlocale="pl-PL" windows-packageVersion="1.0.0.1">
+<widget id="com.ionicframework.cameraapp997130" version="0.4.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultlocale="pl-PL" windows-packageVersion="1.0.0.1">
   <name>QBIZ Camera360</name>
   <description>QBIZ 360 Camera</description>
   <author email="you@example.com" href="http://example.com.com/">Grzegorz Mrózek   </author>
@@ -57,5 +57,5 @@
       <vs:packageOutputPath>C:\</vs:packageOutputPath>
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
-  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\Grzegorz\Documents\GitHub\CordovaCameraPreview" />
+  <plugin name="com.mbppower.camerapreview" version="0.1.2" src="C:\Users\User\Source\Repos\CordovaCameraPreview" />
 </widget>
